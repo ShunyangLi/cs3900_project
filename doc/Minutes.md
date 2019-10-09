@@ -1,5 +1,6 @@
 # Q/A:
 - Does the project assessment have marks for project management stuff?
+    - NO.
 # Meeting Places:
 - Wednesday 2-4pm lab
 - Friday 3-5pm K17 402
@@ -18,3 +19,6 @@
 - Drew the architecture and sysmtem flow
 - Ready to submit the proposal by Monday week 4
 
+# Week 4 Meeting
+- User type: individual(host,visitor), enterprise
+- 
