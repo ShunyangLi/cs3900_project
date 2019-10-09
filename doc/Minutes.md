@@ -21,4 +21,9 @@
 
 # Week 4 Meeting
 - User type: individual(host,visitor), enterprise
-- 
+- **Work Allocation**
+    - 李：backend
+    - 丁：Dialogflow + 阅读学习Angular+Flask代码
+    - 樊： 阅读学习Angular+Flask代码
+    - 郑：frontend
+    
