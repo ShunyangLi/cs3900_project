@@ -42,14 +42,14 @@ class Login(Resource):
             return make_response(jsonify({"message": "success", "token": token}), 200)
 
 
-@auth.route("/delete", strict_slashes=False)
+@auth.route("/close", strict_slashes=False)
 class Delete(Resource):
     @auth.response(200, 'Success')
     @auth.response(400, 'Missing Username/Password')
     @auth.response(403, 'Error')
     @auth.param('password', 'Password of user')
     @auth.param('username', 'Username of user')
-    @auth.doc(description="Delete your account.")
+    @auth.doc(description="Close your account.")
     def delete(self):
         username = get_post_args("username", str)
         password = get_post_args("password", str)
@@ -66,7 +66,7 @@ class Delete(Resource):
         return make_response(jsonify({"message": "success"}), 200)
 
 
-@auth.route('/register', strict_slashes=False)
+@auth.route('/signup,', strict_slashes=False)
 class Register(Resource):
 
     @auth.response(200, 'Success')
@@ -75,7 +75,7 @@ class Register(Resource):
     @auth.param('type', 'Type of user. Individual or Enterprise')
     @auth.param('password', 'Password of user')
     @auth.param('username', 'Username of user. The username should be email.')
-    @auth.doc(description="Please enter username, password and type for register")
+    @auth.doc(description="Please enter username, password and type for signup,")
     def post(self):
         email = get_post_args("username", str)
         password = get_post_args("password", str)
