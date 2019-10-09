@@ -23,3 +23,14 @@
 - `pip3 install -r requirements.txt`
 - `python3 run.py`
 
+# How to use token in login
+
+```python
+/confirm?token=xxxxxx
+
+# 怎么在API里面可以直接用get的方法得到数据，可以直接调用
+token = get_get_args('token')
+```
+
+
+
