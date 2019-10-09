@@ -19,6 +19,8 @@ e.g:
 res = query_db("SELECT * FROM user")
 res will return like: [{},{},{}....]
 """
+
+
 def query_db(query, args=(), one=False):
     conn = connect_db()
     c = conn.cursor()

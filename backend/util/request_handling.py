@@ -16,7 +16,7 @@ def get_post_args(arg_name, arg_type):
     res = args.get(arg_name)
 
     if res is None:
-        abort(400, 'Missing username/password args')
+        abort(400, "Missing args")
 
     return res
 
@@ -26,6 +26,6 @@ def get_get_args(arg_name):
     res = request.args.get(arg_name)
 
     if res is None:
-        abort(400, 'Missing username/password args')
+        abort(400, "Missing args")
 
     return res
