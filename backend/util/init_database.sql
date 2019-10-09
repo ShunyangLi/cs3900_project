@@ -1,7 +1,7 @@
 -- we use sqlite as the primary database
 
 -- create user table
--- Host, Visitor
+-- Individual(Host, Visitor), Enterprise
 CREATE TABLE IF NOT EXISTS User (
     username TEXT PRIMARY KEY,
     password TEXT NOT NULL,
