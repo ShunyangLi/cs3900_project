@@ -1,6 +1,6 @@
 from app import api
 from flask import make_response, jsonify
-from util.request_handling import get_post_args, get_get_args
+from util.request_handling import get_request_args
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 from util.mail_handling import send_mail
@@ -11,6 +11,7 @@ auth = api.namespace('auth', description="Authentication Services")
 
 @auth.route("/login", strict_slashes=False)
 class Login(Resource):
+
     @auth.response(200, 'Success')
     @auth.response(400, 'Missing args')
     @auth.response(403, 'Not register')
@@ -19,8 +20,8 @@ class Login(Resource):
     @auth.doc(description="Please enter username and password. "
                           "If the username and password correct, a token will be returned")
     def post(self):
-        username = get_post_args("username", str)
-        password = get_post_args("password", str)
+        username = get_request_args("username", str)
+        password = get_request_args("password", str)
 
         # if can not find the user's information
         res = query_db("SELECT confirm FROM User WHERE username = '%s'" % username)
@@ -51,8 +52,8 @@ class Delete(Resource):
     @auth.param('username', 'Username of user')
     @auth.doc(description="Close your account.")
     def delete(self):
-        username = get_post_args("username", str)
-        password = get_post_args("password", str)
+        username = get_request_args("username", str)
+        password = get_request_args("password", str)
 
         res = query_db("SELECT confirm FROM User WHERE username = '%s'" % username)
         if len(res) == 0:
@@ -77,9 +78,9 @@ class Register(Resource):
     @auth.param('username', 'Username of user. The username should be email.')
     @auth.doc(description="Please enter username, password and type for signup,")
     def post(self):
-        email = get_post_args("username", str)
-        password = get_post_args("password", str)
-        user_type = get_post_args("type", str)
+        email = get_request_args("username", str)
+        password = get_request_args("password", str)
+        user_type = get_request_args("type", str)
 
         # if can find the user, that means already register
         res = query_db("SELECT * FROM User WHERE username = '%s'" % email)
@@ -106,7 +107,7 @@ class Activate(Resource):
     @auth.param('token', 'The token which send to user')
     @auth.doc(description="This is for activate your account.")
     def post(self):
-        token = get_post_args("token", str)
+        token = get_request_args("token", str)
         check_token(token)
         return make_response(jsonify({"status": "success"}), 200)
 
@@ -121,7 +122,7 @@ class Send(Resource):
     @auth.param('username', 'Username of user. The username should be email.')
     @auth.doc(description="Please enter your email, and then a confirm email will be sent.")
     def post(self):
-        email = get_post_args("username", str)
+        email = get_request_args("username", str)
 
         # check whether activate
         res = query_db("SELECT confirm FROM User WHERE username = '%s'" % email)
