@@ -6,19 +6,18 @@ from util.db_handling import query_db
 from util.mail_handling import send_mail
 from util.auth import generate_activate_token, check_token, get_token
 
-login = api.namespace('login', description="User Information Services")
+auth = api.namespace('auth', description="Authentication Services")
 
 
-@login.route("/", strict_slashes=False)
+@auth.route("/login", strict_slashes=False)
 class Login(Resource):
-
-    @login.response(200, 'Success')
-    @login.response(400, 'Missing args')
-    @login.response(403, 'Not register')
-    @login.param('password', 'Password of user')
-    @login.param('username', 'Username of user')
-    @login.doc(description="Please enter username and password. "
-                           "If the username and password correct, a token will be returned")
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Not register')
+    @auth.param('password', 'Password of user')
+    @auth.param('username', 'Username of user')
+    @auth.doc(description="Please enter username and password. "
+                          "If the username and password correct, a token will be returned")
     def post(self):
         username = get_post_args("username", str)
         password = get_post_args("password", str)
@@ -42,12 +41,15 @@ class Login(Resource):
             query_db("UPDATE User SET token = '%s' WHERE username = '%s'" % (token, username))
             return make_response(jsonify({"message": "success", "token": token}), 200)
 
-    @login.response(200, 'Success')
-    @login.response(400, 'Missing Username/Password')
-    @login.response(403, 'Error')
-    @login.param('password', 'Password of user')
-    @login.param('username', 'Username of user')
-    @login.doc(description="Delete your account.")
+
+@auth.route("/delete", strict_slashes=False)
+class Delete(Resource):
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing Username/Password')
+    @auth.response(403, 'Error')
+    @auth.param('password', 'Password of user')
+    @auth.param('username', 'Username of user')
+    @auth.doc(description="Delete your account.")
     def delete(self):
         username = get_post_args("username", str)
         password = get_post_args("password", str)
@@ -64,19 +66,16 @@ class Login(Resource):
         return make_response(jsonify({"message": "success"}), 200)
 
 
-register = api.namespace('register', description="User register account")
-
-
-@register.route('/', strict_slashes=False)
+@auth.route('/register', strict_slashes=False)
 class Register(Resource):
 
-    @login.response(200, 'Success')
-    @login.response(400, 'Missing args')
-    @login.response(403, 'Already register')
-    @login.param('type', 'Type of user. Individual or Enterprise')
-    @login.param('password', 'Password of user')
-    @login.param('username', 'Username of user. The username should be email.')
-    @login.doc(description="Please enter username, password and type for register")
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Already register')
+    @auth.param('type', 'Type of user. Individual or Enterprise')
+    @auth.param('password', 'Password of user')
+    @auth.param('username', 'Username of user. The username should be email.')
+    @auth.doc(description="Please enter username, password and type for register")
     def post(self):
         email = get_post_args("username", str)
         password = get_post_args("password", str)
@@ -98,14 +97,14 @@ class Register(Resource):
         return make_response(jsonify({"message": "success"}), 200)
 
 # this is for activate your account
-@register.route('/activate', strict_slashes=False)
+@auth.route('/activate', strict_slashes=False)
 class Activate(Resource):
 
-    @login.response(200, 'Success')
-    @login.response(400, 'Missing args')
-    @login.response(403, 'Your email already activate!')
-    @login.param('token', 'The token which send to user')
-    @login.doc(description="This is for activate your account.")
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Your email already activate!')
+    @auth.param('token', 'The token which send to user')
+    @auth.doc(description="This is for activate your account.")
     def post(self):
         token = get_post_args("token", str)
         check_token(token)
@@ -113,14 +112,14 @@ class Activate(Resource):
 
 
 # this is for already register, but not activate successfully
-@register.route('/send', strict_slashes=False)
+@auth.route('/send', strict_slashes=False)
 class Send(Resource):
 
-    @login.response(200, 'Success')
-    @login.response(400, 'Missing args')
-    @login.response(403, 'Your email already activate!')
-    @login.param('username', 'Username of user. The username should be email.')
-    @login.doc(description="Please enter your email, and then a confirm email will be sent.")
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Your email already activate!')
+    @auth.param('username', 'Username of user. The username should be email.')
+    @auth.doc(description="Please enter your email, and then a confirm email will be sent.")
     def post(self):
         email = get_post_args("username", str)
 
