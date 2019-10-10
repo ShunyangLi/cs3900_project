@@ -61,3 +61,6 @@ app = Flask(__name__)
 CORS(app)
 
 ```
+
+# How to use API
+在`API.md`文档里面有具体的描述API的作用，method，args以及response。

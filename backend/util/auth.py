@@ -29,7 +29,7 @@ def check_token(token):
             else:
                 abort(403, 'Your email already activate!')
     except:
-        abort(400, 'Not correct token')
+        abort(400, 'Token expired.')
 
 
 # after login get the token

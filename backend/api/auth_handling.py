@@ -67,7 +67,7 @@ class Delete(Resource):
         return make_response(jsonify({"message": "success"}), 200)
 
 
-@auth.route('/signup,', strict_slashes=False)
+@auth.route('/signup', strict_slashes=False)
 class Register(Resource):
 
     @auth.response(200, 'Success')
@@ -127,7 +127,7 @@ class Send(Resource):
         # check whether activate
         res = query_db("SELECT confirm FROM User WHERE username = '%s'" % email)
         if len(res) == 0:
-            abort(403, 'Do not have account')
+            abort(403, 'Not signup')
         else:
             if res[0]['confirm'] == 'False':
                 token = generate_activate_token(email)
