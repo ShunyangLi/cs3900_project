@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS User (
     username TEXT PRIMARY KEY,
     password TEXT NOT NULL,
     user_type TEXT NOT NULL,
+    confirm TEXT DEFAULT 'False',
     token TEXT
 );
 
