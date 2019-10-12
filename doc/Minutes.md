@@ -24,6 +24,15 @@
 - **Work Allocation**
     - 李：backend
     - 丁：Dialogflow + 阅读学习Angular+Flask代码
-    - 樊： 阅读学习Angular+Flask代码
+    - 樊：阅读学习Angular+Flask代码
     - 郑：frontend
+- Saturday Meeting:
+    - Dialogflow data(JSON):
+      ```json
+      {
+        name: "UNSW Hotel",
+        addr: "275 High St"
+      }
+      ```
+      
     
