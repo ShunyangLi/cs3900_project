@@ -1,0 +1,139 @@
+/**********************************************************/
+/*                         LABELS                         */
+/**********************************************************/
+
+/* VARIABLES */
+$label-box-border: 1px solid transparent;
+$label-box-radius: 4px;
+$label-box-line-height: 16px;
+$label-box-letter-spacing: 0.4px;
+
+$label-box-paddings: (
+  small: 1px 4px,
+  default: 4px 8px,
+  large: 6px 10px,
+);
+
+$label-box-font-sizes: (
+  small: 12px,
+  default: 16px,
+  large: 18px,
+);
+
+$label-box-bg-color: (
+    primary: map-get($main-palette, primary),
+    primary-without-bg: transparent,
+    secondary: map-get($main-palette, secondary),
+    secondary-without-bg: transparent,
+    minimal: $white,
+);
+
+$label-box-font-colors: (
+    primary: $white,
+    primary-without-bg: map-get($main-palette, primary),
+    secondary: $white,
+    secondary-without-bg: map-get($main-palette, secondary),
+    minimal: $body-font-color,
+);
+
+$label-simple-font-sizes: (
+  small: 12px,
+  default: 16px,
+  large: 18px,
+);
+
+/**********************************************************/
+
+
+.ma-label {
+
+    display: inline-block;
+
+
+    /*               LABEL BOX               */
+    /*****************************************/
+
+    &--box {
+        border: $label-box-border;
+        -webkit-border-radius: $label-box-radius;
+        -moz-border-radius: $label-box-radius;
+        border-radius: $label-box-radius;
+        word-wrap: break-word;
+        line-height: $label-box-line-height;
+        letter-spacing: $label-box-letter-spacing;
+        font-weight: normal;
+
+
+        ///LABEL BOX SIZE
+
+        &--small {
+            padding: map-get($label-box-paddings, small);
+            font-size: map-get($label-box-font-sizes, small);
+        }
+
+        &--default {
+            padding: map-get($label-box-paddings, default);
+            font-size: map-get($label-box-font-sizes, default);
+        }
+
+        &--large {
+            padding: map-get($label-box-paddings, large);
+            font-size: map-get($label-box-font-sizes, large);
+        }
+
+
+        ///LABEL BOX COLOR
+
+        &--primary {
+            background-color: map-get($label-box-bg-color, primary);
+            color: map-get($label-box-font-colors, primary);
+        }
+
+        &--secondary {
+            background-color: map-get($label-box-bg-color, secondary);
+            color: map-get($label-box-font-colors, secondary);
+        }
+
+        &--white {
+            background-color: map-get($label-box-bg-color, minimal);
+            color: map-get($label-box-font-colors, minimal);
+        }
+
+    }
+
+
+    /*              SIMPLE LABEL             */
+    /*****************************************/
+
+    &--simple {
+        letter-spacing: 0;
+        font-style: normal;
+
+
+        ///SIMPLE LABEL SIZE
+
+        &--small {
+            font-size: map-get($label-simple-font-sizes, small);
+        }
+
+        &--default {
+            font-size: map-get($label-simple-font-sizes, default);
+        }
+
+        &--large {
+            font-size: map-get($label-simple-font-sizes, large);
+        }
+
+
+        ///SIMPLE LABEL COLOR
+
+        &--primary {
+            color: map-get($main-palette, primary);
+        }
+
+        &--secondary {
+            color: map-get($main-palette, secondary);
+        }
+    }
+
+}

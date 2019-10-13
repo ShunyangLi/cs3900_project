@@ -1,0 +1,43 @@
+/**********************************************************/
+/*                          BOX                           */
+/**********************************************************/
+
+/* VARIABLES */
+$box-bg-color: $white;
+$box-border: 1px solid #dce0e0;
+$box-paddings: (
+    title: 12px 20px,
+    content: 20px,
+    footer: 20px,
+);
+
+$box-title-bg-color: #edefed;
+$box-title-font-color: $body-font-color;
+$box-title-font-size: 16px;
+
+/**********************************************************/
+
+
+
+.ma-box {
+    background-color: $box-bg-color;
+    border: $box-border;
+    text-align: left;
+
+    &__title {
+        border-bottom: $box-border;
+        padding: map-get($box-paddings, title);
+        background-color: $box-title-bg-color;
+        color: $box-title-font-color;
+        font-size: $box-title-font-size;
+    }
+
+    &__content {
+        padding: map-get($box-paddings, content);
+    }
+
+    &__footer {
+        padding: map-get($box-paddings, footer);
+        border-top: $box-border;
+    }
+}

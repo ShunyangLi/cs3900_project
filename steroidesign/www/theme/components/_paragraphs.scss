@@ -1,0 +1,50 @@
+/**********************************************************/
+/*                       PARAGRAPHS                       */
+/**********************************************************/
+
+/* VARIABLES */
+$paragraph-font-sizes: (
+  small: map-get($global-font-sizes, small),
+  default: map-get($global-font-sizes, default),
+  large: map-get($global-font-sizes, large),
+);
+$paragraph-font-weight: 300;
+$paragraph-font-colors: (
+    primary: map-get($main-palette, primary),
+    secondary: map-get($main-palette, secondary),
+    alert: #d93900,
+);
+
+/**********************************************************/
+
+
+.ma-p {
+    letter-spacing: 0;
+    font-style: normal;
+    font-weight: $paragraph-font-weight;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+
+    /// PARAGRAPH SIZES
+
+    &--small {
+        font-size: map-get($paragraph-font-sizes, small);
+    }
+
+    &--default {
+        font-size: map-get($paragraph-font-sizes, default);
+    }
+
+    &--large {
+        font-size: map-get($paragraph-font-sizes, large);
+    }
+
+
+    /// PARAGRAPH COLORS
+
+    &--alert {
+        color: map-get($paragraph-font-colors, alert);
+    }
+
+}

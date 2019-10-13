@@ -1,0 +1,29 @@
+// App Shared Sass
+// --------------------------------------------------
+// All Core Sass files goes into the theme/core files (variables, globals)
+@import 'core/globals';
+
+// MainApp Components
+// --------------------------------------------------
+// avatar Style
+@import 'components/avatar';
+// box Style
+@import 'components/box';
+// buttons Style
+@import 'components/buttons';
+// header Style
+@import 'components/header';
+// input text Style
+@import 'components/inputs';
+// labels Style
+@import 'components/labels';
+// links Style
+@import 'components/links';
+// logo Styles
+@import 'components/logo';
+// paragraphs Style
+@import 'components/paragraphs';
+// stars Style
+@import 'components/stars';
+// sub nav Style
+@import 'components/subnav';

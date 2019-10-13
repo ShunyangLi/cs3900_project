@@ -1,0 +1,252 @@
+/*************************************************************/
+/*                     GLOBALS STYLES                        */
+/*************************************************************/
+
+/* VARIABLES */
+$main-palette: (
+  primary: #FF5A5F,
+  secondary: #008489,
+);
+
+$global-font-sizes:(
+    small: 15px,
+    default: 19px,
+    large: 22px,
+);
+
+$global-font-weight: 700;
+
+$global-image-path: "../../assets/images";
+$global-photo-default-file: "photo-default.svg";
+$global-logo: "logo.svg";
+
+$white: #FFF;
+$light-dark: #767676;
+
+$body-font-color: #484848;
+$body-bg: $white;
+$body-font-family: 'Lato', 'Helvetica Neue', Helvetica, 'Roboto', sans-serif;
+$body-line-height: 1.43;
+$body-font-size: 14px;
+$body-font-weight: normal;
+
+
+$global-facebook-color: #4568b2;
+$global-google-color: $white;
+
+$title-font-sizes: (
+    h1:44px,
+    h2:32px,
+    h3:24px,
+    h4:19px,
+    h5:14px,
+    h6:12px,
+);
+
+$title-font-weight: 300;
+$title-line-height: 1.1;
+
+$sepator-border-color: #dce0e0;
+$separator-margin: 30px auto;
+
+// reference: https://github.com/zurb/foundation-sites/blob/develop/scss/settings/_settings.scss
+
+/**********************************************************/
+
+
+
+/**********************************************************/
+/*                       MODIFIERS                        */
+/**********************************************************/
+
+.link-reset {
+    color: inherit;
+    text-decoration: none!important;
+}
+
+.margin-reset {margin: 0;}
+
+.padding-reset {padding: 0;}
+
+/* Spaces */
+.space-1 {margin-bottom: 6px;}
+.space-top-1 {margin-top: 6px;}
+.space-right-1 {margin-right: 6px;}
+.space-left-1 {margin-left: 6px;}
+
+.space-2 {margin-bottom: 12px;}
+.space-top-2 {margin-top: 12px;}
+.space-right-2 {margin-right: 12px;}
+.space-left-2 {margin-left: 12px;}
+
+.space-3 {margin-bottom: 18px;}
+.space-top-3 {margin-top: 18px;}
+.space-right-3 {margin-right: 18px;}
+.space-left-3 {margin-left: 18px;}
+
+.space-4 {margin-bottom: 24px;}
+.space-top-4 {margin-top: 24px;}
+.space-right-4 {margin-right: 24px;}
+.space-left-4 {margin-left: 24px;}
+
+.space-5 {margin-bottom: 30px;}
+.space-top-5 {margin-top: 30px;}
+.space-right-5 {margin-right: 30px;}
+.space-left-5 {margin-left: 30px;}
+
+.space-6 {margin-bottom: 36px;}
+.space-top-6 {margin-top: 36px;}
+.space-right-6 {margin-right: 36px;}
+.space-left-6 {margin-left: 36px;}
+
+.space-7 {margin-bottom: 42px;}
+.space-top-7 {margin-top: 42px;}
+.space-right-7 {margin-right: 42px;}
+.space-left-7 {margin-left: 42px;}
+
+.space-8 {margin-bottom: 48px;}
+.space-top-8 {margin-top: 48px;}
+.space-right-8 {margin-right: 48px;}
+.space-left-8 {margin-left: 48px;}
+
+.space-9 {margin-bottom: 54px;}
+.space-top-9 {margin-top: 54px;}
+.space-right-9 {margin-right: 54px;}
+.space-left-9 {margin-left: 54px;}
+
+.space-10 {margin-bottom: 60px;}
+.space-top-10 {margin-top: 60px;}
+.space-right-10 {margin-right: 60px;}
+.space-left-10 {margin-left: 60px;}
+
+.text-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.text-wrap {
+    word-wrap: break-word;
+}
+
+.round {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.strong {
+    font-weight: 700!important;
+}
+
+.line-through {
+    text-decoration: line-through!important;
+}
+
+.text-italic {
+    font-style: italic!important;
+}
+
+.font-weight-normal {
+    font-weight: normal!important;
+}
+
+/******************** END - MODIFIERS *********************/
+
+
+
+/**********************************************************/
+/*                    BODY MAIN STYLES                    */
+/**********************************************************/
+
+body.mainApp {
+
+    background-color: $body-bg;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    font-weight: $body-font-weight;
+    -webkit-font-smoothing: antialiased;
+    line-height: $body-line-height;
+    color: $body-font-color;
+    overflow-x: hidden;
+
+    strong {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: map-get($title-font-sizes, h1);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    h2 {
+        font-size: map-get($title-font-sizes, h2);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    h3 {
+        font-size: map-get($title-font-sizes, h3);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    h4 {
+        font-size: map-get($title-font-sizes, h4);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    h5 {
+        font-size: map-get($title-font-sizes, h5);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    h6 {
+        font-size: map-get($title-font-sizes, h6);
+        font-weight: $title-font-weight;
+        line-height: $title-line-height;
+        text-rendering: optimizelegibility;
+    }
+
+    label {
+        font-weight: normal;
+        display: block;
+        padding-top: 9px;
+        padding-bottom: 8px;
+        margin-bottom: 0px;
+    }
+
+    .ma-separator {
+        border-top: 0 hidden transparent;
+        border-bottom: 1px solid $sepator-border-color;
+        margin: $separator-margin;
+    }
+
+    .screen-reader-only {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+}
+
+
+/**************** END - BODY MAIN STYLES  *****************/

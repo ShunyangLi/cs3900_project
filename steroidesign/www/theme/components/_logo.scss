@@ -1,0 +1,18 @@
+/**********************************************************/
+/*                         LOGO                           */
+/**********************************************************/
+
+/* VARIABLES */
+$logo-path: $global-image-path + '/' + $global-logo;
+$logo-width: 32px;
+$logo-height: 35px;
+/**********************************************************/
+
+
+.ma-logo {
+    background-image: url($logo-path);
+    background-repeat: no-repeat;
+    height: $logo-height;
+    width: $logo-width;
+    display: inline-block;
+}
