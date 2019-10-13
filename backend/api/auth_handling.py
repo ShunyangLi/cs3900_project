@@ -93,7 +93,7 @@ class Register(Resource):
 
         token = generate_activate_token(email, expires_in=3600)
         # TODO when you testing, just do not send mail, just print the token, run in api page
-        # send_mail(email, 'Activate you account', 'activate', action_url=token)
+        # send_mail(email, 'Activate your account', 'activate', action_url=token)
 
         return make_response(jsonify({"message": "success"}), 200)
 
@@ -132,8 +132,45 @@ class Send(Resource):
             if res[0]['confirm'] == 'False':
                 token = generate_activate_token(email)
                 # TODO when you testing, just do not send mail, just print the token, run in api page
-                # send_mail(email, 'Activate you account', 'activate', action_url=token)
+                # send_mail(email, 'Activate your account', 'activate', action_url=token)
             else:
                 abort(403, 'Your email already activate!')
 
         return make_response(jsonify({"status": "success"}), 200)
+
+
+# about user profile
+# TODO need to check whether the account activate
+@auth.route('/profile', strict_slashes=False)
+class Profile(Resource):
+
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Token incorrect')
+    @auth.param('token', 'The user\'s token!')
+    @auth.doc(description="Get the user profile information")
+    def get(self):
+        token = get_request_args('token', str)
+        res = query_db("SELECT username, user_type FROM User WHERE token = '%s'" % token)
+
+        if len(res) == 0:
+            abort(403, 'Token incorrect')
+
+        return make_response(jsonify({"profile": res[0]}), 200)
+
+    @auth.response(200, 'Success')
+    @auth.response(400, 'Missing args')
+    @auth.response(403, 'Token incorrect')
+    @auth.param('token', 'The user\'s token!')
+    @auth.param('NewPassword', 'New password of user')
+    @auth.param('OldPassword', 'Old password of user')
+    @auth.param('username', 'Username')
+    @auth.doc(description="Update user profile")
+    def put(self):
+        """
+        用于更新用户信息，需要输入old password 和 new password
+        然后更新用户的信息
+        :return:
+        """
+        pass
+
