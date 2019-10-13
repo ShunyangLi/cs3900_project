@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

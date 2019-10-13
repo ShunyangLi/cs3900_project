@@ -1,5 +1,5 @@
 <div class="ma-box">
-  <div class="ma-box__title">Log in</div>
+  <div class="ma-box__title">Sign up</div>
   <div class="ma-box__content">
     <form class="form-horizontal ma-form--horizontal">
       <h3>Horizontal Text Inputs</h3>
@@ -17,7 +17,16 @@
           <input id="password" type="password" class="ma-input ma-input--default">
         </div>
       </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3">User type</label>
+        <div class="col-xs-9">
+          <input type="radio" name="gender" value="male">individual<br>
+          <input type="radio" name="gender" value="female">enterprise
+        </div>
+      </div>
     </form>
   </div>
-  <button routerLink="/login" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Log in</button>&nbsp;
+  <button routerLink="/signup" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
 </div>
