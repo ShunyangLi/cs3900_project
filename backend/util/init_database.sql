@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS User (
     token TEXT
 );
 
+INSERT INTO User(username, password, user_type, confirm, token)
+VALUES ('123@qq.com','123','individual','True','');
+
 CREATE TABLE IF NOT EXISTS Hotel (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
