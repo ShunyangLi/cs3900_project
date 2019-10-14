@@ -66,7 +66,7 @@ CORS(app)
 在`API.md`文档里面有具体的描述API的作用，method，args以及response。
 
 # How to init database
-在`backend`文件下执行:
+在`backend`文件夹下执行:
 ```bash
 sqlite3 util/data.sqlite < util/init_database.sql
 ```
