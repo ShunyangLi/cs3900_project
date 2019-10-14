@@ -1,5 +1,5 @@
 <div class="ma-box">
-  <div class="ma-box__title">Log in</div>
+  <h2 class="active">Log in</h2>
   <div class="ma-box__content">
 
     <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="form-horizontal ma-form--horizontal">
@@ -22,10 +22,14 @@
           debug: {{ loginInfo.password }}
         </div>
       </div>
-      <br>
-      <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Log in
-      </button>&nbsp;
-      <button (click)="loginForm.reset()" class="ma-btn ma-btn--small ma-btn--primary">Reset</button>
+
+      <div class="buttons">
+        <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Log in</button>
+      </div>
+
+      <div class="buttons">
+        <button (click)="loginForm.reset()" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Reset</button>
+      </div>
     </form>
 
   </div>
