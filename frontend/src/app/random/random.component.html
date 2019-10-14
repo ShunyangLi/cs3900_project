@@ -1,0 +1,7 @@
+<form #randomForm="ngForm" (ngSubmit)="handleSubmit()">
+  <label>Username</label>
+  <input type="text" required [(ngModel)]="user.user" name="user">
+  Debug: {{ this.user.user }}
+  <button type="submit">Submit</button>
+  <button (click)="randomForm.reset()">Reset</button>
+</form>

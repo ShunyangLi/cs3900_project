@@ -1,33 +1,24 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginInfo} from '../login/loginInfo';
-import {catchError} from "rxjs/operators";
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-  })
-};
+import {HttpMethods} from './httpMethods';
+// import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService extends HttpMethods {
 
-  private readonly backendUrl;
-  private readonly path;
-  constructor(private http: HttpClient) {
-    this.backendUrl = 'http://nomoreprojectpls.com';
-    this.path = '/auth/login';
+  private readonly path = '/auth/login';
+  constructor(http: HttpClient) {
+    super(http);
   }
 
   public authenticate(logInInfo: LoginInfo): Observable<{}> {
-    const body = JSON.stringify(logInInfo);
-    return this.http.post(this.backendUrl + this.path, body, httpOptions);
-      // .pip(
-      // catchError()
-    // );
+    return super.httpPost(logInInfo, this.path);
+    // const body = JSON.stringify(logInInfo);
+    // return this.http.post(this.backendUrl + this.path, body, this.httpOptions);
   }
 
 }

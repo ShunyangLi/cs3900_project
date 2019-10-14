@@ -1,12 +1,24 @@
 <div class="ma-box">
   <div class="ma-box__title">Sign up</div>
   <div class="ma-box__content">
-    <form class="form-horizontal ma-form--horizontal">
-      <h3>Horizontal Text Inputs</h3>
+    <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="form-horizontal ma-form--horizontal">
       <div class="form-group">
-        <label class="text-right col-xs-3" for="username">Username</label>
+        <label class="text-right col-xs-3" for="firstname">First Name</label>
         <div class="col-xs-9">
-          <input id="username" type="text" class="ma-input ma-input--default">
+          <input id="firstname" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.firstName" name="firstname"
+          >
+          debug: {{ this.signUpInfo.firstName }}
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="lastname">Last Name</label>
+        <div class="col-xs-9">
+          <input id="lastname" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.lastName" name="lastname"
+          >
+          debug: {{ this.signUpInfo.lastName }}
         </div>
       </div>
 
@@ -14,7 +26,21 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="password">Password</label>
         <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default">
+          <input id="password" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.password" name="password"
+          >
+          debug: {{ this.signUpInfo.password }}
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
+        <div class="col-xs-9">
+          <input id="retype" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.secondPassword" name="secondpassword"
+          >
+          debug: {{ this.signUpInfo.secondPassword }}
         </div>
       </div>
 
@@ -22,11 +48,11 @@
       <div class="form-group">
         <label class="text-right col-xs-3">User type</label>
         <div class="col-xs-9">
-          <input type="radio" name="gender" value="male">individual<br>
-          <input type="radio" name="gender" value="female">enterprise
+          <input type="radio" name="registerType" required> Individual
+          <input type="radio" name="registerType" required> Enterprise
         </div>
       </div>
+      <br>
+      <button class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
     </form>
-  </div>
-  <button routerLink="/signup" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
 </div>

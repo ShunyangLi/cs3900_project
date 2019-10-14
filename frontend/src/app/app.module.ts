@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
+import { RandomComponent } from './random/random.component';
+import { ActivateComponent } from './activate/activate.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     PageNotFoundComponent,
     HomepageComponent,
-    SignupComponent
+    SignupComponent,
+    RandomComponent,
+    ActivateComponent
   ],
   imports: [
     BrowserModule,
