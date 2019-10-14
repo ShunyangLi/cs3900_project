@@ -10,8 +10,9 @@ import {SignupService} from '../services/signup.service';
 export class SignupComponent implements OnInit {
 
   private signUpInfo: SignUpInfo;
+  public registerTypes = ['individual', 'enterprise'];
   constructor(private signUpService: SignupService) {
-    this.signUpInfo = new SignUpInfo('', '', '', '', '');
+    this.signUpInfo = new SignUpInfo('', '', '', '', '', '');
   }
 
   ngOnInit() {

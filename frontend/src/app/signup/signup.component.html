@@ -47,12 +47,17 @@
       <br>
       <div class="form-group">
         <label class="text-right col-xs-3">User type</label>
-        <div class="col-xs-9">
-          <input type="radio" name="registerType" required> Individual
-          <input type="radio" name="registerType" required> Enterprise
+        <div class="ma-select-container ma-select-container--default ma-select-container--block">
+          <select class="ma-input ma-select ma-select--default ma-select--block" required
+                  [(ngModel)]="signUpInfo.registerType" name="registerType"
+          >
+            <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
+          </select>
+          debug: {{ this.signUpInfo.registerType }}
         </div>
       </div>
       <br>
       <button class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
     </form>
+  </div>
 </div>
