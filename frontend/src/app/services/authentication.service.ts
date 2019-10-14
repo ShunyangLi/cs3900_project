@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {LoginInfo} from '../login/loginInfo';
+import {catchError} from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/x-www-form-urlencoded',
+    'Content-Type':  'application/json',
   })
 };
 
@@ -20,9 +22,12 @@ export class AuthenticationService {
     this.path = '/auth/login';
   }
 
-  public authenticate(authInfo: HttpParams): Observable<{}> {
-    return this.http.post(this.backendUrl + this.path, authInfo, httpOptions);
-    // TODO: add error handling: .pipe(catchError())
+  public authenticate(logInInfo: LoginInfo): Observable<{}> {
+    const body = JSON.stringify(logInInfo);
+    return this.http.post(this.backendUrl + this.path, body, httpOptions);
+      // .pip(
+      // catchError()
+    // );
   }
 
 }

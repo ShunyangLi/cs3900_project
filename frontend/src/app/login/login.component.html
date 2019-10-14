@@ -1,23 +1,32 @@
 <div class="ma-box">
   <div class="ma-box__title">Log in</div>
   <div class="ma-box__content">
-    <form class="form-horizontal ma-form--horizontal">
-      <h3>Horizontal Text Inputs</h3>
+
+    <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="form-horizontal ma-form--horizontal">
       <div class="form-group">
-        <label class="text-right col-xs-3" for="username">Username</label>
+        <label class="text-right col-xs-3" for="username">Email</label>
         <div class="col-xs-9">
-          <input id="username" type="text" class="ma-input ma-input--default">
+          <input id="username" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="loginInfo.username" name="username"
+          >
+          debug: {{ loginInfo.username }}
         </div>
       </div>
-
       <br>
       <div class="form-group">
         <label class="text-right col-xs-3" for="password">Password</label>
         <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default">
+          <input id="password" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="loginInfo.password" name="password"
+          >
+          debug: {{ loginInfo.password }}
         </div>
       </div>
+      <br>
+      <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Log in
+      </button>&nbsp;
+      <button (click)="loginForm.reset()" class="ma-btn ma-btn--small ma-btn--primary">Reset</button>
     </form>
+
   </div>
-  <button routerLink="/login" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Log in</button>&nbsp;
 </div>
