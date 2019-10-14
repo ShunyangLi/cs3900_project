@@ -5,13 +5,17 @@
 CREATE TABLE IF NOT EXISTS User (
     username TEXT PRIMARY KEY,
     password TEXT NOT NULL,
+    first_name TEXT NOT NULL ,
+    last_name TEXT NOT NULL ,
+    birthday TEXT NOT NULL ,
     user_type TEXT NOT NULL,
     confirm TEXT DEFAULT 'False',
     token TEXT
 );
 
-INSERT INTO User(username, password, user_type, confirm, token)
-VALUES ('123@qq.com','123','individual','True','');
+INSERT INTO User(username, password, first_name, last_name, birthday, user_type, confirm, token)
+VALUES ('123@qq.com','123', 'li', 'shunyang', '1998-08-12', 'individual','True','');
+
 
 CREATE TABLE IF NOT EXISTS Hotel (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
