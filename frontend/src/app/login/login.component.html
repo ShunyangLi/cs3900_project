@@ -1,0 +1,35 @@
+<div class="ma-box">
+  <h2 class="active">Log in</h2>
+  <div class="ma-box__content">
+    <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="form-horizontal ma-form--horizontal">
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="username">Email</label>
+        <div class="col-xs-9">
+          <input id="username" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="loginInfo.email" name="username"
+          >
+<!--          debug: {{ loginInfo.email }}-->
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="password">Password</label>
+        <div class="col-xs-9">
+          <input id="password" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="loginInfo.password" name="password"
+          >
+<!--          debug: {{ loginInfo.password }}-->
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Log in</button>
+      </div>
+
+      <div class="buttons">
+        <button (click)="loginForm.reset()" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Reset</button>
+      </div>
+    </form>
+
+  </div>
+</div>

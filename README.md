@@ -4,6 +4,8 @@
 - `doc/` folder contains:
     - Each team member's diary
     - Team meeting minutes
+- `steriodesign/` directory contains:
+    - UI design guideline
 
 ##### Team members:
 

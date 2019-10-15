@@ -1,0 +1,68 @@
+<h1>Homepage</h1>
+
+<button routerLink="/login" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Log in</button>&nbsp;
+<button routerLink="/signup" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+<section class="examples-section space-10">
+  <div class="row">
+    <div class="col-xs-4">
+      <h3>Search Component</h3>
+
+      <div class="ma-box">
+
+        <div class="ma-box__content">
+          <form class="ma-form ma-form--basic">
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group margin-reset">
+                  <label>Check In</label>
+                  <input type="text" class="ma-input ma-input--default" placeholder="dd/mm/yyyy">
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group margin-reset">
+                  <label>Check Out</label>
+                  <input type="text" class="ma-input ma-input--default" placeholder="dd/mm/yyyy">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label>Guests</label>
+                  <div class="ma-select-container ma-select-container--default ma-select-container--block">
+                    <select class="ma-input ma-select ma-select--default ma-select--block">
+                      <option value="" disabled selected>1 guest</option>
+                      <option value="Male">2 guests</option>
+                      <option value="Female">3 guests</option>
+                      <option value="Other">4+ guests</option>
+                    </select>
+                    <span class="ma-select-arrow">
+                                                        <i data-feather="chevron-down" class="ma-select-arrow__icon"></i>
+                                                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-xs-12">
+                <button class="ma-btn ma-btn--default ma-btn--primary ma-btn--block space-1">
+                  Request to Book
+                </button>
+              </div>
+              <div class="col-xs-12">
+                <div class="ma-label ma-label--simple ma-label--simple--small">
+                  100% refundable · You won’t be <a class="ma-link ma-link--simple ma-link--simple--secondary" href>charged yet</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-8"></div>
+  </div>
+
+</section>

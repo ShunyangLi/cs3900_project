@@ -1,0 +1,84 @@
+<div class="ma-box">
+  <div class="ma-box__title">Sign up</div>
+  <div class="ma-box__content">
+    <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="form-horizontal ma-form--horizontal">
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="firstname">First Name</label>
+        <div class="col-xs-9">
+          <input id="firstname" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="this.signUpInfo.first_name" name="firstname"
+          >
+<!--          debug: {{ this.signUpInfo.first_name }}-->
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="lastname">Last Name</label>
+        <div class="col-xs-9">
+          <input id="lastname" type="text" class="ma-input ma-input--default" required
+                 [(ngModel)]="this.signUpInfo.last_name" name="lastname"
+          >
+<!--          debug: {{ this.signUpInfo.last_name }}-->
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="email">Email</label>
+        <div class="col-xs-9">
+          <input id="email" type="email" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.username" name="email"
+          >
+<!--          debug: {{ this.signUpInfo.username }}-->
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="birthday">Date Of Birth</label>
+        <div class="col-xs-9">
+          <input id="birthday" type="date" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.birthday" name="birthday"
+          >
+<!--          debug: {{ this.signUpInfo.birthday }}-->
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="password">Password</label>
+        <div class="col-xs-9">
+          <input id="password" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.password" name="password"
+          >
+          debug: {{ this.signUpInfo.password }}
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
+        <div class="col-xs-9">
+          <input id="retype" type="password" class="ma-input ma-input--default" required
+                 [(ngModel)]="this.secondTypedPwd" name="secondpassword"
+          >
+          debug: {{ this.secondTypedPwd }}
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3">User type</label>
+        <div class="ma-select-container ma-select-container--default ma-select-container--block">
+          <select class="ma-input ma-select ma-select--default ma-select--block" required
+                  [(ngModel)]="signUpInfo.type" name="registerType"
+          >
+            <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
+          </select>
+<!--          debug: {{ this.signUpInfo.type }}-->
+        </div>
+      </div>
+      <br>
+      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+    </form>
+  </div>
+</div>
