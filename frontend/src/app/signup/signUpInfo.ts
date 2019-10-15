@@ -1,10 +1,12 @@
 export class SignUpInfo {
   constructor(
-    public firstName: string,
-    public lastName: string,
-    public email: string,
+    public username: string,
     public password: string,
-    public secondPassword: string,
-    public registerType: string
+    // tslint:disable-next-line:variable-name
+    public first_name: string,
+    // tslint:disable-next-line:variable-name
+    public last_name: string,
+    public birthday: string,
+    public type: string
   ) {}
 }

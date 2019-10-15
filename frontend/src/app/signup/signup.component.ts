@@ -10,9 +10,10 @@ import {SignupService} from '../services/signup.service';
 export class SignupComponent implements OnInit {
 
   private signUpInfo: SignUpInfo;
+  private secondTypedPwd: string;
   public registerTypes = ['individual', 'enterprise'];
   constructor(private signUpService: SignupService) {
-    this.signUpInfo = new SignUpInfo('', '', '', '', '', '');
+    this.signUpInfo = new SignUpInfo('', '', '', '', '', 'individual');
   }
 
   ngOnInit() {
@@ -20,11 +21,12 @@ export class SignupComponent implements OnInit {
 
 
   public onSignUpSubmit(): void {
-    console.log(this.signUpInfo.firstName);
-    console.log(this.signUpInfo.lastName);
-    console.log(this.signUpInfo.email);
+    console.log(this.signUpInfo.first_name);
+    console.log(this.signUpInfo.last_name);
+    console.log(this.signUpInfo.username);
     console.log(this.signUpInfo.password);
-    console.log(this.signUpInfo.registerType);
+    console.log(this.signUpInfo.birthday)
+    console.log(this.signUpInfo.type);
     this.signUpService.signup(this.signUpInfo).subscribe(
       res => console.log(res)
     );

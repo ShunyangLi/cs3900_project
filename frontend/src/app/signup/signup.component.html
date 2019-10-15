@@ -6,9 +6,9 @@
         <label class="text-right col-xs-3" for="firstname">First Name</label>
         <div class="col-xs-9">
           <input id="firstname" type="text" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.firstName" name="firstname"
+                 [(ngModel)]="this.signUpInfo.first_name" name="firstname"
           >
-          debug: {{ this.signUpInfo.firstName }}
+<!--          debug: {{ this.signUpInfo.first_name }}-->
         </div>
       </div>
       <br>
@@ -16,12 +16,33 @@
         <label class="text-right col-xs-3" for="lastname">Last Name</label>
         <div class="col-xs-9">
           <input id="lastname" type="text" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.lastName" name="lastname"
+                 [(ngModel)]="this.signUpInfo.last_name" name="lastname"
           >
-          debug: {{ this.signUpInfo.lastName }}
+<!--          debug: {{ this.signUpInfo.last_name }}-->
         </div>
       </div>
 
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="email">Email</label>
+        <div class="col-xs-9">
+          <input id="email" type="email" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.username" name="email"
+          >
+<!--          debug: {{ this.signUpInfo.username }}-->
+        </div>
+      </div>
+
+      <br>
+      <div class="form-group">
+        <label class="text-right col-xs-3" for="birthday">Date Of Birth</label>
+        <div class="col-xs-9">
+          <input id="birthday" type="date" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.birthday" name="birthday"
+          >
+<!--          debug: {{ this.signUpInfo.birthday }}-->
+        </div>
+      </div>
       <br>
       <div class="form-group">
         <label class="text-right col-xs-3" for="password">Password</label>
@@ -38,9 +59,9 @@
         <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
         <div class="col-xs-9">
           <input id="retype" type="password" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.secondPassword" name="secondpassword"
+                 [(ngModel)]="this.secondTypedPwd" name="secondpassword"
           >
-          debug: {{ this.signUpInfo.secondPassword }}
+          debug: {{ this.secondTypedPwd }}
         </div>
       </div>
 
@@ -49,15 +70,15 @@
         <label class="text-right col-xs-3">User type</label>
         <div class="ma-select-container ma-select-container--default ma-select-container--block">
           <select class="ma-input ma-select ma-select--default ma-select--block" required
-                  [(ngModel)]="signUpInfo.registerType" name="registerType"
+                  [(ngModel)]="signUpInfo.type" name="registerType"
           >
             <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
           </select>
-          debug: {{ this.signUpInfo.registerType }}
+<!--          debug: {{ this.signUpInfo.type }}-->
         </div>
       </div>
       <br>
-      <button class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
     </form>
   </div>
 </div>

@@ -17,6 +17,7 @@ export abstract class HttpMethods {
 
   public httpPost(obj: any, path: string): Observable<{}> {
     const body = JSON.stringify(obj);
+    console.log(body);
     return this.http.post(this.backendUrl + path, body, this.httpOptions);
   }
 
