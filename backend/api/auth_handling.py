@@ -100,8 +100,8 @@ class Register(Resource):
 
         token = generate_activate_token(email, expires_in=3600)
         # TODO when you testing, just do not send mail, just print the token, run in api page
-        send_mail(email, 'Activate your account', 'activate', action_url=token)
-
+        url = 'http://127.0.0.1:4200/activate/' + token.decode("utf-8")
+        send_mail(email, 'Activate your account', 'activate', action_url=url)
         return make_response(jsonify({"message": "success"}), 200)
 
 # this is for activate your account
@@ -139,7 +139,8 @@ class Send(Resource):
             if res[0]['confirm'] == 'False':
                 token = generate_activate_token(email)
                 # TODO when you testing, just do not send mail, just print the token, run in api page
-                send_mail(email, 'Activate your account', 'activate', action_url=token)
+                url = 'http://127.0.0.1:4200/activate/' + token.decode("utf-8")
+                send_mail(email, 'Activate your account', 'activate', action_url=url)
             else:
                 abort(403, 'Your email already activate!')
 
