@@ -20,3 +20,12 @@ def get_request_args(arg_name, arg_type):
         abort(400, "Missing args")
 
     return res
+
+
+# get the header token
+def get_header(req):
+    token = req.headers.get('Authorization', None)
+    if not token:
+        abort(403, "Not get the token")
+
+    return token
