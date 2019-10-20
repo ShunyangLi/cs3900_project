@@ -1,5 +1,5 @@
 <div class="ma-box">
-  <div class="ma-box__title">Sign up</div>
+  <h2 class="active">Sign up</h2>
   <div class="ma-box__content">
     <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="form-horizontal ma-form--horizontal">
       <div class="form-group">
@@ -78,7 +78,7 @@
         </div>
       </div>
       <br>
-      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary">Sign up</button>
     </form>
   </div>
 </div>
