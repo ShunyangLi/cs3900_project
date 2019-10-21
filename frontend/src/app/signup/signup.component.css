@@ -1,0 +1,44 @@
+.ma-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+h2.active {
+  color: #0d0d0d;
+  border-bottom: 2px solid #FF5A5F;
+  margin-left: 5%;
+}
+
+.ma-input {
+  background-color: #f6f6f6;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block;*/
+  font-size: 16px;
+  margin: 5px;
+  width: 100%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 6px 6px 6px 6px;
+}
+
+.ma-input:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #FF5A5F;
+}
+
+.buttons {
+  margin: 5px;
+  width: 127%;
+}
