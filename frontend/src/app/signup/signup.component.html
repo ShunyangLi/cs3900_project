@@ -1,23 +1,44 @@
 <div class="ma-box">
   <div class="ma-box__title">Sign up</div>
   <div class="ma-box__content">
-    <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="form-horizontal ma-form--horizontal">
+    <form [formGroup]="signForm" (ngSubmit)="onSignUpSubmit()"  class="form-horizontal ma-form--horizontal">
       <div class="form-group">
         <label class="text-right col-xs-3" for="firstname">First Name</label>
         <div class="col-xs-9">
-          <input id="firstname" type="text" class="ma-input ma-input--default" required
-                 [(ngModel)]="this.signUpInfo.first_name" name="firstname"
+          <input id="firstname" type="text" class="ma-input ma-input--default"sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss required formControlName="firstname"
           >
+            <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+               class="alert-purple">
+            <div *ngIf="firstname.errors.required">
+             FirstName is required.
+            </div>
+            <div *ngIf="firstname.errors.pattern">
+              Please input correct FirstName
+            </div>
 <!--          debug: {{ this.signUpInfo.first_name }}-->
+            </div>
         </div>
       </div>
       <br>
       <div class="form-group">
         <label class="text-right col-xs-3" for="lastname">Last Name</label>
         <div class="col-xs-9">
-          <input id="lastname" type="text" class="ma-input ma-input--default" required
-                 [(ngModel)]="this.signUpInfo.last_name" name="lastname"
+<!--          <input id="lastname" type="text" class="ma-input ma-input&#45;&#45;default" required pattern="[a-zA-Z ]*"-->
+<!--                 [(ngModel)]="this.signUpInfo.last_name" name="lastname" #lastname="ngModel"-->
+<!--          >-->
+          <input id="lastname" type="text" class="ma-input ma-input--default" formControlName="lastname" required
           >
+
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+                            class="alert-purple">
+          <div *ngIf="lastname.errors.required">
+            LastName is required.
+          </div>
+          <div *ngIf="lastname.errors.pattern">
+            Please input correct lastname
+          </div>
+          <!--          debug: {{ this.signUpInfo.first_name }}-->
+        </div>
 <!--          debug: {{ this.signUpInfo.last_name }}-->
         </div>
       </div>
@@ -27,8 +48,18 @@
         <label class="text-right col-xs-3" for="email">Email</label>
         <div class="col-xs-9">
           <input id="email" type="email" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.username" name="email"
+                 formControlName="email"
           >
+          <div *ngIf="email.invalid&&(email.dirty||email.touched)"
+              class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              Email is required
+            </div>
+            <div *ngIf="email.errors.email">
+              Please input correct email
+            </div>
+          </div>
+
 <!--          debug: {{ this.signUpInfo.username }}-->
         </div>
       </div>
@@ -38,7 +69,7 @@
         <label class="text-right col-xs-3" for="birthday">Date Of Birth</label>
         <div class="col-xs-9">
           <input id="birthday" type="date" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.birthday" name="birthday"
+                  name="birthday"
           >
 <!--          debug: {{ this.signUpInfo.birthday }}-->
         </div>
@@ -47,21 +78,26 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="password">Password</label>
         <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default" required
-                 [(ngModel)]="signUpInfo.password" name="password"
+          <input id="password" type="password" class="ma-input ma-input--default" formControlName="password" required
           >
+          <div *ngIf="signForm.hasError('required','password')">
+            Please enter your new password
+            </div>
+          </div>
           debug: {{ this.signUpInfo.password }}
-        </div>
       </div>
 
       <br>
       <div class="form-group">
         <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
         <div class="col-xs-9">
-          <input id="retype" type="password" class="ma-input ma-input--default" required
-                 [(ngModel)]="this.secondTypedPwd" name="secondpassword"
+          <input id="retype" type="password" class="ma-input ma-input--default" formControlName="confirmPassword" required
+
           >
-          debug: {{ this.secondTypedPwd }}
+          <div *ngIf="signForm.hasError('notSame')">
+            Passwords do not match
+          </div>
+<!--          debug: {{ confirmpwd.value }}-->
         </div>
       </div>
 
@@ -70,7 +106,7 @@
         <label class="text-right col-xs-3">User type</label>
         <div class="ma-select-container ma-select-container--default ma-select-container--block">
           <select class="ma-input ma-select ma-select--default ma-select--block" required
-                  [(ngModel)]="signUpInfo.type" name="registerType"
+                   name="registerType"
           >
             <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
           </select>
@@ -78,7 +114,7 @@
         </div>
       </div>
       <br>
-      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+      <button [disabled]="!signForm.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
     </form>
   </div>
 </div>
