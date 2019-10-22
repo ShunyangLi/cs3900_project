@@ -10,6 +10,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 import { RandomComponent } from './random/random.component';
 import { ActivateComponent } from './activate/activate.component';
+import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ActivateComponent } from './activate/activate.component';
     HomepageComponent,
     SignupComponent,
     RandomComponent,
-    ActivateComponent
+    ActivateComponent,
+    TopNavigationComponent
   ],
   imports: [
     BrowserModule,

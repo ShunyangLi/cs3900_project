@@ -13,16 +13,16 @@
         $("#loading").fadeOut(500);
     });
 
-    
+
     /*Document is Raedy */
     $(document).ready(function () {
 
         /*========== SMOOTHSTATE ==========*/
-        $('#smoothpage').smoothState({ 
+        $('#smoothpage').smoothState({
             anchors: 'nav a',
-            blacklist: 'form',                         
+            blacklist: 'form',
         });
-        
+
         /*========== TEXT ROTATION ==========*/
         $("#text_rotating").Morphext({
             animation: "fadeInDown",
@@ -44,9 +44,9 @@
 
         /*========== MENU ==========*/
         $(window).on("scroll", function () {
-            
+
             var header = $('header')
-            
+
             if (header.length > 0) {
 
                 var window_height = $(this).scrollTop();
@@ -80,11 +80,11 @@
                 }
             }
         });
-        
+
         $(function () {
             function toggleNavbarMethod() {
                 if ($(window).width() > 992) {
-                    
+
                     $('.dropdown')
                         .on('mouseover', function () {
                             $(this).addClass('open');
@@ -130,7 +130,7 @@
                     '<div class="count_box"><div class="inner"><div class="count_number">%D</div><div class="count_text">Days</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%H</div><div class="count_text">Hours</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%M</div><div class="count_text">Minutes</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%S</div><div class="count_text">Seconds</div><div></div>'));
             });
         });
-        
+
         /*========== REVOLUTION SLIDER ==========*/
 
         /* ----- Home Page 1 ----- */
@@ -173,7 +173,7 @@
                 }
             });
         };
-        
+
         /* ----- Home Page 2 ----- */
         if ($("#classic_slider").length > 0) {
             var tpj = jQuery;
@@ -257,7 +257,7 @@
                 }
             });
         };
-        
+
         /* ----- Home Page 3 ----- */
         if ($("#fullscreen_slider").length > 0) {
             var tpj = jQuery;
@@ -330,7 +330,7 @@
                 }
             });
         };
-        
+
         /* ----- Home Page 4 ----- */
         if ($("#fullscreen_hero_video").length > 0) {
             var tpj = jQuery;
@@ -372,7 +372,7 @@
                 }
             });
         };
-        
+
         /* ----- Coming Soon ----- */
         if ($("#hero_coming_soon").length > 0) {
            var tpj = jQuery;
@@ -416,7 +416,7 @@
                }
            });
         };
-        
+
         /* ----- Event Details ----- */
         if ($("#hero_event").length > 0) {
             var tpj = jQuery;
@@ -459,7 +459,7 @@
                 }
             });
          };
-        
+
          /* ----- Restaurant ----- */
          if ($("#hero_restaurant").length > 0) {
              var tpj = jQuery;
@@ -500,7 +500,7 @@
                  }
              });
          };
-        
+
          /* ----- Spa ----- */
          if ($("#hero_spa").length > 0) {
             var tpj = jQuery;
@@ -511,10 +511,10 @@
                 } else {
                     revapi429 = tpj("#hero_spa").show().revolution({
                         sliderType: "hero",
-                        dottedOverlay: "twoxtwo",   
+                        dottedOverlay: "twoxtwo",
                         delay: 9000,
                         responsiveLevels: [1200, 992, 768, 480],
-                        visibilityLevels: [1200, 992, 768, 480], 
+                        visibilityLevels: [1200, 992, 768, 480],
                         gridwidth: [1200, 992, 768, 480],
                         gridheight:[550, 550, 550, 550],
                         lazyType: "none",
@@ -525,7 +525,7 @@
                             levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
                         },
                         shadow: 0,
-                        spinner: "off", 
+                        spinner: "off",
                         autoHeight: "off",
                         forceFullWidth:"off",
                         disableProgressBar: "on",
@@ -541,7 +541,7 @@
                 }
             });
          };
-        
+
         /*========== COUNT UP ==========*/
         var options = {
             useEasing: true,
@@ -576,7 +576,7 @@
             items: 1,
             loop: true,
             autoplay: true,
-          
+
             dots: false,
             nav: false,
         });
@@ -603,7 +603,7 @@
                 });
             });
         });
-        
+
         /*========== GALLERY SLIDER ==========*/
         var owl = $('#gallery_slider');
         owl.owlCarousel({
@@ -778,7 +778,7 @@
                     $(this).addClass("scale-out");
                     next();
                 });
-                $(".notification").on("click", function(){ 
+                $(".notification").on("click", function(){
                     $(this).addClass("scale-out");
                 });
 
@@ -828,7 +828,7 @@
                     $(this).addClass("scale-out");
                     next();
                 });
-                $(".notification").on("click", function(){ 
+                $(".notification").on("click", function(){
                     $(this).addClass("scale-out");
                 });
 
@@ -912,7 +912,7 @@
             var mapOptions = {
                 center: hotel_location,
                 zoom: 15,
-                scrollwheel: false, 
+                scrollwheel: false,
                 streetViewControl: false
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
