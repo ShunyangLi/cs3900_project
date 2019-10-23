@@ -109,4 +109,6 @@
     - Not signup
     - Your email already activate!
 
-    
+
+# Clean DB
+使用API：`/cleanDB`
