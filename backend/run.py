@@ -1,6 +1,7 @@
 import os
 from app import app
 import api.auth_handling
+import api.chat_handling
 
 
 @app.route('/cleanDB')
