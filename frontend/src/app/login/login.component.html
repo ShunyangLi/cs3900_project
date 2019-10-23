@@ -9,7 +9,7 @@
                  [(ngModel)]="loginInfo.username" name="username" placeholder="Enter your username(email)" #name=ngModel
           >
         <div *ngIf="name.invalid && (name.dirty || name.touched)"
-             class="alert-purple">
+             class="alert alert-danger">
           <div *ngIf="name.errors.required">
             Name is required.
           </div>
