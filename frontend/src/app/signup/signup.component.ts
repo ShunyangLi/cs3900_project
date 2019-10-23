@@ -4,11 +4,8 @@ import {SignupService} from '../services/signup.service';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  ValidationErrors, ValidatorFn,
-  Validators
+  ValidationErrors
+
 } from '@angular/forms';
 
 
@@ -37,21 +34,7 @@ export class SignupComponent implements OnInit {
   constructor(private signUpService: SignupService, private formBuilder: FormBuilder) {
     this.signUpInfo = new SignUpInfo('', '', '', '', '', 'individual');
   }
-  // createForm() {
-  //   this.signForm = this.formBuilder.group({
-  //     firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-  //     lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-  //     email: ['',[Validators.required, Validators.email]],
-  //     password: ['', [Validators.required]],
-  //     confirmPassword: ['']
-  //   }, { validator: this.checkPasswords });
-  // }
-  // checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-  //   const pass = group.controls.password.value;
-  //   const confirmPass = group.controls.confirmPassword.value;
-  //
-  //   return pass === confirmPass ? null : { notSame: true }
-  // }
+
   ngOnInit(): void {
 
   }

@@ -1,47 +1,31 @@
 
-<div class="ma-box">
-  <h2 class="active">Log in</h2>
-  <div class="ma-box__content">
-    <form  (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="form-horizontal ma-form--horizontal" >
-      <div class="cross-validation">
-        <div class="form-group">
-          <label class="text-right col-xs-3" for="username">Email</label>
-          <div class="col-xs-9">
-            <input id="username" name="username" type="email" class="form-control" required email class="ma-input ma-input--default"
-                   [(ngModel)]="loginInfo.username" #name="ngModel"
-            >
-            <div *ngIf="name.invalid && (name.dirty || name.touched)"
-                 class="alert-purple">
-              <div *ngIf="name.errors.required">
-                Name is required.
-              </div>
-              <div *ngIf="name.errors.email">
-                please input correct email
-              </div>
-            </div>
+<app-top-navigation></app-top-navigation>
+<br>
+<div style="margin-right: 37%;margin-left: 37%" class="vbf">
+  <h2 class="form_title"><i class="fa fa-calendar"></i>LOG IN PROFILE</h2>
+    <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="inner">
+      <div class="form-group">
+          <input class="form-control" id="username" type="text" required email
+                 [(ngModel)]="loginInfo.username" name="username" placeholder="Enter your username(email)" #name=ngModel
+          >
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert-purple">
+          <div *ngIf="name.errors.required">
+            Name is required.
           </div>
-        </div>
-<!--           debug: {{loginInfo.email}}-->
-        <br>
-        <div class="form-group">
-          <label class="text-right col-xs-3" for="password">Password</label>
-          <div class="col-xs-9">
-            <input id="password" type="password" class="ma-input ma-input--default" required
-                   [(ngModel)]="loginInfo.password" name="password"
-            >
-            <!--          debug: {{ loginInfo.password }}-->
+          <div *ngIf="name.errors.email">
+            please input correct email
           </div>
-        </div>
-
-        <div class="buttons">
-          <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Log in</button>
-        </div>
-
-        <div class="buttons">
-          <button (click)="loginForm.reset()" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Reset</button>
         </div>
       </div>
+      <div class="form-group">
+          <input id="password" type="password" class="form-control" required
+                 [(ngModel)]="loginInfo.password" name="password" placeholder="Enter your password"
+          >
+      </div>
+      <button class="button btn_lg btn_blue btn_full" type="submit" [disabled]="!loginForm.form.valid">LOG IN</button>
+      <button class="button btn_lg btn_blue btn_full" (click)="loginForm.reset()">RESET ALL</button>
+      <p>Don't have an account? You can create a new account <a href="/signup">here</a>.</p>
     </form>
-
   </div>
-</div>
+

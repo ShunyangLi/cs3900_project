@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ParamMap, ActivatedRoute } from '@angular/router';
+import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Token} from './token';
@@ -14,15 +14,19 @@ import {ActivateService} from '../services/activate.service';
 export class ActivateComponent implements OnInit {
 
   private token: Token;
-  constructor(private route: ActivatedRoute, private activateService: ActivateService) {
+  constructor(private activatedRoute: ActivatedRoute, private activateService: ActivateService, private route: Router) {
     this.token = new Token('');
   }
 
   ngOnInit() {
-    this.token.token = this.route.snapshot.paramMap.get('token');
+    this.token.token = this.activatedRoute.snapshot.paramMap.get('token');
     this.activateService.activate(this.token).subscribe(
       res => console.log(res)
     );
+
+    setTimeout(() => {
+      this.route.navigate(['/homepage']).then();
+    }, 2000); // 2s
   }
 }
 

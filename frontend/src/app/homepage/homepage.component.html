@@ -1,68 +1,260 @@
-<h1>Homepage</h1>
+<header class="fixed transparent">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle mobile_menu_btn" data-toggle="collapse" data-target=".mobile_menu" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand light" href="/">
+        <img src="./../../assets/images/logo_light1.svg" height="42" alt="Logo">
+      </a>
+      <a class="navbar-brand dark nodisplay" href="/">
+        <img src="../../assets/images/logo_light1.svg" height="42" alt="Logo">
+      </a>
+    </div>
+    <nav id="main_menu" class="mobile_menu navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="mobile_menu_title" style="display:none;">MENU</li>
+        <li class="dropdown simple_menu active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Become a host<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="index4.html">Individual</a></li>
+            <li><a href="boxed.html">Enterprise</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Itinerary planner</a>
+        </li>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/signup">Sign up</a></li>
+        <li class="menu_button">
+          <a href="/chat" class="button  btn_yellow"><i class="fa fa-calendar"></i>Booking with Chatbot</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<button routerLink="/login" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Log in</button>&nbsp;
-<button routerLink="/signup" routerLinkActive="active" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
-<section class="examples-section space-10">
-  <div class="row">
-    <div class="col-xs-4">
-      <h3>Search Component</h3>
+<div id="hero" class="rev_slider gradient_slider rev_slider_wrapper" style="display:none">
+  <ul>
 
-      <div class="ma-box">
-
-        <div class="ma-box__content">
-          <form class="ma-form ma-form--basic">
-
-            <div class="row">
-              <div class="col-xs-6">
-                <div class="form-group margin-reset">
-                  <label>Check In</label>
-                  <input type="text" class="ma-input ma-input--default" placeholder="dd/mm/yyyy">
-                </div>
+    <li data-index="rs-214"
+        data-delay="1000"
+        data-transition="fade"
+        data-slotamount="7"
+        data-easein="default"
+        data-easeout="default"
+        data-masterspeed="100"
+        data-rotate="0"
+        data-saveperformance="off"
+        data-title="Slide"
+        data-description="">
+      <!-- IMAGE -->
+      <img src="./../../assets/images/slider/hero.jpg" alt="Image" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+      <!-- LAYER NR. 1 -->
+      <div class="tp-caption"
+           data-x="['left','left','left','center']"
+           data-hoffset="['15','15','15','0']"
+           data-y="['190','200','200','200']"
+           data-responsive_offset="on"
+           data-fontsize="['40','28','28','22']"
+           data-lineheight="['53','41','41','35']"
+           data-whitespace="nowrap"
+           data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+           style="color: #fff; font-weight: 700; font-family: 'Raleway', sans-serif;; ">Welcome to Cocorico, <span id="text_rotating">Explore Sydney, Explore N.S.W</span>
+      </div>
+      <!-- LAYER NR. 2 -->
+      <div class="tp-caption tp_m_title"
+           data-visibility="['on','on','off','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['15','15','15','15']"
+           data-y="['280','middle','middle','middle']"
+           data-voffset="['-60','-60','-60','-60']"
+           data-fontsize="['28','28','23','23']"
+           data-lineheight="['28','28','23','23']"
+           data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-star-o"></i>
+      </div>
+      <!-- LAYER NR. 3 -->
+      <div class="tp-caption tp_m_title"
+           data-visibility="['on','on','off','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['55','45','45','45']"
+           data-y="['280','middle','middle','middle']"
+           data-voffset="['-60','-60','-60','-60']"
+           data-responsive_offset="on"
+           data-fontsize="['28','28','23','23']"
+           data-lineheight="['28','28','23','23']"
+           data-frames='[{"delay":1150,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-star-o"></i>
+      </div>
+      <!-- LAYER NR. 4 -->
+      <div class="tp-caption tp_m_title"
+           data-visibility="['on','on','off','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['95','75','75','75']"
+           data-y="['280','middle','middle','middle']"
+           data-voffset="['-60','-60','-60','-60']"
+           data-responsive_offset="on"
+           data-fontsize="['28','28','23','23']"
+           data-lineheight="['28','28','23','23']"
+           data-frames='[{"delay":1300,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-star-o"></i>
+      </div>
+      <!-- LAYER NR. 5 -->
+      <div class="tp-caption tp_m_title"
+           data-visibility="['on','on','off','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['135','105','105','105']"
+           data-y="['280','middle','middle','middle']"
+           data-voffset="['-60','-60','-60','-60']"
+           data-responsive_offset="on"
+           data-fontsize="['28','28','23','23']"
+           data-lineheight="['28','28','23','23']"
+           data-frames='[{"delay":1450,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-star-o"></i>
+      </div>
+      <!-- LAYER NR. 6 -->
+      <div class="tp-caption tp_m_title"
+           data-visibility="['on','on','off','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['175','135','135','135']"
+           data-y="['280','middle','middle','middle']"
+           data-voffset="['-60','-60','-60','-60']"
+           data-responsive_offset="on"
+           data-fontsize="['28','28','23','23']"
+           data-lineheight="['28','28','23','23']"
+           data-frames='[{"delay":1600,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-star-o"></i>
+      </div>
+      <!-- LAYER NR. 8 -->
+      <div class="tp-caption tp_s_title"
+           data-visibility="['on','on','on','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['15','15','15','15']"
+           data-y="['350','middle','top','top']"
+           data-voffset="['50','50','300','300']"
+           data-responsive_offset="on"
+           data-fontsize="['20','20','20','15']"
+           data-lineheight="['35','35','35','25']"
+           data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-check-square-o"></i> Modern Rooms & Spacious Suites
+      </div>
+      <!-- LAYER NR. 9 -->
+      <div class="tp-caption tp_s_title"
+           data-visibility="['on','on','on','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['15','15','15','15']"
+           data-y="['400','middle','top','top']"
+           data-voffset="['80','100','350','350']"
+           data-responsive_offset="on"
+           data-fontsize="['20','20','20','15']"
+           data-lineheight="['35','35','35','25']"
+           data-frames='[{"delay":2200,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-check-square-o"></i> A Gourmet Dining Experience
+      </div>
+      <!-- LAYER NR. 10 -->
+      <div class="tp-caption tp_s_title"
+           data-visibility="['on','on','on','off']"
+           data-x="['left','left','left','left']"
+           data-hoffset="['15','15','15','15']"
+           data-y="['450','middle','top','top']"
+           data-voffset="['110','150','400','400']"
+           data-responsive_offset="on"
+           data-fontsize="['20','20','20','15']"
+           data-lineheight="['30','30','30','25']"
+           data-frames='[{"delay":2400,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-check-square-o"></i> Family Room from $89 per night
+      </div>
+      <!-- LAYER NR. 14 -->
+      <div class="tp-caption"
+           data-x="['right','right','center','center']"
+           data-hoffset="['15','15','0','0']"
+           data-y="['200','middle','bottom','bottom']"
+           data-voffset="['','50','50','']"
+           data-width="[368, 368, 768, 480]"
+           data-height="[auto, auto, auto, auto]"
+           data-frames='[{"delay":3000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'
+           style="z-index: 99;">
+        <!-- ========== BOOKING FORM ========== -->
+        <div class="vbf">
+          <h2 class="form_title"><i class="fa fa-calendar"></i> BOOK ONLINE</h2>
+          <form id="booking-form" class="inner">
+            <div class="form-group">
+              <input class="form-control" name="booking-name" placeholder="Enter Your Name" type="text">
+            </div>
+            <div class="form-group">
+              <input class="form-control" name="booking-email" placeholder="Enter Your Email Address" type="email">
+            </div>
+            <div class="form-group">
+              <input class="form-control" name="booking-phone" placeholder="Enter Your Phone Number" type="text">
+            </div>
+            <div class="form-group">
+              <div class="form_select">
+                <select name="booking-roomtype" class="form-control" title="Select Room Type" data-header="Room Type">
+                  <option value="Single Room">Single Room</option>
+                  <option value="Double Room">Double Room</option>
+                  <option value="Deluxe Room">Deluxe Room</option>
+                </select>
               </div>
-              <div class="col-xs-6">
-                <div class="form-group margin-reset">
-                  <label>Check Out</label>
-                  <input type="text" class="ma-input ma-input--default" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
+              <div class="form_select">
+                <select name="booking-adults" class="form-control md_noborder_right" title="Adults" data-header="Adults">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
+              <div class="form_select">
+                <select name="booking-children" class="form-control" title="Children" data-header="Children">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
+              <div class="input-group">
+                <div class="form_date">
+                  <input type="text" class="datepicker form-control md_noborder_right" name="booking-checkin" placeholder="Arrival Date" readonly>
                 </div>
               </div>
             </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="form-group">
-                  <label>Guests</label>
-                  <div class="ma-select-container ma-select-container--default ma-select-container--block">
-                    <select class="ma-input ma-select ma-select--default ma-select--block">
-                      <option value="" disabled selected>1 guest</option>
-                      <option value="Male">2 guests</option>
-                      <option value="Female">3 guests</option>
-                      <option value="Other">4+ guests</option>
-                    </select>
-                    <span class="ma-select-arrow">
-                                                        <i data-feather="chevron-down" class="ma-select-arrow__icon"></i>
-                                                    </span>
-                  </div>
+            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
+              <div class="input-group">
+                <div class="form_date">
+                  <input type="text" class="datepicker form-control" name="booking-checkout" placeholder="Departure Date" readonly>
                 </div>
               </div>
             </div>
-
-            <div class="row text-center">
-              <div class="col-xs-12">
-                <button class="ma-btn ma-btn--default ma-btn--primary ma-btn--block space-1">
-                  Request to Book
-                </button>
-              </div>
-              <div class="col-xs-12">
-                <div class="ma-label ma-label--simple ma-label--simple--small">
-                  100% refundable · You won’t be <a class="ma-link ma-link--simple ma-link--simple--secondary" href>charged yet</a>
-                </div>
-              </div>
-            </div>
+            <button class="button btn_lg btn_blue btn_full" type="submit">BOOK A ROOM NOW</button>
           </form>
         </div>
       </div>
-    </div>
-    <div class="col-xs-8"></div>
-  </div>
+      <!-- LAYER NR. 15 -->
+      <div class="tp-caption"
+           data-visibility="['on','on','off','off']"
+           data-x="['center','center','center','center']"
+           data-hoffset="['0','0','0','0']"
+           data-y="['bottom','bottom','bottom','bottom']"
+           data-voffset="['20','20','20','20']"
+           data-width="none"
+           data-height="none"
+           data-whitespace="nowrap"
+           data-transform_idle="o:1;"
+           data-transform_in="opacity:0;s:500;e:Power2.easeInOut;"
+           data-transform_out="opacity:0;s:300;s:300;"
+           data-start="8000"
+           data-splitin="none"
+           data-splitout="none"
+           data-actions='[{"event":"click","action":"scrollbelow","offset":"px"}]'
+           data-responsive_offset="on"
+           data-startslide="0"
+           data-endslide="2"
+           style="z-index: 11; white-space: nowrap; font-size: 22px; line-height: 30px; font-weight: 400; color: rgba(245, 245, 245, 1.00);text-transform:left;cursor:pointer;">
+        <div class="rs-looped rs-slideloop" data-easing="Power2.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="-5" data-ye="5"><i class="fa fa-angle-down"></i></div>
+      </div>
+    </li>
 
-</section>
+  </ul>
+</div>

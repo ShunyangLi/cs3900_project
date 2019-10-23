@@ -10,6 +10,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 import { RandomComponent } from './random/random.component';
 import { ActivateComponent } from './activate/activate.component';
+import { TopNavigationComponent } from './top-navigation/top-navigation.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { ActivateComponent } from './activate/activate.component';
     SignupComponent,
     RandomComponent,
     ActivateComponent,
+    TopNavigationComponent,
+    ProfileComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
