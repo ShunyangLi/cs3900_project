@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogInSubmit(): void {
-    console.log('submitted:' + this.loginInfo.email + ',' + this.loginInfo.password);
+    console.log('submitted:' + this.loginInfo.username + ',' + this.loginInfo.password);
     this.authService.authenticate(this.loginInfo).subscribe(
       res => console.log(res)
     );

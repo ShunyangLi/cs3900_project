@@ -8,7 +8,7 @@
           <label class="text-right col-xs-3" for="username">Email</label>
           <div class="col-xs-9">
             <input id="username" name="username" type="email" class="form-control" required email class="ma-input ma-input--default"
-                   [(ngModel)]="loginInfo.email" #name="ngModel"
+                   [(ngModel)]="loginInfo.username" #name="ngModel"
             >
             <div *ngIf="name.invalid && (name.dirty || name.touched)"
                  class="alert-purple">

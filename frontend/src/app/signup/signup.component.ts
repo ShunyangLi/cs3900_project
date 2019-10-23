@@ -31,29 +31,27 @@ function matchValues(
 })
 
 export class SignupComponent implements OnInit {
-  signForm: FormGroup;
   private signUpInfo: SignUpInfo;
   private secondTypedPwd: string;
   public registerTypes = ['individual', 'enterprise'];
   constructor(private signUpService: SignupService, private formBuilder: FormBuilder) {
     this.signUpInfo = new SignUpInfo('', '', '', '', '', 'individual');
-    this.createForm();
   }
-  createForm() {
-    this.signForm = this.formBuilder.group({
-      firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      email: ['',[Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['']
-    }, { validator: this.checkPasswords });
-  }
-  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-    const pass = group.controls.password.value;
-    const confirmPass = group.controls.confirmPassword.value;
-
-    return pass === confirmPass ? null : { notSame: true }
-  }
+  // createForm() {
+  //   this.signForm = this.formBuilder.group({
+  //     firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+  //     lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+  //     email: ['',[Validators.required, Validators.email]],
+  //     password: ['', [Validators.required]],
+  //     confirmPassword: ['']
+  //   }, { validator: this.checkPasswords });
+  // }
+  // checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  //   const pass = group.controls.password.value;
+  //   const confirmPass = group.controls.confirmPassword.value;
+  //
+  //   return pass === confirmPass ? null : { notSame: true }
+  // }
   ngOnInit(): void {
 
   }
@@ -71,9 +69,5 @@ export class SignupComponent implements OnInit {
     );
   }
 
-
-  get firstname() {return this.signForm.get('firstname'); }
-  get lastname() {return this.signForm.get('lastname'); }
-  get email() {return this.signForm.get('email'); }
 
 }

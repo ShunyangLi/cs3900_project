@@ -1,11 +1,12 @@
 <div class="ma-box">
   <div class="ma-box__title">Sign up</div>
   <div class="ma-box__content">
-    <form [formGroup]="signForm" (ngSubmit)="onSignUpSubmit()"  class="form-horizontal ma-form--horizontal">
+    <form  #signupForm="ngForm" (ngSubmit)="onSignUpSubmit()"  class="form-horizontal ma-form--horizontal">
       <div class="form-group">
         <label class="text-right col-xs-3" for="firstname">First Name</label>
         <div class="col-xs-9">
-          <input id="firstname" type="text" class="ma-input ma-input--default"sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss required formControlName="firstname"
+          <input id="firstname" name="firstname" type="text" class="form-control" class="ma-input ma-input--default" required pattern="[a-zA-Z ]*"
+                 [(ngModel)]="signUpInfo.first_name" #firstname="ngModel"
           >
             <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
                class="alert-purple">
@@ -26,7 +27,8 @@
 <!--          <input id="lastname" type="text" class="ma-input ma-input&#45;&#45;default" required pattern="[a-zA-Z ]*"-->
 <!--                 [(ngModel)]="this.signUpInfo.last_name" name="lastname" #lastname="ngModel"-->
 <!--          >-->
-          <input id="lastname" type="text" class="ma-input ma-input--default" formControlName="lastname" required
+          <input id="lastname" name="lastname" type="text" class="ma-input ma-input--default"  required pattern="[a-zA-z]*"
+                 [(ngModel)]="signUpInfo.last_name" #lastname="ngModel"
           >
 
           <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
@@ -47,15 +49,15 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="email">Email</label>
         <div class="col-xs-9">
-          <input id="email" type="email" class="ma-input ma-input--default" required
-                 formControlName="email"
+          <input id="email" name="email" type="email" class="ma-input ma-input--default" required email
+                 [(ngModel)]="signUpInfo.username" #username="ngModel"
           >
-          <div *ngIf="email.invalid&&(email.dirty||email.touched)"
+          <div *ngIf="username.invalid&&(username.dirty||username.touched)"
               class="alert alert-danger">
-            <div *ngIf="email.errors.required">
+            <div *ngIf="username.errors.required">
               Email is required
             </div>
-            <div *ngIf="email.errors.email">
+            <div *ngIf="username.errors.email">
               Please input correct email
             </div>
           </div>
@@ -68,7 +70,8 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="birthday">Date Of Birth</label>
         <div class="col-xs-9">
-          <input id="birthday" type="date" class="ma-input ma-input--default" required
+          <input id="birthday" name="birthday" type="date" class="ma-input ma-input--default" required
+                 [(ngModel)]="signUpInfo.birthday" #birthday="ngModel"
                   name="birthday"
           >
 <!--          debug: {{ this.signUpInfo.birthday }}-->
@@ -78,11 +81,15 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="password">Password</label>
         <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default" formControlName="password" required
+          <input id="password" name="password" type="password" class="ma-input ma-input--default"  required
+                 [(ngModel)]="signUpInfo.password" #password="ngModel"
           >
-          <div *ngIf="signForm.hasError('required','password')">
-            Please enter your new password
+          <div *ngIf="password.invalid&&(password.dirty||password.touched)"
+               class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              password is required
             </div>
+          </div>
           </div>
           debug: {{ this.signUpInfo.password }}
       </div>
@@ -91,11 +98,18 @@
       <div class="form-group">
         <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
         <div class="col-xs-9">
-          <input id="retype" type="password" class="ma-input ma-input--default" formControlName="confirmPassword" required
+          <input id="retype" type="password" name="confirmpwd" class="ma-input ma-input--default"  required pattern="{{ password.value }}"
+                 [(ngModel)]="secondTypedPwd" #confirmpwd="ngModel"
 
           >
-          <div *ngIf="signForm.hasError('notSame')">
-            Passwords do not match
+          <div *ngIf="confirmpwd.invalid&&(confirmpwd.dirty||confirmpwd.touched)"
+               class="alert alert-danger">
+            <div *ngIf="confirmpwd.errors.required">
+               confirm password is required
+            </div>
+            <div *ngIf="confirmpwd.errors.pattern">
+               confirm password need same with password
+            </div>
           </div>
 <!--          debug: {{ confirmpwd.value }}-->
         </div>
@@ -114,7 +128,7 @@
         </div>
       </div>
       <br>
-      <button [disabled]="!signForm.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
+      <button [disabled]="!signupForm.valid" class="ma-btn ma-btn--small ma-btn--primary">Sign up</button>
     </form>
   </div>
 </div>
