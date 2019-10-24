@@ -16,3 +16,13 @@
 | Shunyang Li  | z5139935 | Developer |
 |   Li Ding    | z5138091 | Developer |
 
+
+##### Dialogflow references:
+- To make requests to Dialogflow API, you need to have
+    - Google auth (probably better to install `gcloud` SDK
+- How to interact with Dialogflow APIs?
+    - https://cloud.google.com/dialogflow/docs/quick/api
+- How to install `gcloud` SDK?
+    - https://cloud.google.com/sdk/docs/quickstarts
+- How to set up Dialogflow authentication?
+    - https://cloud.google.com/dialogflow/docs/quick/setup#sa-create
