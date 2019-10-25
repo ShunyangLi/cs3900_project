@@ -42,3 +42,12 @@ h2.active {
   margin: 5px;
   width: 127%;
 }
+.cross-validation-error {
+  border-left: 5px solid red;
+}
+
+.alert-purple {
+  background-color: rgb(216, 194, 216);
+  border-color: purple;
+  color: purple;
+}

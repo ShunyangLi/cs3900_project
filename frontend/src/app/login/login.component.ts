@@ -14,7 +14,6 @@ import { LoginInfo } from './loginInfo';
 export class LoginComponent implements OnInit {
   // two-way binding variable:
   private loginInfo: LoginInfo;
-
   constructor(private authService: AuthenticationService) {
     this.loginInfo = new LoginInfo('', '');
   }
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogInSubmit(): void {
-    console.log('submitted:' + this.loginInfo.email + ',' + this.loginInfo.password);
     this.authService.authenticate(this.loginInfo).subscribe(
       res => console.log(res)
     );

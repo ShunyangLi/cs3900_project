@@ -16,6 +16,8 @@ export class SignupService extends HttpMethods {
   }
 
   public signup(signupInfo: SignUpInfo): Observable<{}> {
+    console.log('submitted data: ');
+    console.log(signupInfo);
     return this.httpPost(signupInfo, this.path);
   }
 }

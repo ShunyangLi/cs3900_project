@@ -2,13 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Frontend</title>
+  <title>Cocorico</title>
   <base href="/">
-  <link rel="stylesheet" type="text/css" href="assets/app.css" media="screen" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/yahaha.jpg">
+
+  <link rel="stylesheet" type="text/css" href="assets/airbnb-style.css">
+<!--  Zante Hotel Template-->
+  <link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/revolution/css/layers.css" rel="stylesheet" type="text/css" />
+  <link href="./assets/revolution/css/settings.css" rel="stylesheet" type="text/css" />
+  <link href="./assets/revolution/css/navigation.css" rel="stylesheet" type="text/css" />
+  <link href="./assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/animate.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/famfamfam-flags.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/magnific-popup.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
+  <link href="./assets/css/responsive.css" rel="stylesheet" type="text/css">
+
+<!--  Mapbox style sheet-->
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
 </head>
 <body>
+<!-- ========== PRELOADER ========== -->
+<div id="loading">
+  <div class="inner">
+    <div class="loading_effect">
+      <div class="object" id="object_one"></div>
+      <div class="object" id="object_two"></div>
+      <div class="object" id="object_three"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Part -->
+<app-top-navigation></app-top-navigation>
 <app-root></app-root>
+
+<footer>
+  <div class="inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 widget">
+          <div class="about">
+            <a href="index.html"><img class="logo" src="./assets/images/logo_light1.svg" height="32" alt="Logo"></a>
+            <p>Explore Sydney, Explore New South Wale. We can beat Airbnb(maybe). Cocorico is the French word. In the Zelda game,
+            It is the name of a village in the southwest of Hyrule continent.</p>
+            <p>Build with heart by COMP3900 noMoreProjectPls group. Members are cawcaw, ~, Sherlock and Arno.O</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 widget">
+          <h5>Latest News</h5>
+          <ul class="blog_posts">
+            <li><a href="blog-post.html">Live your myth in Greece</a> <small>AUGUST 13, 2016</small></li>
+            <li><a href="blog-post.html">Zante Hotel in pictures</a> <small>AUGUST 16, 2016</small></li>
+            <li><a href="blog-post.html">Zante Hotel family party</a> <small>SEPTEMBER 15, 2016</small></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6 widget">
+          <h5>Useful Links</h5>
+          <ul class="useful_links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Location</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 widget">
+          <h5>Contact Us</h5>
+          <address>
+            <ul class="address_details">
+              <li><i class="glyphicon glyphicon-map-marker"></i> 25, Navagio Zakynthos, Greece</li>
+              <li><i class="glyphicon glyphicon-phone-alt"></i> Phone: 800 123 3456 </li>
+              <li><i class="fa fa-fax"></i> Fax: 800 123 3456</li>
+              <li><i class="fa fa-envelope"></i> Email: <a href="mailto:info@site.com">contact@site.com</a></li>
+            </ul>
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subfooter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="copyrights">
+            Copyright 2019 <a href="index.html">Cocorico</a> All Rights Reserved.
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="social_media">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+            <a class="facebook" data-original-title="Facebook" data-toggle="tooltip" href="#"><i class="fa fa-facebook"></i></a>
+            <a class="twitter" data-original-title="Twitter" data-toggle="tooltip" href="#"><i class="fa fa-twitter"></i></a>
+            <a class="pinterest" data-original-title="Pinterest" data-toggle="tooltip" href="#"><i class="fa fa-pinterest"></i></a>
+            <a class="linkedin" data-original-title="Linkedin" data-toggle="tooltip" href="#"><i class="fa fa-linkedin"></i></a>
+            <a class="instagram" data-original-title="Instagram" data-toggle="tooltip" href="#"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.smoothState.js"></script>
+<script type="text/javascript" src="assets/js/moment.min.js"></script>
+<script type="text/javascript" src="assets/js/morphext.min.js"></script>
+<script type="text/javascript" src="assets/js/wow.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="assets/js/owl.carousel.thumbs.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="assets/js/jPushMenu.js"></script>
+<script type="text/javascript" src="assets/js/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="assets/js/countUp.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+
+<!--Resolution slider-->
+<script type="text/javascript" src="./assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="./assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!--Mapbox scripts-->
 </body>
 </html>

@@ -1,3 +1,4 @@
+import re
 import secrets
 from app import app
 from util.db_handling import *
@@ -35,3 +36,9 @@ def check_token(token):
 # after login get the token
 def get_token():
     return secrets.token_hex(32)
+
+
+def invalid_email(email):
+    if re.match('^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$', email) is None:
+        return False
+    return True

@@ -70,3 +70,8 @@ CORS(app)
 ```bash
 sqlite3 util/data.sqlite < util/init_database.sql
 ```
+
+# How to init database in API
+```bash
+Call API /cleanDB
+``` 

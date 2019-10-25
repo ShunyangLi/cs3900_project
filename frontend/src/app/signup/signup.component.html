@@ -1,84 +1,99 @@
-<div class="ma-box">
-  <h2 class="active">Sign up</h2>
+<app-top-navigation></app-top-navigation>
+<div style="margin-left: 20%;margin-right: 20%" class="vbf">
+  <h2 class="form_title"><i class="fa fa-calendar"></i>SIGN UP FORM</h2>
   <div class="ma-box__content">
-    <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="form-horizontal ma-form--horizontal">
+    <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="inner">
       <div class="form-group">
-        <label class="text-right col-xs-3" for="firstname">First Name</label>
-        <div class="col-xs-9">
-          <input id="firstname" type="text" class="ma-input ma-input--default" required
+          <input id="firstname" type="text" class="form-control" required pattern="[a-zA-Z ]*"
                  [(ngModel)]="this.signUpInfo.first_name" name="firstname"
+                 placeholder="Enter your first name" #firstname="ngModel"
           >
-<!--          debug: {{ this.signUpInfo.first_name }}-->
+        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+             class="alert alert-danger">
+          <div *ngIf="firstname.errors.required">
+            FirstName is required.
+          </div>
+          <div *ngIf="firstname.errors.pattern">
+            Please input correct FirstName
+          </div>
         </div>
       </div>
-      <br>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="lastname">Last Name</label>
-        <div class="col-xs-9">
-          <input id="lastname" type="text" class="ma-input ma-input--default" required
+          <input id="lastname" type="text" class="form-control" required pattern="[a-zA-Z ]*"
                  [(ngModel)]="this.signUpInfo.last_name" name="lastname"
+                 placeholder="Enter your last name" #lastname="ngModel"
           >
-<!--          debug: {{ this.signUpInfo.last_name }}-->
+         <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+              class="alert alert-danger">
+            <div *ngIf="lastname.errors.required">
+            LastName is required.
+            </div>
+            <div *ngIf="lastname.errors.pattern">
+            Please input correct lastname
+          </div>
         </div>
       </div>
-
-      <br>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="email">Email</label>
-        <div class="col-xs-9">
-          <input id="email" type="email" class="ma-input ma-input--default" required
+          <input id="email" type="email" class="form-control" required email
                  [(ngModel)]="signUpInfo.username" name="email"
+                 placeholder="Enter your email as username" #username="ngModel"
           >
-<!--          debug: {{ this.signUpInfo.username }}-->
+          <div *ngIf="username.invalid&&(username.dirty||username.touched)"
+               class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              Email is required
+            </div>
+            <div *ngIf="username.errors.email">
+              Please input correct email
+            </div>
+          </div>
         </div>
-      </div>
-
-      <br>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="birthday">Date Of Birth</label>
-        <div class="col-xs-9">
-          <input id="birthday" type="date" class="ma-input ma-input--default" required
+          <input id="birthday" type="date" class="form-control" required
                  [(ngModel)]="signUpInfo.birthday" name="birthday"
+                 placeholder="Enter your birthday"
           >
-<!--          debug: {{ this.signUpInfo.birthday }}-->
-        </div>
       </div>
-      <br>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="password">Password</label>
-        <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default" required
+          <input id="password" type="password" class="form-control" required
                  [(ngModel)]="signUpInfo.password" name="password"
+                 placeholder="Create a new password" #password="ngModel"
           >
-          debug: {{ this.signUpInfo.password }}
-        </div>
-      </div>
+          <div *ngIf="password.invalid&&(password.dirty||password.touched)"
+             class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+            password is required
+            </div>
+          </div>
 
-      <br>
+      </div>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="retype">Retype password to confirm</label>
-        <div class="col-xs-9">
-          <input id="retype" type="password" class="ma-input ma-input--default" required
+          <input id="retype" type="password" class="form-control" required pattern="{{ password.value }}"
                  [(ngModel)]="this.secondTypedPwd" name="secondpassword"
+                 placeholder="Retype your password" #confirmpwd="ngModel"
           >
-          debug: {{ this.secondTypedPwd }}
+        <div *ngIf="confirmpwd.invalid&&(confirmpwd.dirty||confirmpwd.touched)"
+             class="alert alert-danger">
+          <div *ngIf="confirmpwd.errors.required">
+            confirm password is required
+          </div>
+          <div *ngIf="confirmpwd.errors.pattern">
+            confirm password need same with password
+          </div>
         </div>
       </div>
-
-      <br>
       <div class="form-group">
         <label class="text-right col-xs-3">User type</label>
         <div class="ma-select-container ma-select-container--default ma-select-container--block">
           <select class="ma-input ma-select ma-select--default ma-select--block" required
-                  [(ngModel)]="signUpInfo.type" name="registerType"
+                   name="registerType"
           >
             <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
           </select>
-<!--          debug: {{ this.signUpInfo.type }}-->
         </div>
       </div>
       <br>
-      <button [disabled]="!signupForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary">Sign up</button>
+      <button class="button btn_lg btn_blue btn_full" type="submit" [disabled]="!signupForm.form.valid">CREATE A NEW ACCOUNT</button>
     </form>
   </div>
 </div>

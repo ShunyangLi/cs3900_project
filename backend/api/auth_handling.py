@@ -1,6 +1,6 @@
 from app import api
-from flask import make_response, jsonify
-from util.request_handling import get_request_args
+from flask import make_response, jsonify, request
+from util.request_handling import get_request_args,get_header
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 from util.mail_handling import send_mail
@@ -147,6 +147,7 @@ class Send(Resource):
         return make_response(jsonify({"status": "success"}), 200)
 
 
+# need to get Authorization from header.
 # about user profile
 # TODO need to check whether the account activate
 @auth.route('/profile', strict_slashes=False)
@@ -155,11 +156,13 @@ class Profile(Resource):
     @auth.response(200, 'Success')
     @auth.response(400, 'Missing args')
     @auth.response(403, 'Token incorrect')
-    @auth.param('token', 'The user\'s token!')
+    # @auth.param('token', 'The user\'s token!')
+    @auth.expect(auth.parser().add_argument('Authorization', "Your Authorization Token in the form 'Token <AUTH_TOKEN>'", location='headers'))
     @auth.doc(description="Get the user profile information")
     def get(self):
-        token = get_request_args('token', str)
-        res = query_db("SELECT username, first_name, last_name, birthday, user_type FROM User WHERE token = '%s'"
+        token = get_header(request)
+
+        res = query_db("SELECT username, first_name, last_name, birthday FROM User WHERE token = '%s'"
                        % token)
 
         if len(res) == 0:

@@ -1,35 +1,31 @@
-<div class="ma-box">
-  <h2 class="active">Log in</h2>
-  <div class="ma-box__content">
-    <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="form-horizontal ma-form--horizontal">
+
+<app-top-navigation></app-top-navigation>
+<br>
+<div style="margin-right: 37%;margin-left: 37%" class="vbf">
+  <h2 class="form_title"><i class="fa fa-calendar"></i>LOG IN PROFILE</h2>
+    <form (ngSubmit)="onLogInSubmit()" #loginForm="ngForm" class="inner">
       <div class="form-group">
-        <label class="text-right col-xs-3" for="username">Email</label>
-        <div class="col-xs-9">
-          <input id="username" type="text" class="ma-input ma-input--default" required
-                 [(ngModel)]="loginInfo.email" name="username"
+          <input class="form-control" id="username" type="text" required email
+                 [(ngModel)]="loginInfo.username" name="username" placeholder="Enter your username(email)" #name=ngModel
           >
-<!--          debug: {{ loginInfo.email }}-->
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.email">
+            please input correct email
+          </div>
         </div>
       </div>
-      <br>
       <div class="form-group">
-        <label class="text-right col-xs-3" for="password">Password</label>
-        <div class="col-xs-9">
-          <input id="password" type="password" class="ma-input ma-input--default" required
-                 [(ngModel)]="loginInfo.password" name="password"
+          <input id="password" type="password" class="form-control" required
+                 [(ngModel)]="loginInfo.password" name="password" placeholder="Enter your password"
           >
-<!--          debug: {{ loginInfo.password }}-->
-        </div>
       </div>
-
-      <div class="buttons">
-        <button type="submit" [disabled]="!loginForm.form.valid" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Log in</button>
-      </div>
-
-      <div class="buttons">
-        <button (click)="loginForm.reset()" class="ma-btn ma-btn--large ma-btn--primary" style="width: 100%">Reset</button>
-      </div>
+      <button class="button btn_lg btn_blue btn_full" type="submit" [disabled]="!loginForm.form.valid">LOG IN</button>
+      <button class="button btn_lg btn_blue btn_full" (click)="loginForm.reset()">RESET ALL</button>
+      <p>Don't have an account? You can create a new account <a href="/signup">here</a>.</p>
     </form>
-
   </div>
-</div>
+
