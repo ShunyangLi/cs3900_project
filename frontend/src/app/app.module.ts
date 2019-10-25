@@ -13,6 +13,7 @@ import { ActivateComponent } from './activate/activate.component';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
     ActivateComponent,
     TopNavigationComponent,
     ProfileComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    InteractiveMapComponent
   ],
   imports: [
     BrowserModule,
