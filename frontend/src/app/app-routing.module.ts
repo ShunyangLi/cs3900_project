@@ -8,6 +8,8 @@ import {ActivateComponent} from './activate/activate.component';
 import {ChatbotComponent} from './chatbot/chatbot.component';
 import {InteractiveMapComponent} from './interactive-map/interactive-map.component';
 import {MaptestComponent} from './maptest/maptest.component';
+import {ProfileComponent} from './profile/profile.component';
+
 
 const routes: Routes = [
   { path: 'homepage', component: HomepageComponent},
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'map', component: MaptestComponent},
   { path: 'chat', component: ChatbotComponent},
+  { path: 'profile', component: ProfileComponent},
   {path: 'activate/:token', component: ActivateComponent},
   { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
