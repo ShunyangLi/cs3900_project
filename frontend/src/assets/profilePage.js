@@ -1,3 +1,9 @@
+var layer;
+
+layui.use('layer', function () {
+  layer = layui.layer;
+});
+
 layui.use('jquery', function() {
   var $ = layui.jquery;
   $(document).ready(function() {
@@ -9,7 +15,6 @@ layui.use('jquery', function() {
         "Authorization": window.localStorage.getItem('token')
       },
       success: function(data){
-        // layui.closeAll();
         setProfile(data);
         // after that we need add the booking history to user;
         var content = "";
@@ -30,7 +35,7 @@ layui.use('jquery', function() {
         $("#history").html(content);
       },
       error: function(data){
-        layui.msg("Can not get your profile information, pls reload");
+        layer.msg("Can not get your profile information, pls reload");
       }
     });
   });
@@ -53,7 +58,10 @@ layui.use('jquery', function() {
       },
       success: function(data) {
         setProfile(data);
-        layui.msg("Update successfuly")
+        layer.msg("Update successfully")
+      },
+      error: function (data) {
+        layer.msg("Update error")
       }
     })
 });
