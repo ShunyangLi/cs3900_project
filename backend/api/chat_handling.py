@@ -19,6 +19,7 @@ class Chat(Resource):
     @chat.param('message', 'The response of chat box')
     @chat.doc(description="This is for chat box handling")
     def post(self):
+        global session_id
         message = [get_request_args('message', str)]
         
         response = detect_intent_texts("test-gtqown", session_id, message, "en")
