@@ -9,7 +9,7 @@ from util.mail_handling import send_mail
 from util.auth import generate_activate_token, check_token, get_token
 
 chat = api.namespace('chat', description="Authentication Services")
-
+session_id = 1
 
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
@@ -20,27 +20,21 @@ class Chat(Resource):
     @chat.doc(description="This is for chat box handling")
     def post(self):
         message = [get_request_args('message', str)]
-        # msg_data = {
-        #     "queryInput": {
-        #         "text": {
-        #             "text": message,
-        #             "languageCode": "en"
-        #         }
-        #     }
-        # }
-
-        # chat_url = 'https://dialogflow.googleapis.com/v2beta1/{session=projects/test-gtqown/agent/sessions/1}:detectIntent?access_token='+'762b56c338914273b074963f4b153145'
-
-        # response = requests.post(
-        #     url=chat_url,
-        #     data=json.dumps(msg_data),
-
-        # )
-
-        # response.raise_for_status()
-
-        print(message)
-        response = detect_intent_texts("test-gtqown", 1, message, "en")
+        
+        response = detect_intent_texts("test-gtqown", session_id, message, "en")
+        # hotel name and address
+        hotel = response.query_result.parameters.fields['hotel'].string_value
+        address = response.query_result.parameters.fields['address'].string_value
+        print(hotel)
+        print(address)
+        # check if it's correct
+        if hotel != "" and address != "":
+            res = query_db("select * from hotel where name = '%s' and location = '%s'" % (hotel, address))
+            if len(res) == 0:
+                session_id += 1
+                return "Sorry. Can't find this hotel"
+        # return agent resonse
+        return response.query_result.fulfillment_text
 
 def detect_intent_texts(project_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
@@ -69,4 +63,6 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
             response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
-    return response.query_result.fulfillment_text
+        # #print('Fulfillment text: {}\n'.format(
+        #     response.query_result.parameters.fields['hotel'].string_value))
+    return response
