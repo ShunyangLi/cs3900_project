@@ -1,4 +1,6 @@
-var layer;
+let layer;
+
+let web_url = 'http://nomoreprojectpls.com';
 
 layui.use('layer', function () {
   layer = layui.layer;
@@ -9,7 +11,7 @@ layui.use('jquery', function() {
   $(document).ready(function() {
     // get the data firtly
     $.ajax({
-      url: "http://nomoreprojectpls.com/auth/profile",
+      url: 'http://nomoreprojectpls.com/auth/profile',
       type: "GET",
       headers: {
         "Authorization": window.localStorage.getItem('token')
