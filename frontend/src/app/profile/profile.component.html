@@ -1,1 +1,94 @@
-<p>profile works!</p>
+<app-top-navigation></app-top-navigation>
+<div class="layui-container">
+  <div class="layui-row">
+    <div class="layui-col-md9">
+      <div class="layui-tab">
+        <ul class="layui-tab-title">
+          <li class="layui-this">Profile</li>
+          <li>History</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form" action="">
+
+              <div class="layui-col-md3">
+                <!-- image -->
+                <div class="layui-form-item" style="margin-left: 5%;">
+                  <div class="layui-upload-list">
+                    <img class="layadmin-homepage-pad-img" id="img" name="img">
+                    <p id="demoText"></p>
+                  </div>
+                  <button style="margin-left: 25%;margin-top: 20%;" type="button" class="button" id="test1">Upload</button>
+                </div>
+              </div>
+              <div class="layui-col-md9">
+                <!-- Email for user -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label">Email: </label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="email" name="email" value="123@qq.com" readonly autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+
+                <!-- Last name for user -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label">Last name: </label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="last_name" name="lastName" value="hello" autocomplete="on" class="layui-input">
+                  </div>
+                </div>
+
+                <!-- First name -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label">First name: </label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="first_name" name="firstName" value="hello" autocomplete="on" class="layui-input">
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <!-- <div class="layui-form-item">
+                    <label class="layui-form-label">Password: </label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="password" name="password" value="hello" autocomplete="on" class="layui-input">
+                    </div>
+                </div> -->
+
+                <!-- New password -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label">Password: </label>
+                  <div class="layui-input-inline">
+                    <input type="password" id="password" class="layui-input" name="newpassword1" value="">
+                  </div>
+                </div>
+
+                <!-- birthday -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label">Birthday: </label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="birthday" placeholder="yyyy-MM-dd" id="birthday" name="birthday" autocomplete="on" class="layui-input">
+                  </div>
+                </div>
+
+                <!-- Button submit -->
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <button type="button" class="button" id="submit" lay-submit="">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- another page of history -->
+          <div class="layui-tab-item" style="margin-top: 10%;">
+            <ul class="layui-timeline" id="history">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scripthack src="../../assets/layui/layui.js" type="text/javascript"></app-scripthack>
+<app-scripthack src="../../assets/profilePage.js" type="text/javascript"></app-scripthack>

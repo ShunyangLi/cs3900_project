@@ -6,3 +6,11 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
+
+
+.login-img {
+  box-shadow: 0 0 0 4px rgba(0,0,0,.1);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+}
