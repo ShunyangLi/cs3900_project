@@ -162,27 +162,51 @@ class Profile(Resource):
     def get(self):
         token = get_header(request)
 
-        res = query_db("SELECT username, first_name, last_name, birthday FROM User WHERE token = '%s'"
+        res = query_db("SELECT username, first_name, last_name, birthday, avatar, password FROM User WHERE token = '%s'"
                        % token)
 
         if len(res) == 0:
             abort(403, 'Token incorrect')
+
+        history = query_db("SELECT * FROM Booking WHERE booking_id in "
+                           "(SELECT booking_id FROM User_booking WHERE username = '%s')" %(res[0]['username']))
+
+        res[0]['history'] = history
 
         return make_response(jsonify({"profile": res[0]}), 200)
 
     @auth.response(200, 'Success')
     @auth.response(400, 'Missing args')
     @auth.response(403, 'Token incorrect')
-    @auth.param('token', 'The user\'s token!')
-    @auth.param('NewPassword', 'New password of user')
-    @auth.param('OldPassword', 'Old password of user')
-    @auth.param('username', 'Username')
+    @auth.expect(auth.parser().add_argument('Authorization', "Your Authorization Token in the form 'Token <AUTH_TOKEN>'", location='headers'))
+    @auth.param('password', 'New password of user')
+    @auth.param('first_name', 'First name')
+    @auth.param('last_name', 'Last name')
+    @auth.param('birthday', 'Birthday')
+    @auth.param('img', 'User avatar')
     @auth.doc(description="Update user profile")
     def put(self):
-        """
-        用于更新用户信息，需要输入old password 和 new password
-        然后更新用户的信息
-        :return:
-        """
-        pass
+        # we not allow the user to change type
+        token = get_header(request)
+
+        res = query_db("SELECT username, first_name, last_name, birthday FROM User WHERE token = '%s'"
+                       % token)
+
+        if len(res) == 0:
+            abort(403, 'Token incorrect')
+
+        first_name = get_request_args('first_name', str)
+        last_name = get_request_args('last_name', str)
+        birthday = get_request_args('birthday', str)
+        img = get_request_args('img', str)
+        password = get_request_args('password', str)
+
+        query_db("UPDATE User SET first_name = '%s', last_name='%s', birthday='%s', avatar='%s', password='%s' WHERE token = '%s'"
+                 %(first_name,last_name,birthday,img,password, token))
+
+        # return the latest info
+        res = query_db("SELECT username, first_name, last_name, birthday, avatar, password FROM User WHERE token = '%s'"
+                       % token)
+
+        return make_response(jsonify({"profile": res[0]}), 200)
 

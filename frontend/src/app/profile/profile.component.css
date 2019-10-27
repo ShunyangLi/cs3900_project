@@ -1,0 +1,11 @@
+.layui-upload-img {
+  width: 200px;
+  height: 300px;
+  margin: 0 10px 10px 0;
+}
+.layadmin-homepage-pad-img {
+  box-shadow: 0 0 0 4px rgba(0,0,0,.1);
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+}
