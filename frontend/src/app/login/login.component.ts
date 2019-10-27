@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       res => window.localStorage.setItem('token', res['token'])
     );
     setTimeout(() => {
-      this.route.navigate(['/profile']).then();
-    }, 2000);
+      window.location.assign('/homepage');
+    }, 1000);
   }
 }
