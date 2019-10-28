@@ -1,14 +1,10 @@
 import json
 import requests
 from app import api
-from flask import make_response, jsonify, request
 from util.request_handling import get_request_args,get_header
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
-from util.mail_handling import send_mail
-from util.auth import generate_activate_token, check_token, get_token
-
-chat = api.namespace('chat', description="Authentication Services")
+chat = api.namespace('chat', description="Chating Services")
 
 
 @chat.route('/', strict_slashes=False)
