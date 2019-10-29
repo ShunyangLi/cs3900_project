@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InteractiveMapComponent } from './interactive-map.component';
 
-describe('InteractiveMapComponent', () => {
+describe('MaptestComponent', () => {
   let component: InteractiveMapComponent;
   let fixture: ComponentFixture<InteractiveMapComponent>;
 

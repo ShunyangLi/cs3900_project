@@ -7,7 +7,6 @@ import {SignupComponent} from './signup/signup.component';
 import {ActivateComponent} from './activate/activate.component';
 import {ChatbotComponent} from './chatbot/chatbot.component';
 import {InteractiveMapComponent} from './interactive-map/interactive-map.component';
-import {MaptestComponent} from './maptest/maptest.component';
 import {ProfileComponent} from './profile/profile.component';
 
 
@@ -15,7 +14,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
-  { path: 'map', component: MaptestComponent},
+  { path: 'map', component: InteractiveMapComponent},
   { path: 'chat', component: ChatbotComponent},
   { path: 'profile', component: ProfileComponent},
   {path: 'activate/:token', component: ActivateComponent},

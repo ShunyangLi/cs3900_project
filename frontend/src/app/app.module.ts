@@ -14,7 +14,6 @@ import { TopNavigationComponent } from './top-navigation/top-navigation.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
-import { MaptestComponent } from './maptest/maptest.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
 
 
@@ -31,7 +30,6 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
     ProfileComponent,
     ChatbotComponent,
     InteractiveMapComponent,
-    MaptestComponent,
     ScripthackComponent
   ],
   imports: [
