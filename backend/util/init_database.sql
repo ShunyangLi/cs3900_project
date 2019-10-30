@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Hotel (
     description TEXT,
     host TEXT NOT NULL,
     room_type TEXT NOT NULL,
-    bathrooms REAL NOT NULL,
+    bathrooms TEXT NOT NULL,
     bedrooms INTEGER NOT NULL,
     FOREIGN KEY (host) REFERENCES User(username)
 );
@@ -88,4 +88,13 @@ INSERT INTO User_booking(booking_id, username) VALUES ('B123', '123@qq.com');
 INSERT INTO Booking(booking_id, username, passport, booking_date, check_in_date, days, price, room_type, comment)
 VALUES ('B122','Charles', '123', '2019-08-08', '2019-09-08', 2, 145, 'Large', 'Good');
 
-INSERT INTO User_booking(booking_id, username) VALUES ('B122', '123@qq.com')
+INSERT INTO User_booking(booking_id, username) VALUES ('B122', '123@qq.com');
+
+
+-- insert some hotel as a example
+INSERT INTO Hotel(name, phone, location, email, price, web, description, host, room_type, bathrooms, bedrooms)
+VALUES ('Holiday Inn Old Sydney', '138388', '55 George Street The Rocks NSW 2000 Australia',
+        'holidayinnoldsydney@ihg.com', 100, 'http://www.holidayinn.com/oldsydney', 'Holiday Inn Old Sydney occupies both historical and modern buildings, and successfully blends international elegance and old world charm with an unbeatable location in the historic Rocks district. The Rocks is a uniquely historical Australian quarter, where you can eat in restaurants located in some the oldest surviving buildings in Sydney. Set only a street back from Sydney Harbour, Holiday Inn Old Sydney is just a short stroll from the famous Harbour Bridge and Opera House, and hence ideally located for an unforgettable Sydney experience.',
+        '123@qq.com', 'Large', 'Yes', 2);
+
+INSERT INTO Hotel_img(hotel_id, url) VALUES (1,'https://assets.atdw-online.com.au/images/Original__9802424_EJ37_Hotel_Restaurant_5_hg4j9jp.jpg?rect=214,0,3444,2583&w=745&h=559&');
