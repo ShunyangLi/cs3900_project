@@ -1,10 +1,13 @@
 <app-top-navigation></app-top-navigation>
 <div>
-  <div id="mapEle" style="margin-left: 514px; margin-bottom: 13px; height: 500px; width: 700px"></div>
+  <div id="mapEle" style="margin-left: 514px; margin-bottom: 13px; height: 500px; width: 700px">
+  </div>
   <div class='info-box'>
-    <p>Draw your route using the draw tools (25 points max).</p>
+    <h4>Draw your route using the draw tools.</h4>
+    <br>
     <div id='calculated-line'></div>
-    <p>Explore Sydney accommodations</p>
+    <br>
+    <app-map-sidebar></app-map-sidebar>
   </div>
 </div>
 <app-scripthack src="../../assets/simpleMap.js" type="text/javascript"></app-scripthack>

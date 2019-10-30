@@ -71,7 +71,7 @@ function updateRoute() {
   var answer = document.getElementById('calculated-line');
   var lastFeature = data.features.length - 1;
   var coords = data.features[lastFeature].geometry.coordinates;
-  var newCoords = coords.join(';')
+  var newCoords = coords.join(';');
   getMatch(newCoords);
 }
 
