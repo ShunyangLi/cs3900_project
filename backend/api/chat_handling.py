@@ -33,7 +33,8 @@ class Chat(Resource):
             if len(res) == 0:
                 session_id += 1
                 return "Sorry. Can't find this hotel"
-        # return agent resonse
+        # return agent response
+        # print(type(response.query_result.fulfillment_text)
         return response.query_result.fulfillment_text
 
 def detect_intent_texts(project_id, session_id, texts, language_code):
