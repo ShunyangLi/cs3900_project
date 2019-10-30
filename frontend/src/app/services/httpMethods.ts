@@ -8,7 +8,8 @@ export abstract class HttpMethods {
     })
   };
 
-  protected readonly backendUrl = 'http://nomoreprojectpls.com';
+  // protected readonly backendUrl = 'http://nomoreprojectpls.com';
+  protected readonly backendUrl = 'http://127.0.0.1:9000/';
   private http: HttpClient;
 
   protected constructor(http: HttpClient) {
