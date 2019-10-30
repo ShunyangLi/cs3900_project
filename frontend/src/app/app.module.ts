@@ -17,6 +17,7 @@ import { InteractiveMapComponent } from './interactive-map/interactive-map.compo
 import { ScripthackComponent } from './scripthack/scripthack.component';
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
