@@ -21,4 +21,7 @@ export abstract class HttpMethods {
     return this.http.post(this.backendUrl + path, body, this.httpOptions);
   }
 
+  public httpGet(path: string): Observable<{}> {
+    return this.http.get(this.backendUrl + path, this.httpOptions);
+  }
 }
