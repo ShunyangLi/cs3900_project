@@ -1,15 +1,13 @@
-<!--<div class="fakeBody">-->
-<!--  <div #mapElement class="mainMap"></div>-->
-<!--  <div class='info-box'>-->
-<!--    <p>Draw your route using the draw tools (25 points max)</p>-->
-<!--    <div id='calculated-line'></div>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div #mapElement></div>-->
 <app-top-navigation></app-top-navigation>
 <div>
-  <div #mapElement style="margin-left: 300px; height: 500px; width: 900px"></div>
-    <div class='info-box'>
-      <p>Draw your route using the draw tools (25 points max)</p>
-    </div>
+  <div id="mapEle" style="margin-left: 43%; margin-bottom: 13px; height: 500px; width: 750px">
+  </div>
+  <div class='info-box'>
+    <h4>Draw your route using the draw tools.</h4>
+    <br>
+    <div id='calculated-line'></div>
+    <br>
+    <app-map-sidebar></app-map-sidebar>
+  </div>
 </div>
+<app-scripthack src="../../assets/simpleMap.js" type="text/javascript"></app-scripthack>

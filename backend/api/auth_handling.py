@@ -147,9 +147,7 @@ class Send(Resource):
         return make_response(jsonify({"status": "success"}), 200)
 
 
-# need to get Authorization from header.
-# about user profile
-# TODO need to check whether the account activate
+# get the user profile and update profile
 @auth.route('/profile', strict_slashes=False)
 class Profile(Resource):
 
@@ -162,12 +160,14 @@ class Profile(Resource):
     def get(self):
         token = get_header(request)
 
+        # check whether have the user and check token
         res = query_db("SELECT username, first_name, last_name, birthday, avatar, password FROM User WHERE token = '%s'"
                        % token)
 
         if len(res) == 0:
             abort(403, 'Token incorrect')
 
+        # get the booking history
         history = query_db("SELECT * FROM Booking WHERE booking_id in "
                            "(SELECT booking_id FROM User_booking WHERE username = '%s')" %(res[0]['username']))
 
@@ -201,6 +201,7 @@ class Profile(Resource):
         img = get_request_args('img', str)
         password = get_request_args('password', str)
 
+        # this is reset the user profile which include avatar
         query_db("UPDATE User SET first_name = '%s', last_name='%s', birthday='%s', avatar='%s', password='%s' WHERE token = '%s'"
                  %(first_name,last_name,birthday,img,password, token))
 

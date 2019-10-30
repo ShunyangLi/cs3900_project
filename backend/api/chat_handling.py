@@ -1,7 +1,6 @@
 import json
 import requests
 from app import api
-from flask import make_response, jsonify, request
 from util.request_handling import get_request_args,get_header
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
@@ -34,8 +33,8 @@ class Chat(Resource):
             if len(res) == 0:
                 session_id += 1
                 return "Sorry. Can't find this hotel"
-        # return agent resonse
-        #print(type(response.query_result.fulfillment_text))
+        # return agent response
+        # print(type(response.query_result.fulfillment_text)
         return response.query_result.fulfillment_text
 
 def detect_intent_texts(project_id, session_id, texts, language_code):

@@ -2,6 +2,9 @@ let token = window.localStorage.getItem('token');
 layui.use('jquery', function() {
   var $ = layui.jquery;
   if (token) {
+    $("#singup_status").hide();
+    $("#loginStatus").hide();
+    $("#other").show();
     $.ajax({
       url: 'http://nomoreprojectpls.com/auth/profile',
       method: 'GET',
@@ -17,7 +20,8 @@ layui.use('jquery', function() {
       }
     });
   } else {
-    $("#loginStatus").html('<a href="/login">Log in</a>');
+    $("#other").html('');
+    $("#other").hide();
   }
 
   function addData(avatar) {
@@ -26,14 +30,14 @@ layui.use('jquery', function() {
     img.attr('src', avatar);
     console.log(img[0]);
     // then we need add the image into nav bar
-    content = '<li class="dropdown simple_menu active">';
-    content += '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' + img[0].outerHTML +  '<b class="caret"></b></a>';
-    content += '<ul class="dropdown-menu">';
+    content = '<li class="dropdown simple_menu">';
+    content += '<a href="#" class="" data-toggle="dropdown">' + img[0].outerHTML +  '<b class="caret"></b></a>';
+    content += '<ul class="dropdown-menu"  style="top: 115%">';
     content += '<li><a href="/profile">Profile</a></li>';
     content += '<li><a onclick="Logout()">Log Out</a></li>';
     content += '</ul>';
     content += '</li>';
-    $("#loginStatus").html(content);
+    $("#other").html(content);
   }
 
 });
@@ -42,4 +46,7 @@ layui.use('jquery', function() {
 function Logout() {
   window.localStorage.clear();
   window.location.assign('/homepage');
+  $("#singup_status").show();
+  $("#loginStatus").show();
+  $("#other").html('');
 }
