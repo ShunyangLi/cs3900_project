@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
+import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 
 
 // @ts-ignore
@@ -31,7 +32,8 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
     ProfileComponent,
     ChatbotComponent,
     InteractiveMapComponent,
-    ScripthackComponent
+    ScripthackComponent,
+    MapSidebarComponent
   ],
   imports: [
     BrowserModule,

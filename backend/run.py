@@ -3,6 +3,7 @@ from app import app
 import api.auth_handling
 import api.chat_handling
 import api.booking_handling
+import api.hotel_info_for_map
 
 
 @app.route('/cleanDB')
