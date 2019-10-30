@@ -17,6 +17,8 @@ layui.use('jquery', function() {
       },
       error: function (data) {
         console.log(data);
+        window.localStorage.clear();
+        location.reload();
       }
     });
   } else {

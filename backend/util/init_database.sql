@@ -19,18 +19,18 @@ VALUES ('123@qq.com','123', 'li', 'shunyang', '1998-08-12', 'individual','True',
 
 
 CREATE TABLE IF NOT EXISTS Hotel (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     phone TEXT NOT NULL,
     location TEXT NOT NULL,
     email TEXT,
-    price REAL NOT NULL,
+    price REAL NOT NULL DEFAULT 100,
     web TEXT,
     description TEXT,
-    host TEXT NOT NULL,
-    room_type TEXT NOT NULL,
-    bathrooms TEXT NOT NULL,
-    bedrooms INTEGER NOT NULL,
+    host TEXT NOT NULL DEFAULT '123@qq.com',
+    room_type TEXT NOT NULL DEFAULT 'Large',
+    bathrooms TEXT NOT NULL DEFAULT 'Yes',
+    bedrooms INTEGER NOT NULL   DEFAULT 2,
     FOREIGN KEY (host) REFERENCES User(username)
 );
 
@@ -98,3 +98,4 @@ VALUES ('Holiday Inn Old Sydney', '138388', '55 George Street The Rocks NSW 2000
         '123@qq.com', 'Large', 'Yes', 2);
 
 INSERT INTO Hotel_img(hotel_id, url) VALUES (1,'https://assets.atdw-online.com.au/images/Original__9802424_EJ37_Hotel_Restaurant_5_hg4j9jp.jpg?rect=214,0,3444,2583&w=745&h=559&');
+

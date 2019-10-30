@@ -5,6 +5,8 @@ should also have put, delete and so on
 from flask import request
 from flask_restful import reqparse
 from flask_restplus import abort
+from werkzeug.datastructures import FileStorage
+
 
 
 # get request args
@@ -20,6 +22,14 @@ def get_request_args(arg_name, arg_type):
         abort(400, "Missing args")
 
     return res
+
+
+def get_request_file(arg_name):
+    parser = reqparse.RequestParser()
+    parser.add_argument(arg_name, location='files', type=FileStorage, required=True, action='append')
+    args = parser.parse_args()
+    files = args.get(arg_name)
+    return files
 
 
 # get the header token
