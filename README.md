@@ -29,3 +29,4 @@
 
 ##### How to calculate the real straight distance given two pairs of longitude and latitude
 - https://www.movable-type.co.uk/scripts/latlong.html?from=48.64703,-122.26324&to=48.6721,-122.265
+- https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula?page=1&tab=votes#tab-top
