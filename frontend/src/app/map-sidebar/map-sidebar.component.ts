@@ -11,6 +11,7 @@ import {LocalStorageService} from '../services/local-storage.service';
 })
 export class MapSidebarComponent implements OnInit {
 
+  private allHotelsInfo: Array<HotelSideBarInfo> = [];
   private defaultHotelsInfo: Array<HotelSideBarInfo> = [];
   private resStr: string;
   constructor(private mapService: MapService, private localStorageService: LocalStorageService) {
@@ -19,6 +20,7 @@ export class MapSidebarComponent implements OnInit {
   ngOnInit() {
     this.mapService.getAllHotels().subscribe(
       res => {
+        let count = 0;
         this.resStr = JSON.stringify(res);
         JSON.parse(this.resStr).res.forEach((obj) => {
           const hotel = new HotelSideBarInfo('', -1, '', '');
@@ -26,17 +28,23 @@ export class MapSidebarComponent implements OnInit {
           hotel.id = obj.id;
           hotel.location = obj.location;
           hotel.name = obj.name;
-          this.defaultHotelsInfo.push(hotel);
+          this.allHotelsInfo.push(hotel);
+          if (count < 8) { // defaultHotelsInfo only takes the first 8 from the database.
+            this.defaultHotelsInfo.push(hotel);
+            ++ count;
+          }
         });
-        // two fake hotels for testing:
-        this.defaultHotelsInfo.push(new HotelSideBarInfo('xx', 100, '1 Cawood Ave, Little Bay NSW 2036', 'Little Bay Cove'));
-        this.defaultHotelsInfo.push(new HotelSideBarInfo('yy', 101, '287 Gardeners Rd, Eastlakes NSW 2018', 'Crown Group'));
 
-        const markingAddr: Array<string> = [];
+        const defaultMarkingAddr: Array<string> = [];
         this.defaultHotelsInfo.forEach(info => {
-          markingAddr.push(info.location);
+          defaultMarkingAddr.push(info.location);
         });
-        this.localStorageService.storeOnLocalStorage(markingAddr);
+        const allAddresses: Array<string> = [];
+        this.allHotelsInfo.forEach(info => {
+          allAddresses.push(info.location);
+        });
+        this.localStorageService.storeOnLocalStorage(defaultMarkingAddr, 'defaultMarkingAddr');
+        this.localStorageService.storeOnLocalStorage(allAddresses, 'allAddresses');
       }
     );
   }
