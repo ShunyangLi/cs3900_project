@@ -102,7 +102,8 @@ mapboxClient.geocoding.forwardGeocode(queryObj).send().then(function (response) 
           var jsonResponse = req.response;
           var distance = jsonResponse.routes[0].distance*0.001;
           var duration = jsonResponse.routes[0].duration/60;
-          document.getElementById('calculated-line').innerHTML = 'Distance: ' + distance.toFixed(2) + ' km<br>Driving Duration: ' + duration.toFixed(2) + ' minutes';
+          document.getElementById('calculated-line').innerHTML = 'Total Distance: ' + distance.toFixed(2) + ' km<br>Total Driving Duration: ' + duration.toFixed(2) + ' minutes';
+          document.getElementById('calculated-line').style.fontSize = '17px';
           var coords = jsonResponse.routes[0].geometry;
           // add the route to the map
           addRoute(coords);
