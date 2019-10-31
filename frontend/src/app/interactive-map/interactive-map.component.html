@@ -1,13 +1,13 @@
 <app-top-navigation></app-top-navigation>
 <div>
-  <div id="mapEle" style="margin-left: 514px; margin-bottom: 13px; height: 500px; width: 700px">
+  <div id="mapEle" style="margin-left: 43%; margin-bottom: 13px; height: 500px; width: 750px;border-style: groove">
   </div>
   <div class='info-box'>
-    <h4>Draw your route using the draw tools.</h4>
-    <br>
-    <div id='calculated-line'></div>
-    <br>
+<!--    <p style="color:orange;font-family: Arial;font-size: 27px">You can draw the route on the map.</p>-->
+<!--    <br>-->
+    <div id='calculated-line' style="color:orange;font-family: Arial;font-size: 27px;margin-bottom: 9px">You can draw the route on the map.</div>
+<!--    <br>-->
     <app-map-sidebar></app-map-sidebar>
   </div>
 </div>
-<app-scripthack src="../../assets/simpleMap.js" type="text/javascript"></app-scripthack>
+<app-scripthack src="../../assets/displayMap.js" type="text/javascript"></app-scripthack>
