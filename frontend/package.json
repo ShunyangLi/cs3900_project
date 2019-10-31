@@ -21,6 +21,7 @@
     "@angular/router": "~8.0.1",
     "@mapbox/mapbox-gl-draw": "^1.1.2",
     "mapbox-gl": "^1.4.1",
+    "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
