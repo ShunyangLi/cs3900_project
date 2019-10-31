@@ -147,7 +147,8 @@ mapboxClient.geocoding.forwardGeocode(queryObj).send().then(function (response) 
         if (map.getSource('route')) {
           map.removeLayer('route');
           map.removeSource('route');
-          document.getElementById('calculated-line').innerHTML = '';
+          document.getElementById('calculated-line').innerHTML = 'You can draw the route on the map.';
+          document.getElementById('calculated-line').style.fontSize = '27px';
         } else  {
           return;
         }
