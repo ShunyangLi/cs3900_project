@@ -26,3 +26,6 @@
     - https://cloud.google.com/sdk/docs/quickstarts
 - How to set up Dialogflow authentication?
     - https://cloud.google.com/dialogflow/docs/quick/setup#sa-create
+
+##### How to calculate the real straight distance given two pairs of longitude and latitude
+- https://www.movable-type.co.uk/scripts/latlong.html?from=48.64703,-122.26324&to=48.6721,-122.265
