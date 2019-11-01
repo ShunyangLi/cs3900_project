@@ -727,64 +727,64 @@
         }
 
         /*========== BOOKING FORM ==========*/
-        $("#booking-form, #horizontal_booking_form, #booking_form_advanced").on('submit', function (e) {
-            e.preventDefault();
-
-            //Get input field values from HTML form
-            var booking_name = $("input[name=booking-name]").val();
-            var booking_email = $("input[name=booking-email]").val();
-            var booking_phone = $("input[name=booking-phone]").val();
-            var booking_roomtype = $("select[name=booking-roomtype]").val();
-            var booking_adults = $("select[name=booking-adults]").val();
-            var booking_children = $("select[name=booking-children]").val();
-            var booking_checkin = $("input[name=booking-checkin]").val();
-            var booking_checkout = $("input[name=booking-checkout]").val();
-            var booking_country = $("select[name=booking-country]").val();
-            var booking_comments = $("textarea[name=booking-comments]").val();
-
-            //Data to be sent to server
-            var post_data;
-            var output;
-            post_data = {
-                'booking_name': booking_name,
-                'booking_email': booking_email,
-                'booking_phone': booking_phone,
-                'booking_roomtype': booking_roomtype,
-                'booking_checkin': booking_checkin,
-                'booking_checkout': booking_checkout,
-                'booking_adults': booking_adults,
-                'booking_children': booking_children,
-                'booking_country': booking_country,
-                'booking_comments': booking_comments
-            };
-
-            //Ajax post data to server
-            $.post('email/booking.php', post_data, function (response) {
-
-                //Response server message
-                if (response.type == 'error') {
-                    output = '<div class="notification error"><span class="notification-icon"><i class="fa fa-exclamation" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
-                } else {
-                    output = '<div class="notification success"><span class="notification-icon"><i class="fa fa-check" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
-
-                    //If success clear inputs
-                    $("input, textarea").val('');
-                    $('select').val('');
-                    $('select').val('').selectpicker('refresh');
-                }
-
-                $("#notification").html(output);
-                $(".notification").delay(15000).queue(function (next) {
-                    $(this).addClass("scale-out");
-                    next();
-                });
-                $(".notification").on("click", function(){
-                    $(this).addClass("scale-out");
-                });
-
-            }, 'json');
-
-        });
+        // $("#booking-form, #horizontal_booking_form, #booking_form_advanced").on('submit', function (e) {
+        //     e.preventDefault();
+        //
+        //     //Get input field values from HTML form
+        //     var booking_name = $("input[name=booking-name]").val();
+        //     var booking_email = $("input[name=booking-email]").val();
+        //     var booking_phone = $("input[name=booking-phone]").val();
+        //     var booking_roomtype = $("select[name=booking-roomtype]").val();
+        //     var booking_adults = $("select[name=booking-adults]").val();
+        //     var booking_children = $("select[name=booking-children]").val();
+        //     var booking_checkin = $("input[name=booking-checkin]").val();
+        //     var booking_checkout = $("input[name=booking-checkout]").val();
+        //     var booking_country = $("select[name=booking-country]").val();
+        //     var booking_comments = $("textarea[name=booking-comments]").val();
+        //
+        //     //Data to be sent to server
+        //     var post_data;
+        //     var output;
+        //     post_data = {
+        //         'booking_name': booking_name,
+        //         'booking_email': booking_email,
+        //         'booking_phone': booking_phone,
+        //         'booking_roomtype': booking_roomtype,
+        //         'booking_checkin': booking_checkin,
+        //         'booking_checkout': booking_checkout,
+        //         'booking_adults': booking_adults,
+        //         'booking_children': booking_children,
+        //         'booking_country': booking_country,
+        //         'booking_comments': booking_comments
+        //     };
+        //
+        //     Ajax post data to server
+        //     $.post('email/booking.php', post_data, function (response) {
+        //
+        //         //Response server message
+        //         if (response.type == 'error') {
+        //             output = '<div class="notification error"><span class="notification-icon"><i class="fa fa-exclamation" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
+        //         } else {
+        //             output = '<div class="notification success"><span class="notification-icon"><i class="fa fa-check" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
+        //
+        //             //If success clear inputs
+        //             $("input, textarea").val('');
+        //             $('select').val('');
+        //             $('select').val('').selectpicker('refresh');
+        //         }
+        //
+        //         $("#notification").html(output);
+        //         $(".notification").delay(15000).queue(function (next) {
+        //             $(this).addClass("scale-out");
+        //             next();
+        //         });
+        //         $(".notification").on("click", function(){
+        //             $(this).addClass("scale-out");
+        //         });
+        //
+        //     }, 'json');
+        //
+        // });
 
         /*========== CONTACT FORM ==========*/
         $("#contact-form, #contact-form-page").on('submit', function (e) {
