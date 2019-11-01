@@ -154,7 +154,7 @@ function updateRoute() {
 
 // make a directions request
 function getMatch(e) {
-  const url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + e + '?geometries=geojson&steps=true&&access_token=' + mapboxgl.accessToken;
+  const url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + e + '?geometries=geojson&steps=true&&access_token=' + mapboxgl.accessToken;
   const req = new XMLHttpRequest();
   req.responseType = 'json';
   req.open('GET', url, true);
