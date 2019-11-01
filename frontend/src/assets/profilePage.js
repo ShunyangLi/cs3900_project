@@ -38,6 +38,7 @@ layui.use('jquery', function() {
       },
       error: function(data){
         layer.msg("Can not get your profile information, pls reload");
+        window.location.assign('/homepage');
       }
     });
   });
@@ -60,10 +61,11 @@ layui.use('jquery', function() {
       },
       success: function(data) {
         setProfile(data);
-        layer.msg("Update successfully")
+        layer.msg("Update successfully");
+        location.reload();
       },
       error: function (data) {
-        layer.msg("Update error")
+        layer.msg("Update error");
       }
     })
 });
