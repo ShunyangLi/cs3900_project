@@ -18,6 +18,7 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
