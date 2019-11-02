@@ -1,7 +1,5 @@
 let layer;
 
-let web_url = 'http://nomoreprojectpls.com';
-
 layui.use('layer', function () {
   layer = layui.layer;
 });
@@ -107,6 +105,45 @@ layui.use('upload', function(){
         // the image base 64
         $('#img').attr('src', result);
       });
+    }
+  });
+});
+
+// this part is for hotels info
+layui.use('table', function () {
+  let table = layui.table;
+  table.render({
+    elem: '#hotels',
+    url: 'http://127.0.0.1:9000/hotel-management/',
+    headers: {
+      "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+    },
+    cols: [[
+      {type:'radio'},
+      {field:'id', width:100, title: 'Hotel ID', sort: true},
+      {field:'name', width:100, title: 'Hotel name', sort: true},
+      {field:'location', width:120, title: 'Hotel location', sort: true},
+      {field:'phone', width:100, title: 'Hotel phone', sort: true},
+      {field:'price', width:100, title: 'Hotel price', sort: true},
+      {field:'room_type', width:100, title: 'Hotel type', sort: true},
+      {field:'bathrooms', width:100, title: 'Bathroom', sort: true},
+      {field:'bedrooms', width:100, title: 'Bedroom', sort: true},
+      {field:'description', width:180, title: 'Hotel description', sort: true}
+    ]],
+    toolbar: '#hotelTools',
+    page: false
+  });
+
+  // header manage for hotels
+  table.on('toolbar(hotels)', function(obj){
+    // get the selected col
+    let checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'deleteData':
+        let data = checkStatus.data[0].id;
+        console.log(data);
+        layer.alert(JSON.stringify(data));
+        break;
     }
   });
 });

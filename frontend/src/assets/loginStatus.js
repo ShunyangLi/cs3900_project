@@ -30,7 +30,7 @@ layui.use('jquery', function() {
     let content;
     let img = $('<img class="login-img " />');
     img.attr('src', avatar);
-    console.log(img[0]);
+    // console.log(img[0]);
     // then we need add the image into nav bar
     content = '<li class="dropdown simple_menu">';
     content += '<a href="#" class="" data-toggle="dropdown">' + img[0].outerHTML +  '<b class="caret"></b></a>';

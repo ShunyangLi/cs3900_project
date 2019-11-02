@@ -6,6 +6,7 @@
         <ul class="layui-tab-title">
           <li class="layui-this">Profile</li>
           <li>History</li>
+          <li>Hotel manage</li>
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
@@ -85,6 +86,12 @@
             <ul class="layui-timeline" id="history">
             </ul>
           </div>
+
+          <!-- This div is for the host's hotel -->
+          <div class="layui-tab-item" style="margin-top: 10%;" style="width: 130%">
+            <table class="layui-hide" id="hotels" lay-filter="hotels"></table>
+          </div>
+
         </div>
       </div>
     </div>
