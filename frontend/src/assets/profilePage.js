@@ -156,7 +156,7 @@ layui.use('table', function () {
     layer.open({
       type:1,
       title:"Add new hotel",
-      area:["800px","800px"],
+      area:["700px","800px"],
       content:$("#forms"),
     });
   }
@@ -165,4 +165,25 @@ layui.use('table', function () {
   function upload() {
 
   }
+
+  // this is for upload functions, upload all the files and images
+  $("#formContent").submit(function(e){
+    e.preventDefault();
+    var formdata = new FormData(this);
+    $.ajax({
+      url: "http://127.0.0.1:5000/upload/",
+      type: "POST",
+      data: formdata,
+      mimeTypes:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(data){
+        console.log(data);
+      },
+      error: function(data){
+        console.log(data);
+      }
+    });
+  });
 });
