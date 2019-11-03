@@ -41,7 +41,16 @@ class Manage(Resource):
 
         return make_response(jsonify(res), 200)
 
+    @manage.doc(description="You can add new hotel through this API")
     def post(self):
+        # check the token
+        token = get_header(request)
+        user = query_db("SELECT * FROM User WHERE token = '%s'" % token)
+        if len(user) == 0:
+            abort(400, 'Incorrect token, please login')
+
+        # then we need get other params
+
         pass
 
     def put(self):

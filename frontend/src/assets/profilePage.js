@@ -1,11 +1,12 @@
 let layer;
+let $;
 
 layui.use('layer', function () {
   layer = layui.layer;
 });
 
 layui.use('jquery', function() {
-  var $ = layui.jquery;
+  $ = layui.jquery;
   $(document).ready(function() {
     // get the data firtly
     $.ajax({
@@ -66,7 +67,7 @@ layui.use('jquery', function() {
         layer.msg("Update error");
       }
     })
-});
+  });
 
   // set the profile's data
   function setProfile(data) {
@@ -144,6 +145,24 @@ layui.use('table', function () {
         console.log(data);
         layer.alert(JSON.stringify(data));
         break;
+      case 'addData':
+        showAdd();
+        break;
     }
   });
+
+  // TODO this is for show the forms data, need fix later
+  function showAdd() {
+    layer.open({
+      type:1,
+      title:"Add new hotel",
+      area:["800px","800px"],
+      content:$("#forms"),
+    });
+  }
+
+  // TODO Also we need upload functions
+  function upload() {
+
+  }
 });
