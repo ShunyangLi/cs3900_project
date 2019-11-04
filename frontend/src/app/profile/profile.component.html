@@ -51,7 +51,7 @@
       <div class="layui-form-item" style="margin-top: 2%">
         <label class="layui-form-label">Hotel description<span style="color: red">*</span></label>
         <div class="layui-input-block">
-          <input type="text"  id="hotel_description" name="hotel_description" style="width: 80%" autocomplete="off" placeholder="Please enter hotel description" class="layui-input" required>
+          <textarea id="hotel_description" name="hotel_description" style="width: 80%;height: 66px"></textarea>
         </div>
       </div>
 
@@ -87,6 +87,14 @@
         <label class="layui-form-label">Hotel bedrooms<span style="color: red">*</span></label>
         <div class="layui-input-block">
           <input type="text"  id="hotel_bedrooms" name="hotel_bedrooms" style="width: 80%" autocomplete="off" placeholder="Please enter hotel bedrooms" class="layui-input" required>
+        </div>
+      </div>
+
+      <!--   Hotel images   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel images<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="file" multiple id="file" name="file" style="width: 80%" class="layui-input" required>
         </div>
       </div>
 

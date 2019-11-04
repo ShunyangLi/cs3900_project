@@ -98,7 +98,7 @@ layui.use('upload', function(){
 
   var uploadInst = upload.render({
     elem: '#test1',
-    url: '127.0.0.1:5000/auth/profile',
+    url: '',
     auto: false,
     choose: function(obj){
       // preview the image
@@ -161,28 +161,80 @@ layui.use('table', function () {
     });
   }
 
-  // TODO Also we need upload functions
-  function upload() {
-
-  }
-
   // this is for upload functions, upload all the files and images
   $("#formContent").submit(function(e){
     e.preventDefault();
-    var formdata = new FormData(this);
+    let formdata = new FormData(this);
+    // console.log(formdata.get('file'));
+    if (formdata.get('hotel_name') === "") {
+      layer.msg('Please enter hotel name');
+      return;
+    }
+    if (formdata.get('hotel_phone') === "") {
+      layer.msg('Please enter hotel phone');
+      return;
+    }
+    if (formdata.get('hotel_location') === "") {
+      layer.msg('Please enter hotel location');
+      return;
+    }
+    if (formdata.get('hotel_email') === "") {
+      layer.msg('Please enter hotel email');
+      return;
+    }
+
+    if (formdata.get('hotel_price') === "") {
+      layer.msg('Please enter hotel price');
+      return;
+    }
+
+    if (formdata.get('hotel_description') === "") {
+      layer.msg('Please enter hotel description');
+      return;
+    }
+
+    if (formdata.get('hotel_web') === "") {
+      layer.msg('Please enter hotel web');
+      return;
+    }
+
+    if (formdata.get('hotel_type') === "") {
+      layer.msg('Please enter hotel type');
+      return;
+    }
+
+    if (formdata.get('hotel_bathrooms') === "") {
+      layer.msg('Please enter hotel bathrooms');
+      return;
+    }
+
+    if (formdata.get('hotel_bedrooms') === "") {
+      layer.msg('Please enter hotel bedrooms');
+      return;
+    }
+
+    if (formdata.get('file').name === "") {
+      layer.msg('Please enter hotel images');
+      return;
+    }
+
     $.ajax({
-      url: "http://127.0.0.1:5000/upload/",
+      url: "http://127.0.0.1:9000/hotel-management/",
       type: "POST",
       data: formdata,
+      headers: {
+        "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+      },
       mimeTypes:"multipart/form-data",
       contentType: false,
       cache: false,
       processData: false,
       success: function(data){
-        console.log(data);
+        layer.msg('Add successfully');
+        location.reload();
       },
       error: function(data){
-        console.log(data);
+        layer.msg(JSON.stringify(data));
       }
     });
   });
