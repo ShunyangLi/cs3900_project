@@ -16,6 +16,7 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
+import {ChatBot} from 'angular-ai-chat-bot';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
     ChatbotComponent,
     InteractiveMapComponent,
     ScripthackComponent,
-    MapSidebarComponent
+    MapSidebarComponent,
+    ChatBot
   ],
   imports: [
     BrowserModule,

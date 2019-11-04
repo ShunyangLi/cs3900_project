@@ -2,12 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {ChatbotService} from '../services/chatbot.service';
 import {ActivateService} from '../services/activate.service';
 import { ChatMsg } from './chatMsg';
+import { ChatBot } from 'angular-ai-chat-bot';
 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css'],
   providers: [ChatbotService]
+  // template: `<Chat-bot class="chat-window"
+  //                             [token]="accessToken"
+  //                             [msg]="message"
+  //                             >
+  //              <ng-template>
+  //              </ng-template>
+  //            </Chat-bot>`
 })
 export class ChatbotComponent implements OnInit {
 
