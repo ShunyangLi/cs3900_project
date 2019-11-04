@@ -27,6 +27,8 @@
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+  <script src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
+  <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 </head>
 <body>
 <!-- ========== PRELOADER ========== -->
@@ -110,6 +112,15 @@
     </div>
   </div>
 </footer>
+
+<!-- For tables header -->
+<script type="text/html" id="hotelTools">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-danger" lay-event="deleteData">Delete</button>
+    <button class="layui-btn layui-btn-normal" lay-event="addData">Add</button>
+    <button class="layui-btn layui-btn-normal" lay-event="updateData">Update</button>
+  </div>
+</script>
 
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>

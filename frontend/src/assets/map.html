@@ -97,7 +97,7 @@ var draw = new MapboxDraw({
 map.addControl(draw);
 
 // add create, update, or delete actions
-map.on('draw.create', updateRoute);
+map.on('draw.create', (e) => {console.log(e.features)});
 map.on('draw.update', updateRoute);
 map.on('draw.delete', removeRoute);
 

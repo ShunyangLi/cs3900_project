@@ -4,6 +4,7 @@ import api.auth_handling
 import api.chat_handling
 import api.booking_handling
 import api.hotel_info_for_map
+import api.hotel_management
 
 
 @app.route('/cleanDB')
