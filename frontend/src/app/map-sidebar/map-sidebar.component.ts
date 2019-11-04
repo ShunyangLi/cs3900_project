@@ -16,6 +16,7 @@ export class MapSidebarComponent implements OnInit {
   public defaultHotelsInfo: Array<HotelSideBarInfo> = [];
   public displayHotelsInfo: Array<HotelSideBarInfo> = []; // current hotels on the map
   private resStr: string;
+  public init = true;
   constructor(private mapService: MapService, private localStorageService: LocalStorageService) {
   }
 
@@ -53,7 +54,17 @@ export class MapSidebarComponent implements OnInit {
   }
 
   public onToggle(hotel): void {
-    console.log(hotel);
+    // console.log(hotel);
+    event = new CustomEvent(
+      'updateIcon', {
+        detail: {
+          message: hotel.location,
+          time: new Date()
+        },
+        bubbles: true,
+        cancelable: true
+    });
+    document.getElementById('mapEle').dispatchEvent(event);
   }
 
 }

@@ -43,6 +43,11 @@ map = new mapboxgl.Map({
   minZoom: 3 // keep it local style: 'mapbox://styles/mapbox/streets-v9'
 });
 
+map.loadImage('./assets/5-star-hotel-red-35.png', function(error, image) {
+  if (error) throw error;
+  map.addImage('hotel-red', image);
+});
+
 map.loadImage('./assets/5-star-hotel-blue-35.png',  function(error, image) {
   if (error) throw error;
   // load default address list
@@ -263,7 +268,7 @@ function addClosedCoordMarkers(allCoords, routeCoords) {
     {
       detail: {
         message: tmpAddrListOnMap,
-        time: new Date(),
+        time: new Date()
       },
       bubbles: true,
       cancelable: true
@@ -334,3 +339,13 @@ function createLayerObj(addrId, iconImage, title) {
     }
   };
 }
+
+document.getElementById('mapEle').addEventListener('updateIcon', () => {
+  let location = event.detail.message;
+  // let coord = addrCoords[location];
+  if (map.getLayoutProperty(location + '_layer', 'icon-image') === 'hotel-blue') {
+    map.setLayoutProperty(location + '_layer', 'icon-image', 'hotel-red');
+  } else {
+    map.setLayoutProperty(location + '_layer', 'icon-image', 'hotel-blue');
+  }
+});

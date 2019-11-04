@@ -1,19 +1,23 @@
 <div appChangeMapSidebar id="mapsidebar" style="overflow: auto; height: 467px; width: 520px;border-style: groove">
   <p style="color:black; margin-bottom: 7px; margin-left: 7px;font-size: 25px;font-family: Arial">{{ this.title }}</p>
-  <ul *ngFor="let displayHotel of this.displayHotelsInfo" style="margin-left: 7px;margin-right: 7px">
-    <li>
-      <div (click)="this.onToggle(displayHotel)" class="card bg-light mb-3" style="cursor: pointer;margin-bottom: 7px">
-        <div class="card-body">
-<!--          <a href="/homepage"><h5 class="card-title" style="color: black">-->
+<!--  {{this.displayHotelsInfo.length}}-->
+  <div *ngIf="this.displayHotelsInfo.length != 0 || this.displayHotelsInfo[0] != undefined; else notFound">
+    <p *ngIf="!init" style="margin-left: 7px; margin-top: 7px">There are {{this.displayHotelsInfo.length}} recommendations.</p>
+    <ul *ngFor="let displayHotel of this.displayHotelsInfo" style="margin-left: 7px;margin-right: 7px">
+      <li>
+        <div (click)="this.onToggle(displayHotel)" class="card bg-light mb-3" style="cursor: pointer;margin-bottom: 7px">
+          <div class="card-body">
+            <!--          <a href="/homepage"><h5 class="card-title" style="color: black">-->
             {{ displayHotel.name }}
             &nbsp; <p class="fa fa-map-marker" aria-hidden="true"></p>
-<!--          </h5></a>-->
-          <p class="card-text">{{ displayHotel.location }}</p>
+            <!--          </h5></a>-->
+            <p class="card-text">{{ displayHotel.location }}</p>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
-<!--  <p style="color:black; margin-bottom: 7px;margin-left: 7px; font-size: 25px;font-family: Arial">Explore Sydney Attractions</p>-->
+      </li>
+    </ul>
+  </div>
+  <!--  <p style="color:black; margin-bottom: 7px;margin-left: 7px; font-size: 25px;font-family: Arial">Explore Sydney Attractions</p>-->
 <!--  <ul *ngFor="let defaultHotel of this.defaultHotelsInfo" style="margin-right: 7px;margin-left: 7px">-->
 <!--    <li>-->
 <!--      <div class="card bg-light mb-3" style="margin-bottom: 7px">-->
@@ -27,4 +31,4 @@
 <!--    </li>-->
 <!--  </ul>-->
 </div>
-
+<ng-template #notFound ><p style="margin-left: 7px">No accommodation found :(</p></ng-template>

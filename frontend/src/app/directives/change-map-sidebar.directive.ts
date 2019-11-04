@@ -8,6 +8,7 @@ export class ChangeMapSidebarDirective {
 
   constructor(private mapSidebar: MapSidebarComponent) { }
   @HostListener('updateMapSidebar', ['$event']) onChange() {
+    this.mapSidebar.init = false;
     this.mapSidebar.title = 'Suggestions Based On Your Route';
     this.mapSidebar.displayHotelsInfo = [];
     // @ts-ignore
