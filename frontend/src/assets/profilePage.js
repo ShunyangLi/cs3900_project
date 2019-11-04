@@ -1,5 +1,7 @@
 let layer;
 let $;
+let url_method = "POST";
+let update_id = null;
 
 layui.use('layer', function () {
   layer = layui.layer;
@@ -10,7 +12,7 @@ layui.use('jquery', function() {
   $(document).ready(function() {
     // get the data firtly
     $.ajax({
-      url: 'http://nomoreprojectpls.com/auth/profile',
+      url: request_url + '/auth/profile',
       type: "GET",
       headers: {
         "Authorization": window.localStorage.getItem('token')
@@ -45,7 +47,7 @@ layui.use('jquery', function() {
   // make the update correct
   $("#submit").on('click', function(){
     $.ajax({
-      url: 'http://nomoreprojectpls.com/auth/profile',
+      url: request_url + '/auth/profile',
       method: 'PUT',
       headers: {
         "Authorization": window.localStorage.getItem('token')
@@ -115,9 +117,9 @@ layui.use('table', function () {
   let table = layui.table;
   table.render({
     elem: '#hotels',
-    url: 'http://127.0.0.1:9000/hotel-management/',
+    url: request_url + '/hotel-management/',
     headers: {
-      "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+      "Authorization": token
     },
     cols: [[
       {type:'radio'},
@@ -132,7 +134,6 @@ layui.use('table', function () {
       {field:'description', width:180, title: 'Hotel description', sort: true}
     ]],
     toolbar: '#hotelTools',
-    page: false
   });
 
   // header manage for hotels
@@ -145,13 +146,47 @@ layui.use('table', function () {
         deleteItems(data);
         break;
       case 'addData':
-        showAdd();
+        addHotel();
+        break;
+      case 'updateData':
+        if (checkStatus.data[0] === undefined) {
+          layer.msg('Please choose one hotel then update');
+          return;
+        }
+        updateData(checkStatus.data[0]);
         break;
     }
   });
 
+  // this is for add hotel
+  function addHotel() {
+    url_method = "POST";
+    update_id = null;
+    showContent();
+  }
+
+  // this is for update hotel
+  // we need to put all the data into forms
+  function updateData(data) {
+
+    $("#hotel_name").val(data.name);
+    $("#hotel_phone").val(data.phone);
+    $("#hotel_location").val(data.location);
+    $("#hotel_email").val(data.email);
+    $("#hotel_price").val(data.price);
+    $("#hotel_description").val(data.description);
+    $("#hotel_web").val(data.web);
+    $("#hotel_type").val(data.room_type);
+    $("#hotel_bathrooms").val(data.bathrooms);
+    $("#hotel_bedrooms").val(data.bedrooms);
+
+    url_method = "PUT";
+    update_id = data.id;
+    showContent();
+  }
+
   // TODO this is for show the forms data, need fix later
-  function showAdd() {
+  function showContent() {
     layer.open({
       type:1,
       title:"Add new hotel",
@@ -163,13 +198,13 @@ layui.use('table', function () {
   // this function is for delete
   function deleteItems(id) {
     $.ajax({
-      url: "http://127.0.0.1:9000/hotel-management/",
+      url: request_url + "/hotel-management/",
       type: "DELETE",
       data: {
         'hotel_id': id
       },
       headers: {
-        "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+        "Authorization": token
       },
       success: function(data){
         layer.msg('Delete successfully');
@@ -185,6 +220,10 @@ layui.use('table', function () {
   $("#formContent").submit(function(e){
     e.preventDefault();
     let formdata = new FormData(this);
+
+    if (url_method === "PUT" && update_id !== null) {
+      formdata.append('hotel_id', update_id);
+    }
     // console.log(formdata.get('file'));
     if (formdata.get('hotel_name') === "") {
       layer.msg('Please enter hotel name');
@@ -233,24 +272,30 @@ layui.use('table', function () {
       return;
     }
 
-    if (formdata.get('file').name === "") {
-      layer.msg('Please enter hotel images');
-      return;
+    if (url_method === "POST") {
+      if (formdata.get('file').name === "") {
+        layer.msg('Please enter hotel images');
+        return;
+      }
     }
 
     $.ajax({
-      url: "http://127.0.0.1:9000/hotel-management/",
-      type: "POST",
+      url: request_url + "/hotel-management/",
+      type: url_method,
       data: formdata,
       headers: {
-        "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+        "Authorization": token
       },
       mimeTypes:"multipart/form-data",
       contentType: false,
       cache: false,
       processData: false,
       success: function(data){
-        layer.msg('Add successfully');
+        if (url_method === "POST") {
+          layer.msg('Add successfully');
+        } else {
+          layer.msg('Update successfully');
+        }
         location.reload();
       },
       error: function(data){

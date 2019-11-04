@@ -1319,20 +1319,20 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
         break;
         case 'LAYTABLE_EXPORT': //导出
           if(device.ie){
-            layer.tips('导出功能不支持 IE，请用 Chrome 等高级浏览器导出', this, {
+            layer.tips('Do not support export functions', this, {
               tips: 3
             })
           } else {
             openPanel({
               list: function(){
                 return [
-                  '<li data-type="csv">导出到 Csv 文件</li>'
-                  ,'<li data-type="xls">导出到 Excel 文件</li>'
+                  '<li data-type="csv">Export CSV file</li>'
+                  ,'<li data-type="xls">Export Excel file</li>'
                 ].join('')
               }()
               ,done: function(panel, list){
                 list.on('click', function(){
-                  var type = $(this).data('type')
+                  var type = $(this).data('type');
                   table.exportFile(options.id, null, type);
                 });
               }

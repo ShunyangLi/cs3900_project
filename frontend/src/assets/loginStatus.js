@@ -1,4 +1,6 @@
 let token = window.localStorage.getItem('token');
+let request_url = 'http://nomoreprojectpls.com';
+
 layui.use('jquery', function() {
   var $ = layui.jquery;
   if (token) {
@@ -6,7 +8,7 @@ layui.use('jquery', function() {
     $("#loginStatus").hide();
     $("#other").show();
     $.ajax({
-      url: 'http://nomoreprojectpls.com/auth/profile',
+      url: request_url + '/auth/profile',
       method: 'GET',
       headers: {
         "Authorization": token
