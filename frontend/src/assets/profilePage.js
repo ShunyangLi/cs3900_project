@@ -142,8 +142,7 @@ layui.use('table', function () {
     switch(obj.event){
       case 'deleteData':
         let data = checkStatus.data[0].id;
-        console.log(data);
-        layer.alert(JSON.stringify(data));
+        deleteItems(data);
         break;
       case 'addData':
         showAdd();
@@ -158,6 +157,27 @@ layui.use('table', function () {
       title:"Add new hotel",
       area:["700px","800px"],
       content:$("#forms"),
+    });
+  }
+
+  // this function is for delete
+  function deleteItems(id) {
+    $.ajax({
+      url: "http://127.0.0.1:9000/hotel-management/",
+      type: "DELETE",
+      data: {
+        'hotel_id': id
+      },
+      headers: {
+        "Authorization": '8509345d167944fd24278189c502cb511c5b5873f4e48a2b65bdfd8a89bb9d72'
+      },
+      success: function(data){
+        layer.msg('Delete successfully');
+        location.reload();
+      },
+      error: function(data){
+        layer.msg(JSON.stringify(data));
+      }
     });
   }
 

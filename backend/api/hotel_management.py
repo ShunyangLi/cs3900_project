@@ -111,8 +111,27 @@ class Manage(Resource):
                     hotel_id, filepath
                 ))
         return make_response(jsonify({'res':'success'}), 200)
+
     def put(self):
         pass
 
+    @manage.doc(description="Delete hotel")
+    @manage.param('hotel_id', 'The hotel id which need to be deleted')
     def delete(self):
-        pass
+        # check the token
+        token = get_header(request)
+        user = query_db("SELECT * FROM User WHERE token = '%s'" % token)
+        if len(user) == 0:
+            abort(400, 'Incorrect token, please login')
+
+        hotel_id = get_request_args('hotel_id', str)
+        # check the host
+        hotel = query_db("SELECT * FROM Hotel WHERE host = '%s' AND id = '%s'" % (user[0]['username'], hotel_id))
+        if len(hotel) == 0:
+            abort(400, 'You are not this hotel\'s host')
+
+        # if check done, then delete
+        query_db("DELETE FROM Hotel WHERE id = '%s'" % hotel_id)
+        query_db("DELETE FROM Hotel_img WHERE hotel_id = '%s'" % hotel_id)
+
+        return make_response(jsonify({'res': 'success'}), 200)
