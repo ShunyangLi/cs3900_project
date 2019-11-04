@@ -257,6 +257,19 @@ function addClosedCoordMarkers(allCoords, routeCoords) {
       }
     }
   }
+
+  let event = new CustomEvent(
+    "updateMapSidebar",
+    {
+      detail: {
+        message: tmpAddrListOnMap,
+        time: new Date(),
+      },
+      bubbles: true,
+      cancelable: true
+    }
+  );
+  document.getElementById('mapsidebar').dispatchEvent(event);
 }
 
 function removeAllDefaultLayers() {
