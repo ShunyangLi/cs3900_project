@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import {MapService} from '../services/map.service';
 import {HotelSideBarInfo} from './hotelSideBarInfo';
 import {LocalStorageService} from '../services/local-storage.service';
@@ -11,8 +11,10 @@ import {LocalStorageService} from '../services/local-storage.service';
 })
 export class MapSidebarComponent implements OnInit {
 
-  private allHotelsInfo: Array<HotelSideBarInfo> = [];
-  private defaultHotelsInfo: Array<HotelSideBarInfo> = [];
+  public title = 'Explore Sydney Accommodations';
+  public allHotelsInfo: Array<HotelSideBarInfo> = [];
+  public defaultHotelsInfo: Array<HotelSideBarInfo> = [];
+  public displayHotelsInfo: Array<HotelSideBarInfo> = []; // current hotels on the map
   private resStr: string;
   constructor(private mapService: MapService, private localStorageService: LocalStorageService) {
   }
@@ -31,6 +33,7 @@ export class MapSidebarComponent implements OnInit {
           this.allHotelsInfo.push(hotel);
           if (count < 8) { // defaultHotelsInfo only takes the first 8 from the database.
             this.defaultHotelsInfo.push(hotel);
+            this.displayHotelsInfo.push(hotel);
             ++ count;
           }
         });
@@ -47,6 +50,10 @@ export class MapSidebarComponent implements OnInit {
         this.localStorageService.storeOnLocalStorage(allAddresses, 'allAddresses');
       }
     );
+  }
+
+  public onToggle(hotel): void {
+    console.log(hotel);
   }
 
 }
