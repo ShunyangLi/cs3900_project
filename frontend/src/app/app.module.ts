@@ -16,6 +16,7 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 // @ts-ignore
@@ -33,7 +34,8 @@ import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
     ChatbotComponent,
     InteractiveMapComponent,
     ScripthackComponent,
-    MapSidebarComponent
+    MapSidebarComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
