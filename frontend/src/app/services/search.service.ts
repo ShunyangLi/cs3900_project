@@ -14,7 +14,6 @@ export class SearchService extends HttpMethods {
   }
 
   public search(searchInfo: SearchInfo): Observable<{}> {
-    console.log('submitted data: ');
     return this.httpPost(searchInfo, this.path);
   }
 }
