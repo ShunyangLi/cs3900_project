@@ -18,7 +18,6 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.directive';
 import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
-import {ChatBot} from 'angular-ai-chat-bot';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import {ChatBot} from 'angular-ai-chat-bot';
     MapSidebarComponent,
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
-    ChatBot
   ],
   imports: [
     BrowserModule,
