@@ -4,7 +4,7 @@ const defaultAddrList = JSON.parse(str).addrList;
 str = window.localStorage.getItem('allAddresses');
 const allAddrList = JSON.parse(str).addrList;
 const addrCoords = {}; // address coordinates dict: key is the address, value is array of [longitude, latitude]
-let tmpAddrListOnMap = [];
+let tmpAddrListOnMap = {};
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2F3Y2F3IiwiYSI6ImNrMjRiMDgwMjE0dWszY24wbWZkN3FoaHkifQ.GHrkLXKycCDWwJ-nCI10-A';
 const mapboxClient = mapboxSdk({accessToken: mapboxgl.accessToken});
 
@@ -244,12 +244,12 @@ function deg2rad(deg) {
 }
 
 function addClosedCoordMarkers(allCoords, routeCoords) {
-  tmpAddrListOnMap = [];
+  tmpAddrListOnMap = {};
   for (let i = 0; i < routeCoords.length; ++i) {
     for (const [addr] of Object.entries(allCoords)) {
       let distance = getDistanceFromLatLonInKm(routeCoords[i][1], routeCoords[i][0], allCoords[addr][1], allCoords[addr][0]);
       if (distance < 0.5) {
-        tmpAddrListOnMap.push(addr);
+        tmpAddrListOnMap[addr] += 1;
         if (map.getSource(addr + '_geojson') === undefined) {
           const tmpGeojson = createTmpGeojson(allCoords[addr]);
           map.addSource(addr + '_geojson', {type: 'geojson', data: tmpGeojson});
@@ -263,6 +263,7 @@ function addClosedCoordMarkers(allCoords, routeCoords) {
     }
   }
 
+  console.log(tmpAddrListOnMap);
   let event = new CustomEvent(
     "updateMapSidebar",
     {

@@ -15,12 +15,15 @@ export class ChangeMapSidebarDirective {
     const locationList = event.detail.message;
     const allHotelList = this.mapSidebar.allHotelsInfo;
 
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < locationList.length; ++i) {
+    // tslint:disable-next-line:forin
+    for (const key in locationList) {
       const hotels = allHotelList.filter(h => {
-        return h.location === locationList[i];
+        return h.location === key;
       }); // It should only return one hotel.
       this.mapSidebar.displayHotelsInfo.push(hotels[0]);
     }
+    console.log('in ts directive');
+    console.log(this.mapSidebar.displayHotelsInfo);
   }
+
 }

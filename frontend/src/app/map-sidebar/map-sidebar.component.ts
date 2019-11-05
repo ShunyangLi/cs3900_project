@@ -26,7 +26,7 @@ export class MapSidebarComponent implements OnInit {
         let count = 0;
         this.resStr = JSON.stringify(res);
         JSON.parse(this.resStr).res.forEach((obj) => {
-          const hotel = new HotelSideBarInfo('', -1, '', '');
+          const hotel = new HotelSideBarInfo('', -1, '', '', '#95d8e2', '#000');
           hotel.description = obj.description;
           hotel.id = obj.id;
           hotel.location = obj.location;
@@ -55,6 +55,13 @@ export class MapSidebarComponent implements OnInit {
 
   public onToggle(hotel): void {
     // console.log(hotel);
+    if (hotel.bgColor === '#95d8e2') {
+      hotel.bgColor = '#ffc107';
+      // hotel.fontColor = '#fff';
+    } else {
+      hotel.bgColor = '#95d8e2';
+      // hotel.fontColor = '#000';
+    }
     event = new CustomEvent(
       'updateIcon', {
         detail: {
