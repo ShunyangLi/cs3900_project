@@ -190,7 +190,7 @@ layui.use('table', function () {
     layer.open({
       type:1,
       title:"Add new hotel",
-      area:["500px","550px"],
+      area:["700px","800px"],
       content:$("#forms"),
     });
   }
