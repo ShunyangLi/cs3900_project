@@ -16,10 +16,12 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
-import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.directive';
-import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
+import { SearchResultComponent } from './search-result/search-result.component';
+import {ChangeMapSidebarDirective} from './directives/change-map-sidebar.directive';
+import {SidebarRecommdDirective} from './directives/sidebar-recommd.directive';
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive'
     MapSidebarComponent,
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
