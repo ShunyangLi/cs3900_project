@@ -20,10 +20,17 @@
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
     "@mapbox/mapbox-gl-draw": "^1.1.2",
+    "@progress/kendo-angular-conversational-ui": "^2.0.0",
     "mapbox-gl": "^1.4.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@progress/kendo-angular-buttons": "^5.0.0",
+    "@progress/kendo-angular-common": "^1.0.0",
+    "@progress/kendo-angular-l10n": "^2.0.0",
+    "@progress/kendo-angular-intl": "^2.0.0",
+    "@progress/kendo-angular-popup": "^3.0.0",
+    "@progress/kendo-theme-default": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",

@@ -16,6 +16,10 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { InteractiveMapComponent } from './interactive-map/interactive-map.component';
 import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
+import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -39,7 +43,9 @@ import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChatModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
