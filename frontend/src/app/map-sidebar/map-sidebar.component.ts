@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import {MapService} from '../services/map.service';
 import {HotelSideBarInfo} from './hotelSideBarInfo';
 import {LocalStorageService} from '../services/local-storage.service';
@@ -11,34 +11,67 @@ import {LocalStorageService} from '../services/local-storage.service';
 })
 export class MapSidebarComponent implements OnInit {
 
-  private defaultHotelsInfo: Array<HotelSideBarInfo> = [];
+  public title = 'Explore Sydney Accommodations';
+  public allHotelsInfo: Array<HotelSideBarInfo> = [];
+  public defaultHotelsInfo: Array<HotelSideBarInfo> = [];
+  public displayHotelsInfo: Array<HotelSideBarInfo> = []; // current hotels on the map
   private resStr: string;
+  public init = true;
   constructor(private mapService: MapService, private localStorageService: LocalStorageService) {
   }
 
   ngOnInit() {
     this.mapService.getAllHotels().subscribe(
       res => {
+        let count = 0;
         this.resStr = JSON.stringify(res);
         JSON.parse(this.resStr).res.forEach((obj) => {
-          const hotel = new HotelSideBarInfo('', -1, '', '');
+          const hotel = new HotelSideBarInfo('', -1, '', '', '#95d8e2', '#000');
           hotel.description = obj.description;
           hotel.id = obj.id;
           hotel.location = obj.location;
           hotel.name = obj.name;
-          this.defaultHotelsInfo.push(hotel);
+          this.allHotelsInfo.push(hotel);
+          if (count < 8) { // defaultHotelsInfo only takes the first 8 from the database.
+            this.defaultHotelsInfo.push(hotel);
+            this.displayHotelsInfo.push(hotel);
+            ++ count;
+          }
         });
-        // two fake hotels for testing:
-        this.defaultHotelsInfo.push(new HotelSideBarInfo('xx', 100, '1 Cawood Ave, Little Bay NSW 2036', 'Little Bay Cove'));
-        this.defaultHotelsInfo.push(new HotelSideBarInfo('yy', 101, '287 Gardeners Rd, Eastlakes NSW 2018', 'Crown Group'));
 
-        const markingAddr: Array<string> = [];
+        const defaultMarkingAddr: Array<string> = [];
         this.defaultHotelsInfo.forEach(info => {
-          markingAddr.push(info.location);
+          defaultMarkingAddr.push(info.location);
         });
-        this.localStorageService.storeOnLocalStorage(markingAddr);
+        const allAddresses: Array<string> = [];
+        this.allHotelsInfo.forEach(info => {
+          allAddresses.push(info.location);
+        });
+        this.localStorageService.storeOnLocalStorage(defaultMarkingAddr, 'defaultMarkingAddr');
+        this.localStorageService.storeOnLocalStorage(allAddresses, 'allAddresses');
       }
     );
+  }
+
+  public onToggle(hotel): void {
+    // console.log(hotel);
+    if (hotel.bgColor === '#95d8e2') {
+      hotel.bgColor = '#ffc107';
+      // hotel.fontColor = '#fff';
+    } else {
+      hotel.bgColor = '#95d8e2';
+      // hotel.fontColor = '#000';
+    }
+    event = new CustomEvent(
+      'updateIcon', {
+        detail: {
+          message: hotel.location,
+          time: new Date()
+        },
+        bubbles: true,
+        cancelable: true
+    });
+    document.getElementById('mapEle').dispatchEvent(event);
   }
 
 }

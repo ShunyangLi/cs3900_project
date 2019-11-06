@@ -17,7 +17,7 @@ class Search(Resource):
     @booking.param('room_type', 'The room type user required')
     @booking.doc(description='For the search function we do not require token, just use the API. \n '
                          'But booking require the token')
-    def get(self):
+    def post(self):
         room_type = get_request_args('room_type', str).upper()
         location = get_request_args('location', str)
         location_math = '%'+location.upper()+'%'

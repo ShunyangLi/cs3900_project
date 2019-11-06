@@ -1,11 +1,119 @@
 <app-top-navigation></app-top-navigation>
 <div class="layui-container" style="margin-left: 20%">
+
+  <!-- This part is for add hotel -->
+  <div class="layui-row" style="display: none" id="forms">
+    <form class="layui-form" id="formContent" method="post" enctype="multipart/form-data">
+    <!--   我太难了，设计page     -->
+      <!--   This is for hotel name   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel name<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text" id="hotel_name" name="hotel_name" style="width: 80%" autocomplete="off" placeholder="Please enter hotel name" class="layui-input" >
+        </div>
+      </div>
+
+      <!--   This is for hotel phone   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel phone<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_phone" name="hotel_phone" style="width: 80%" autocomplete="off" placeholder="Please enter hotel phone number" class="layui-input" required>
+        </div>
+      </div>
+
+
+      <!--   This is for hotel location   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel location<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_location" name="hotel_location" style="width: 80%" autocomplete="off" placeholder="Please enter hotel location" class="layui-input" required>
+        </div>
+      </div>
+
+      <!--   This is for hotel email   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel email<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_email" name="hotel_email" style="width: 80%" autocomplete="off" placeholder="Please enter hotel email" class="layui-input" required>
+        </div>
+      </div>
+
+      <!--   This is for hotel price   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel price<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="number"  id="hotel_price" name="hotel_price" style="width: 80%" autocomplete="off" placeholder="Please enter hotel price" class="layui-input" required>
+        </div>
+      </div>
+
+
+      <!--   This is for hotel description   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel description<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <textarea id="hotel_description" name="hotel_description" style="width: 80%;height: 66px"></textarea>
+        </div>
+      </div>
+
+      <!--   This is for hotel web   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel web<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_web" name="hotel_web" style="width: 80%" autocomplete="off" placeholder="Please enter hotel web" class="layui-input" required>
+        </div>
+      </div>
+
+
+      <!--   This is for hotel room_type   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel type<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_type" name="hotel_type" style="width: 80%" autocomplete="off" placeholder="Please enter hotel type" class="layui-input" required>
+        </div>
+      </div>
+
+
+      <!--   This is for hotel bathrooms   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel bathrooms<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_bathrooms" name="hotel_bathrooms" style="width: 80%" autocomplete="off" placeholder="Please enter hotel bathrooms" class="layui-input" required>
+        </div>
+      </div>
+
+
+      <!--   This is for hotel bedrooms   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel bedrooms<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="text"  id="hotel_bedrooms" name="hotel_bedrooms" style="width: 80%" autocomplete="off" placeholder="Please enter hotel bedrooms" class="layui-input" required>
+        </div>
+      </div>
+
+      <!--   Hotel images   -->
+      <div class="layui-form-item" style="margin-top: 2%">
+        <label class="layui-form-label">Hotel images<span style="color: red">*</span></label>
+        <div class="layui-input-block">
+          <input type="file" multiple id="file" name="file" style="width: 80%" class="layui-input" required>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="submit" class="layui-btn layui-btn-normal" value="Submit">
+        </div>
+      </div>
+
+    </form>
+  </div>
+
   <div class="layui-row">
     <div class="layui-col-md9">
       <div class="layui-tab">
         <ul class="layui-tab-title">
           <li class="layui-this">Profile</li>
           <li>History</li>
+          <li>Hotel manage</li>
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
@@ -85,6 +193,12 @@
             <ul class="layui-timeline" id="history">
             </ul>
           </div>
+
+          <!-- This div is for the host's hotel -->
+          <div class="layui-tab-item" style="margin-top: 10%;" style="width: 130%">
+            <table class="layui-hide" id="hotels" lay-filter="hotels"></table>
+          </div>
+
         </div>
       </div>
     </div>

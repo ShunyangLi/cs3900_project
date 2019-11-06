@@ -241,7 +241,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
     ,defaultToolbar: ['filter', 'exports', 'print'] //工具栏右侧图标
     ,autoSort: true //是否前端自动排序。如果否，则需自主排序（通常为服务端处理好排序）
     ,text: {
-      none: '无数据'
+      none: 'No data'
     }
   };
 
@@ -715,7 +715,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
             that.renderForm();
             that.errorView(
               res[response.msgName] ||
-              ('返回的数据不符合规范，正确的成功状态码应为："'+ response.statusName +'": '+ response.statusCode)
+              ('Not correct data type: "'+ response.statusName +'": '+ response.statusCode)
             );
           } else {
             that.renderData(res, curr, res[response.countName]), sort();
@@ -725,7 +725,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
           typeof options.done === 'function' && options.done(res, curr, res[response.countName]);
         }
         ,error: function(e, m){
-          that.errorView('数据接口请求异常：'+ m);
+          that.errorView('API incorrect: '+ m);
 
           that.renderForm();
           that.setColsWidth();
@@ -1319,20 +1319,20 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
         break;
         case 'LAYTABLE_EXPORT': //导出
           if(device.ie){
-            layer.tips('导出功能不支持 IE，请用 Chrome 等高级浏览器导出', this, {
+            layer.tips('Do not support export functions', this, {
               tips: 3
             })
           } else {
             openPanel({
               list: function(){
                 return [
-                  '<li data-type="csv">导出到 Csv 文件</li>'
-                  ,'<li data-type="xls">导出到 Excel 文件</li>'
+                  '<li data-type="csv">Export CSV file</li>'
+                  ,'<li data-type="xls">Export Excel file</li>'
                 ].join('')
               }()
               ,done: function(panel, list){
                 list.on('click', function(){
-                  var type = $(this).data('type')
+                  var type = $(this).data('type');
                   table.exportFile(options.id, null, type);
                 });
               }

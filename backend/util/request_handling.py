@@ -26,7 +26,7 @@ def get_request_args(arg_name, arg_type):
 
 def get_request_file(arg_name):
     parser = reqparse.RequestParser()
-    parser.add_argument(arg_name, location='files', type=FileStorage, required=True, action='append')
+    parser.add_argument(arg_name, location='files', type=FileStorage, action='append')
     args = parser.parse_args()
     files = args.get(arg_name)
     return files

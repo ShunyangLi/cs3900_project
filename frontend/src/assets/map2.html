@@ -22,7 +22,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2F3Y2F3IiwiYSI6ImNrMjRiMDgwMjE0dWszY24wbWZkN
 var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
 var marker;
 mapboxClient.geocoding.forwardGeocode({
-query: '1 cawood ave, nsw',
+query: 'Brabham Drive  Corner of Peter Brock Drive Eastern Creek NSW 2766 Australia',
 autocomplete: false,
 limit: 1
 })
@@ -30,7 +30,7 @@ limit: 1
 .then(function (response) {
     if (response && response.body && response.body.features && response.body.features.length) {
         var feature = response.body.features[0];
-     
+        console.log(feature.center[0]);
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',

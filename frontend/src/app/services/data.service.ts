@@ -15,7 +15,5 @@ export class DataService {
 
   public updateData(result: Array<SearchRes>) {
     this.data.next(result);
-
   }
-
 }
