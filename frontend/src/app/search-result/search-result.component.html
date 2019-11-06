@@ -1,15 +1,13 @@
 <app-top-navigation></app-top-navigation>
 <div *ngFor="let res of result">
-  <p>{{res.img_url[0].url}}</p>
 <article class="room_list">
   <div class="row">
     <div class="col-lg-4 col-md-5 col-sm-12">
       <figure>
         <div *ngFor="let img of res.img_url" class="room_list_slider owl-carousel">
-          <p>{{img}}</p>
-<!--          <div class="item">-->
-<!--            <a href="room.html" class="hover_effect h_link h_blue"><img src = {{img.url}} alt="Image"></a>-->
-<!--          </div>-->
+          <div class="item">
+            <a  class="hover_effect h_link h_blue"><img src = {{img.url}} alt="Image"></a>
+          </div>
         </div>
       </figure>
     </div>
@@ -26,7 +24,7 @@
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12 room_price">
           <div class="room_price_inner">
-            <span class="room_price_number"> €129,00  </span>
+            <span class="room_price_number"> {{res.price}}  </span>
             <small class="upper"> per night </small>
             <a href="room.html" class="button  btn_blue btn_full upper">Book Now</a>
           </div>
