@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {SearchRes} from '../search-result/searchRes';
 
 @Injectable()
 export class DataService {
-  message: Array<SearchRes>
-  private messageSource = new BehaviorSubject(this.message) ;
-  currentMessage = this.messageSource.asObservable();
+  public data = new Subject<Array<SearchRes>>();
+  message: Array<SearchRes> = [];
 
   constructor() { }
 
-  changeMessage(message: Array<SearchRes>) {
-    this.messageSource.next(message);
+  public getData() {
+    return this.data.asObservable();
+  }
+
+  public updateData(result: Array<SearchRes>) {
+    this.data.next(result);
+
   }
 
 }
