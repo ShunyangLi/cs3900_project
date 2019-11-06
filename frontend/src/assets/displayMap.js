@@ -4,7 +4,7 @@ const defaultAddrList = JSON.parse(str).addrList;
 str = window.localStorage.getItem('allAddresses');
 const allAddrList = JSON.parse(str).addrList;
 const addrCoords = {}; // address coordinates dict: key is the address, value is array of [longitude, latitude]
-let tmpAddrListOnMap = [];
+let tmpAddrListOnMap = {};
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2F3Y2F3IiwiYSI6ImNrMjRiMDgwMjE0dWszY24wbWZkN3FoaHkifQ.GHrkLXKycCDWwJ-nCI10-A';
 const mapboxClient = mapboxSdk({accessToken: mapboxgl.accessToken});
 
@@ -41,6 +41,11 @@ map = new mapboxgl.Map({
   center: [151.2095, -33.8660],
   zoom: 10, // starting zoom
   minZoom: 3 // keep it local style: 'mapbox://styles/mapbox/streets-v9'
+});
+
+map.loadImage('./assets/5-star-hotel-red-35.png', function(error, image) {
+  if (error) throw error;
+  map.addImage('hotel-red', image);
 });
 
 map.loadImage('./assets/5-star-hotel-blue-35.png',  function(error, image) {
@@ -239,12 +244,12 @@ function deg2rad(deg) {
 }
 
 function addClosedCoordMarkers(allCoords, routeCoords) {
-  tmpAddrListOnMap = [];
+  tmpAddrListOnMap = {};
   for (let i = 0; i < routeCoords.length; ++i) {
     for (const [addr] of Object.entries(allCoords)) {
       let distance = getDistanceFromLatLonInKm(routeCoords[i][1], routeCoords[i][0], allCoords[addr][1], allCoords[addr][0]);
       if (distance < 0.5) {
-        tmpAddrListOnMap.push(addr);
+        tmpAddrListOnMap[addr] += 1;
         if (map.getSource(addr + '_geojson') === undefined) {
           const tmpGeojson = createTmpGeojson(allCoords[addr]);
           map.addSource(addr + '_geojson', {type: 'geojson', data: tmpGeojson});
@@ -258,12 +263,13 @@ function addClosedCoordMarkers(allCoords, routeCoords) {
     }
   }
 
+  console.log(tmpAddrListOnMap);
   let event = new CustomEvent(
     "updateMapSidebar",
     {
       detail: {
         message: tmpAddrListOnMap,
-        time: new Date(),
+        time: new Date()
       },
       bubbles: true,
       cancelable: true
@@ -334,3 +340,13 @@ function createLayerObj(addrId, iconImage, title) {
     }
   };
 }
+
+document.getElementById('mapEle').addEventListener('updateIcon', () => {
+  let location = event.detail.message;
+  // let coord = addrCoords[location];
+  if (map.getLayoutProperty(location + '_layer', 'icon-image') === 'hotel-blue') {
+    map.setLayoutProperty(location + '_layer', 'icon-image', 'hotel-red');
+  } else {
+    map.setLayoutProperty(location + '_layer', 'icon-image', 'hotel-blue');
+  }
+});

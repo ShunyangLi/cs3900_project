@@ -18,7 +18,8 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.directive';
 import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
-
+import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive'
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChatModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

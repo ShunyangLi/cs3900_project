@@ -5,7 +5,9 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "node_modules/angular-ai-chat-bot/*.ts",
+    "node_modules/angular-ai-chat-bot/**/*.ts"
   ],
   "exclude": [
     "src/test.ts",
