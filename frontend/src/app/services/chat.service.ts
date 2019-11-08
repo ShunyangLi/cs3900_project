@@ -17,7 +17,7 @@ export class ChatService {
 
   public readonly responses: Subject<string> = new Subject<string>();
 
-  private backendURL = 'http://127.0.0.1:9000';
+  private backendURL = 'http://nomoreproject';
   private readonly path = '/chat/';
   private answer: any;
   constructor(private http: HttpClient) {
