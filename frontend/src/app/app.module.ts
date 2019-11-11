@@ -21,7 +21,11 @@ import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive'
 import { ChatModule } from '@progress/kendo-angular-conversational-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { BookingComponent } from './booking/booking.component';
 
+
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +44,8 @@ import { BookingComRecommendationComponent } from './booking-com-recommendation/
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
     BookingComRecommendationComponent,
+    SearchResultComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
