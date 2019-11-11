@@ -20,6 +20,7 @@ import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.direc
 import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
 import { ChatModule } from '@progress/kendo-angular-conversational-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MapSidebarComponent,
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
+    BookingComRecommendationComponent,
   ],
   imports: [
     BrowserModule,
