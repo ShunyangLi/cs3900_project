@@ -13,22 +13,27 @@ import {DataService} from '../services/data.service';
 })
 export class SearchResultComponent implements OnInit {
   public result: Array<SearchRes>;
-  constructor() {
+  // tslint:disable-next-line:variable-name ban-types
+  public booking_id: string;
+  public price: number;
+  public roomtype: string;
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
     const count = 0;
     this.result = history.state.data;
-    // this.result.forEach((itme, index)=>{
-    //   if (itme.img_url.length === 0) { this.result.splice(index, 1); }
-    // })
     console.log(this.result);
-    //console.log(this.result[0].img_url[0]['url']);
-    // this.data.getData().subscribe(result => {
-    //   // console.log(message);
-    //   this.result = result;
-    // });
-    // console.log(this.result);
   }
-
+  public setBookingId(event, id, price, roomtype) {
+    this.booking_id = id;
+    this.price = price;
+    this.roomtype = roomtype;
+  }
+  public onBookingClick(): void {
+    this.router.navigateByUrl('Booking', {state: {id: this.booking_id, price: this.price, room_type: this.roomtype}});
+    console.log(this.booking_id);
+    console.log(this.price);
+    console.log(this.roomtype);
+  }
 }

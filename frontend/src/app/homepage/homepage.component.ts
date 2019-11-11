@@ -27,14 +27,12 @@ export class HomepageComponent implements OnInit {
 
 
   public onSearchSubmit(): void {
-    //console.log('run serach serve');
     this.searchService.search(this.searchInfo).subscribe(
       res => {
         this.returnRes = JSON.stringify(res);
-        //console.log(this.returnRes)
         JSON.parse(this.returnRes).res.forEach((obj) => {
           const searchres = new SearchRes('', '', '', '', '', [], ''
-            , '', '', '', '', '');
+            , '', '', 1, '', '');
           searchres.id = obj.id;
           searchres.bathroom = obj.bedrooms;
           searchres.bedrooms = obj.bedrooms;
@@ -45,14 +43,13 @@ export class HomepageComponent implements OnInit {
           searchres.name = obj.name;
           searchres.phone = obj.phone;
           searchres.price = obj.price;
-          searchres.roomtype = obj.roomtype;
+          searchres.room_type = obj.room_type;
           searchres.web = obj.web;
           // console.log(searchres.bathroom);
           // console.log(searchres.web);
           // console.log(searchres.img_url);
           // console.log(searchres.price);
           this.message.push(searchres);
-          console.log(this.message);
 
         });
         // console.log(this.message);

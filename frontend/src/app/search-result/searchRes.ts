@@ -10,8 +10,8 @@ export class SearchRes {
     public location: string,
     public name: string,
     public phone: string,
-    public price: string,
-    public roomtype: string,
+    public price: number,
+    public room_type: string,
     public web: string
 
   ) {}

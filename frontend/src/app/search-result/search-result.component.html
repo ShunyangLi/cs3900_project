@@ -1,4 +1,5 @@
 <app-top-navigation></app-top-navigation>
+<form (ngSubmit)="onBookingClick()" id="booking-form" class="inner" #searchform="ngForm">
 <div *ngFor="let res of result">
 <!--<div *ngFor="let img of res.img_url">-->
 <!--</div>-->
@@ -29,7 +30,7 @@
           <div class="room_price_inner">
             <span class="room_price_number"> {{res.price}}  </span>
             <small class="upper"> per night </small>
-            <a href="room.html" class="button  btn_blue btn_full upper">Book Now</a>
+            <button class="button  btn_blue btn_full upper" type="submit" (click)="setBookingId($event,res.id,res.price,res.room_type)">Book Now</button>
           </div>
         </div>
       </div>
@@ -37,4 +38,4 @@
   </div>
 </article>
 </div>
-
+</form>
