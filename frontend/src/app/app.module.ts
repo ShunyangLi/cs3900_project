@@ -19,6 +19,7 @@ import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import {ChangeMapSidebarDirective} from './directives/change-map-sidebar.directive';
 import {SidebarRecommdDirective} from './directives/sidebar-recommd.directive';
+import { BookingComponent } from './booking/booking.component';
 
 
 // @ts-ignore
@@ -39,7 +40,8 @@ import {SidebarRecommdDirective} from './directives/sidebar-recommd.directive';
     MapSidebarComponent,
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
-    SearchResultComponent
+    SearchResultComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

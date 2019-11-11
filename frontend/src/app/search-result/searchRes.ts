@@ -1,5 +1,6 @@
 export class SearchRes {
   constructor(
+    public id: string,
     public bathroom: string,
     public bedrooms: string,
     public description: string,

@@ -1,12 +1,15 @@
 <app-top-navigation></app-top-navigation>
 <div *ngFor="let res of result">
+<!--<div *ngFor="let img of res.img_url">-->
+<!--</div>-->
+<!--  <img src="{{res.img_url[0]}}">-->
 <article class="room_list">
   <div class="row">
     <div class="col-lg-4 col-md-5 col-sm-12">
       <figure>
-        <div *ngFor="let img of res.img_url" class="room_list_slider owl-carousel">
-          <div class="item">
-            <a  class="hover_effect h_link h_blue"><img src = {{img.url}} alt="Image"></a>
+        <div class="room_list_slider owl-carousel">
+          <div class="item" *ngFor="let img of res.img_url">
+            <a  class="hover_effect h_link h_blue"><img src = "{{img.url}}" alt="Image"></a>
           </div>
         </div>
       </figure>
