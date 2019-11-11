@@ -15,19 +15,32 @@ import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
 export class LoginComponent implements OnInit {
   // two-way binding variable:
   private loginInfo: LoginInfo;
+  public authFailed = false;
   constructor(private authService: AuthenticationService, private route: Router) {
     this.loginInfo = new LoginInfo('', '');
   }
 
   ngOnInit() {
+    if (window.localStorage.getItem('token')) {
+      window.location.assign('/profile');
+    }
   }
 
   public onLogInSubmit(): void {
+    this.authFailed = false;
     this.authService.authenticate(this.loginInfo).subscribe(
-      res => window.localStorage.setItem('token', res['token'])
+      res => {
+        // tslint:disable-next-line:no-string-literal
+        window.localStorage.setItem('token', res['token']);
+        console.log(res);
+        setTimeout(() => {
+          window.location.assign('/profile');
+        }, 1000);
+      },
+      error => {
+        this.authFailed = true;
+        console.log(error);
+      }
     );
-    setTimeout(() => {
-      window.location.assign('/homepage');
-    }, 1000);
   }
 }
