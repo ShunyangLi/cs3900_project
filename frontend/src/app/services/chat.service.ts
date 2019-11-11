@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ChatMsg} from "../chatbot/chatMsg";
+import {ChatMsg} from '../chatbot/chatMsg';
 
 // Mock remote service
 
@@ -17,7 +17,7 @@ export class ChatService {
 
   public readonly responses: Subject<string> = new Subject<string>();
 
-  private backendURL = 'http://nomoreproject';
+  private backendURL = 'http://127.0.0.1:9000';
   private readonly path = '/chat/';
   private answer: any;
   constructor(private http: HttpClient) {
