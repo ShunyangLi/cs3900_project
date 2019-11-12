@@ -23,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { BookingComponent } from './booking/booking.component';
-
+import { WindowModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
 // @ts-ignore
 @NgModule({
@@ -54,7 +55,9 @@ import { BookingComponent } from './booking/booking.component';
     HttpClientModule,
     ReactiveFormsModule,
     ChatModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    WindowModule,
+    ButtonsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
