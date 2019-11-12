@@ -41,7 +41,7 @@ export class ChatbotComponent {
       //   value: 'Thanks, but this is boring.'
       // }],
       timestamp: new Date(),
-      text: 'Hello, this is a demo bot. I don`t do much, but I can count symbols!'
+      text: 'Hello, My name is Max. I am a chatbot. How can I help you?'
     };
 
     // Merge local and remote messages into a single stream

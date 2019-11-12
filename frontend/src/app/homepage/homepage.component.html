@@ -16,21 +16,14 @@
     <nav id="main_menu" class="mobile_menu navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="mobile_menu_title" style="display:none;">MENU</li>
-        <li class="dropdown simple_menu active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Become a host<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="index4.html">Individual</a></li>
-            <li><a href="boxed.html">Enterprise</a></li>
-          </ul>
+        <li class="menu_button">
+          <a href="/chat" class="button  btn_yellow"><i class="fa fa-calendar"></i>Booking with Chatbot</a>
         </li>
         <li>
           <a href="/map">Itinerary planner</a>
         </li>
-        <li id="loginStatus"><a href="/login">Log in</a></li>
+        <li id="loginStatus"><a href="/login">Sign in</a></li>
         <li><a href="/signup" id="singup_status">Sign up</a></li>
-        <li class="menu_button">
-          <a href="/chat" class="button  btn_yellow"><i class="fa fa-calendar"></i>Booking with Chatbot</a>
-        </li>
         <li id="other" style="display: none"></li>
       </ul>
     </nav>
@@ -158,7 +151,7 @@
            data-responsive_offset="on"
            data-fontsize="['20','20','20','15']"
            data-lineheight="['30','30','30','25']"
-           data-frames='[{"delay":2400,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-check-square-o"></i> Family Room from $89 per night
+           data-frames='[{"delay":2400,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'><i class="fa fa-check-square-o"></i> Experience Sydney CBD life
       </div>
       <!-- LAYER NR. 14 -->
       <div class="tp-caption"
@@ -171,58 +164,13 @@
            data-frames='[{"delay":3000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}]'
            style="z-index: 99;">
         <!-- ========== BOOKING FORM ========== -->
-        <div class="vbf">
-          <h2 class="form_title"><i class="fa fa-calendar"></i> Search Accommodation</h2>
-          <form id="booking-form" class="inner">
+        <div style="width: 80%" class="vbf">
+          <form (ngSubmit)="onSearchSubmit()" id="booking-form" class="inner" #searchform="ngForm">
             <div class="form-group">
-              <input class="form-control" name="Destination" placeholder="Enter Your Destination" type="text">
+              <input style="font-size: 17px; font-weight: bold" class="form-control" name="Destination" placeholder="Try 'Sydney'" type="text"
+                     [(ngModel)]="this.searchInfo.location">
             </div>
-            <div class="form-group">
-              <div class="form_select">
-                <select name="booking-roomtype" class="form-control" title="Select Room Type" data-header="Room Type">
-                  <option value="Single Room">Single Room</option>
-                  <option value="Double Room">Double Room</option>
-                  <option value="Deluxe Room">Deluxe Room</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-              <div class="form_select">
-                <select name="booking-adults" class="form-control md_noborder_right" title="Adults" data-header="Adults">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-              <div class="form_select">
-                <select name="booking-children" class="form-control" title="Children" data-header="Children">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-              <div class="input-group">
-                <div class="form_date">
-                  <input type="text" class="datepicker form-control md_noborder_right" name="booking-checkin" placeholder="Arrival Date" readonly>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-              <div class="input-group">
-                <div class="form_date">
-                  <input type="text" class="datepicker form-control" name="booking-checkout" placeholder="Departure Date" readonly>
-                </div>
-              </div>
-            </div>
-            <button class="button btn_lg btn_blue btn_full" type="submit">BOOK A ROOM NOW</button>
+            <button class="button btn_lg btn_yellow btn_full" type="submit" style="font-size: 17px">Search</button>
           </form>
         </div>
       </div>
@@ -253,4 +201,5 @@
 
   </ul>
 </div>
+<app-booking-com-recommendation></app-booking-com-recommendation>
 <app-scripthack src="../../assets/loginStatus.js" type="text/javascript"></app-scripthack>

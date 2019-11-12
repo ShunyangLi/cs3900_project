@@ -1,4 +1,5 @@
-<kendo-chat
+<app-top-navigation></app-top-navigation>
+<kendo-chat style="margin-left: 100px; margin-bottom: 10px;font-size: 19px"
         [messages]="feed | async"
         [user]="user"
         (sendMessage)="sendMessage($event)"

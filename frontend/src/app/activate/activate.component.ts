@@ -24,9 +24,12 @@ export class ActivateComponent implements OnInit {
       res => console.log(res)
     );
 
-    setTimeout(() => {
-      this.route.navigate(['/homepage']).then();
-    }, 2000); // 2s
+    // setTimeout(() => {
+    //   this.route.navigate(['/homepage']).then();
+    // }, 2000); // 2s
+  }
+  public goLogin(): void {
+    window.location.assign('/login');
   }
 }
 

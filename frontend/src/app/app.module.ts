@@ -20,7 +20,13 @@ import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.direc
 import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
 import { ChatModule } from '@progress/kendo-angular-conversational-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { BookingComponent } from './booking/booking.component';
+import { WindowModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +44,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MapSidebarComponent,
     ChangeMapSidebarDirective,
     SidebarRecommdDirective,
+    BookingComRecommendationComponent,
+    SearchResultComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     ChatModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    WindowModule,
+    ButtonsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,6 @@ import {
   AbstractControl,
   FormBuilder,
   ValidationErrors
-
 } from '@angular/forms';
 
 
@@ -28,6 +27,8 @@ function matchValues(
 })
 
 export class SignupComponent implements OnInit {
+  public alreadyRegistered = false;
+  public windowOpened = false;
   private signUpInfo: SignUpInfo;
   private secondTypedPwd: string;
   public registerTypes = ['individual', 'enterprise'];
@@ -36,21 +37,32 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 
   public onSignUpSubmit(): void {
-    console.log(this.signUpInfo.first_name);
-    console.log(this.signUpInfo.last_name);
-    console.log(this.signUpInfo.username);
-    console.log(this.signUpInfo.password);
-    console.log(this.signUpInfo.birthday);
-    console.log(this.signUpInfo.type);
+    this.alreadyRegistered = false
+    console.log(this.signUpInfo);
     this.signUpService.signup(this.signUpInfo).subscribe(
-      res => console.log(res)
+      res => {
+        console.log(res);
+        this.openWindow();
+      },
+      error => {
+        this.alreadyRegistered = true;
+      }
     );
   }
 
+  public openWindow(): void {
+    this.windowOpened = true;
+  }
 
+  public closeWindow(): void {
+    this.windowOpened = false;
+  }
+
+  public goLogin(): void {
+    window.location.assign('/login');
+  }
 }

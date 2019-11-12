@@ -8,18 +8,24 @@ import {ActivateComponent} from './activate/activate.component';
 import {ChatbotComponent} from './chatbot/chatbot.component';
 import {InteractiveMapComponent} from './interactive-map/interactive-map.component';
 import {ProfileComponent} from './profile/profile.component';
-
+import {SearchResultComponent} from './search-result/search-result.component';
+import {BookingComponent} from './booking/booking.component';
 
 const routes: Routes = [
+
   { path: 'homepage', component: HomepageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'map', component: InteractiveMapComponent},
   { path: 'chat', component: ChatbotComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'Booking', component: BookingComponent},
   {path: 'activate/:token', component: ActivateComponent},
+  { path: 'SearchResult', component: SearchResultComponent},
   { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+
+
 ];
 
 @NgModule({

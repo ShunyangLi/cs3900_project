@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ChatMsg} from "../chatbot/chatMsg";
+import {ChatMsg} from '../chatbot/chatMsg';
 
 // Mock remote service
 

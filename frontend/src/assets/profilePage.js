@@ -38,7 +38,7 @@ layui.use('jquery', function() {
         $("#history").html(content);
       },
       error: function(data){
-        layer.msg("Can not get your profile information, pls reload");
+        layer.msg("Authentication failed. Please log in first.");
         window.location.assign('/homepage');
       }
     });
