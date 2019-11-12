@@ -10,6 +10,7 @@ from util.auth import generate_activate_token, check_token, get_token
 chat = api.namespace('chat', description="Authentication Services")
 session_id = 1
 
+
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
 
@@ -36,6 +37,7 @@ class Chat(Resource):
         # return agent response
         # print(type(response.query_result.fulfillment_text)
         return response.query_result.fulfillment_text
+
 
 def detect_intent_texts(project_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
