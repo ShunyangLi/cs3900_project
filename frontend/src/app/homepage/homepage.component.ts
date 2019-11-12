@@ -55,7 +55,8 @@ export class HomepageComponent implements OnInit {
         // console.log(this.message);
         // this.data.currentMessage.subscribe(message => this.message = message)
         // this.data.updateData(this.message);
-        this.router.navigateByUrl('SearchResult', {state: {data: this.message}});
+        // this.router.navigateByUrl('SearchResult', {state: {data: this.message}});
+        window.location.assign('/SearchResult');
       }
     );
   }

@@ -165,7 +165,7 @@
            style="z-index: 99;">
         <!-- ========== BOOKING FORM ========== -->
         <div style="width: 80%" class="vbf">
-          <form (ngSubmit)="onSearchSubmit()" id="booking-form" class="inner" #searchform="ngForm">
+          <form (ngSubmit)="onSearchSubmit()" class="inner">
             <div class="form-group">
               <input style="font-size: 17px; font-weight: bold" class="form-control" name="Destination" placeholder="Try 'Sydney'" type="text"
                      [(ngModel)]="this.searchInfo.location">
@@ -203,3 +203,4 @@
 </div>
 <app-booking-com-recommendation></app-booking-com-recommendation>
 <app-scripthack src="../../assets/loginStatus.js" type="text/javascript"></app-scripthack>
+<!--<app-scripthack src="../../assets/js/main.js" type="text/javascript"></app-scripthack>-->
