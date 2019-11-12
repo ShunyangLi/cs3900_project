@@ -168,8 +168,7 @@ class Profile(Resource):
             abort(403, 'Token incorrect')
 
         # get the booking history
-        history = query_db("SELECT * FROM Booking WHERE booking_id in "
-                           "(SELECT booking_id FROM User_booking WHERE username = '%s')" %(res[0]['username']))
+        history = query_db("SELECT * FROM Booking WHERE username = '%s' " %(res[0]['username']))
 
         res[0]['history'] = history
 
