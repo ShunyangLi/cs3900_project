@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import {ChatbotService} from '../services/chatbot.service';
-import {ActivateService} from '../services/activate.service';
-import { ChatMsg } from './chatMsg';
-=======
 import { Component } from '@angular/core';
 
 import { Subject, from, merge, Observable } from 'rxjs';
@@ -11,21 +5,14 @@ import { switchMap, map, windowCount, scan, take, tap } from 'rxjs/operators';
 
 import { ChatModule, Message, User, Action, ExecuteActionEvent, SendMessageEvent } from '@progress/kendo-angular-conversational-ui';
 import {ChatService} from '../services/chat.service';
->>>>>>> 6e4a914ba9996f85d8182c21b8b3b4e8743d4dc7
 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css'],
-<<<<<<< HEAD
-  providers: [ChatbotService]
-})
-export class ChatbotComponent implements OnInit {
-=======
   providers: [ChatService]
 })
 export class ChatbotComponent {
->>>>>>> 6e4a914ba9996f85d8182c21b8b3b4e8743d4dc7
 
   // private userInput: string;
   // private chatMsg: ChatMsg = new ChatMsg('');
