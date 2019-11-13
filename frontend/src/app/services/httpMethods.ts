@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 export abstract class HttpMethods {
@@ -8,9 +8,16 @@ export abstract class HttpMethods {
     })
   };
 
+  protected readonly httpOptionsParams = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    }),
+    params: new HttpParams().set('location', 'randwick')
+  };
+
   protected readonly backendUrl = 'http://nomoreprojectpls.com';
   // protected readonly backendUrl = 'http://127.0.0.1:9000/';
-  private http: HttpClient;
+  protected http: HttpClient;
 
   protected constructor(http: HttpClient) {
     this.http = http;
@@ -25,4 +32,8 @@ export abstract class HttpMethods {
   public httpGet(path: string): Observable<{}> {
     return this.http.get(this.backendUrl + path, this.httpOptions);
   }
+
+  // public httpGetWithParams(path: string, params: HttpParams): Observable<{}> {
+  //   return this.http.get(this.backendUrl + path, {headers: new HttpHeaders({'Content-Type': 'application/json'}), params});
+  // }
 }

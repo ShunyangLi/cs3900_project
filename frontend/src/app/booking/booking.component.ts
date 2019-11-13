@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../services/search.service';
-import {SearchRes} from '../search-result/searchRes';
+import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
 import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
 import {BookingInfo} from './BookingInfo'
 import {SignupService} from "../services/signup.service";
