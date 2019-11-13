@@ -1,0 +1,23 @@
+<app-top-navigation></app-top-navigation>
+<div class="page_title gradient_overlay" style="background: url(images/page_title_bg.jpg);">
+  <div class="container">
+    <div class="inner">
+      <form (ngSubmit)="onSearchSubmit()" class="form-inline">
+        <div class="form-group">
+          <input style="font-size: 17px; font-weight: bold;height: 57px" class="form-control" name="Destination" placeholder="Try 'Sydney'" type="text"
+                 [(ngModel)]="this.searchReq.location">
+        </div> &nbsp;&nbsp;&nbsp;
+        <button class="button btn_lg btn_yellow" type="submit" style="font-size: 17px;display: inline">Search</button>
+        &nbsp;&nbsp;&nbsp;<p style="display: inline;color: whitesmoke;font-weight: bold;font-family: Arial;font-size: 19px">Sorted by</p>
+        &nbsp;&nbsp;&nbsp;
+        <label style="color: whitesmoke;font-size: 19px;font-family:Arial;font-weight: bold ">
+          <input type="checkbox" value=""> Price (lowest first)
+        </label>
+        &nbsp;&nbsp;&nbsp;
+        <label style="color: whitesmoke;font-size: 19px;font-family:Arial;font-weight: bold ">
+          <input type="checkbox" value=""> Rating
+        </label>
+      </form>
+    </div>
+  </div>
+</div>

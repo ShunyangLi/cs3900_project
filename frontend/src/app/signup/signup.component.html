@@ -1,99 +1,113 @@
 <app-top-navigation></app-top-navigation>
-<div style="margin-left: 20%;margin-right: 20%" class="vbf">
-  <h2 class="form_title"><i class="fa fa-calendar"></i>SIGN UP FORM</h2>
-  <div class="ma-box__content">
+<div style="margin-left: 30%;margin-right: 30%;margin-top: 33px;margin-bottom: 33px" class="vbf">
+  <h1 class="form_title" style="color:black">Sign up</h1>
     <form (ngSubmit)="onSignUpSubmit()" #signupForm="ngForm" class="inner">
+      <div class="alert alert-danger" *ngIf="this.alreadyRegistered"><b>{{this.signUpInfo.username}} has already been registered.</b></div>
       <div class="form-group">
-          <input id="firstname" type="text" class="form-control" required pattern="[a-zA-Z ]*"
+        <label style="color: black;font-size: 14px"><b>First name</b></label>
+          <input style="color: black;font-size: 14px" id="firstname" type="text" class="form-control" required pattern="[a-zA-Z ]+"
                  [(ngModel)]="this.signUpInfo.first_name" name="firstname"
-                 placeholder="Enter your first name" #firstname="ngModel"
+                 #firstname="ngModel"
           >
         <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
              class="alert alert-danger">
           <div *ngIf="firstname.errors.required">
-            FirstName is required.
+            Your first name is required.
           </div>
           <div *ngIf="firstname.errors.pattern">
-            Please input correct FirstName
+            Your first name must be letters.
           </div>
         </div>
       </div>
       <div class="form-group">
-          <input id="lastname" type="text" class="form-control" required pattern="[a-zA-Z ]*"
+        <label style="color: black;font-size: 14px"><b>Last name</b></label>
+          <input style="color: black;font-size: 14px" id="lastname" type="text" class="form-control" required pattern="[a-zA-Z ]+"
                  [(ngModel)]="this.signUpInfo.last_name" name="lastname"
-                 placeholder="Enter your last name" #lastname="ngModel"
+                 #lastname="ngModel"
           >
          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
               class="alert alert-danger">
             <div *ngIf="lastname.errors.required">
-            LastName is required.
+              Your last name is required.
             </div>
             <div *ngIf="lastname.errors.pattern">
-            Please input correct lastname
+              Your last name must be letters.
           </div>
         </div>
       </div>
       <div class="form-group">
-          <input id="email" type="email" class="form-control" required email
+        <label style="color: black;font-size: 14px"><b>Username (email)</b></label>
+          <input style="color: black;font-size: 14px" id="email" type="email" class="form-control" required email
                  [(ngModel)]="signUpInfo.username" name="email"
-                 placeholder="Enter your email as username" #username="ngModel"
+                 #username="ngModel"
           >
-          <div *ngIf="username.invalid&&(username.dirty||username.touched)"
+          <div *ngIf="username.invalid && (username.dirty || username.touched)"
                class="alert alert-danger">
             <div *ngIf="username.errors.required">
-              Email is required
+              Username (email) is required.
             </div>
             <div *ngIf="username.errors.email">
-              Please input correct email
+              Username must be in email address format.
             </div>
           </div>
         </div>
       <div class="form-group">
-          <input id="birthday" type="date" class="form-control" required
+        <label style="color: black;font-size: 14px"><b>Date of birth</b></label>
+        <input style="color: black;font-size: 14px" id="birthday" type="date" class="form-control" required
                  [(ngModel)]="signUpInfo.birthday" name="birthday"
-                 placeholder="Enter your birthday"
-          >
+        >
+        <div *ngIf="signUpInfo.birthday.split('-')[0]*1 > 2001 " class="alert alert-danger">
+          The user must be at least 18 years old.
+        </div>
       </div>
       <div class="form-group">
-          <input id="password" type="password" class="form-control" required
+        <label style="color: black;font-size: 14px"><b>Create new password</b></label>
+        <input style="color: black;font-size: 14px" id="password" type="password" class="form-control" required
                  [(ngModel)]="signUpInfo.password" name="password"
-                 placeholder="Create a new password" #password="ngModel"
-          >
-          <div *ngIf="password.invalid&&(password.dirty||password.touched)"
+                 #password="ngModel"
+        >
+        <div *ngIf="password.invalid&&(password.dirty||password.touched)"
              class="alert alert-danger">
-            <div *ngIf="password.errors.required">
-            password is required
-            </div>
+          <div *ngIf="password.errors.required">
+            New password is required
           </div>
-
+        </div>
       </div>
       <div class="form-group">
-          <input id="retype" type="password" class="form-control" required pattern="{{ password.value }}"
+        <label style="color: black;font-size: 14px"><b>Retype new password</b></label>
+        <input style="color: black;font-size: 14px" id="retype" type="password" class="form-control" required pattern="{{ password.value }}"
                  [(ngModel)]="this.secondTypedPwd" name="secondpassword"
-                 placeholder="Retype your password" #confirmpwd="ngModel"
-          >
+                 #confirmpwd="ngModel"
+        >
         <div *ngIf="confirmpwd.invalid&&(confirmpwd.dirty||confirmpwd.touched)"
              class="alert alert-danger">
           <div *ngIf="confirmpwd.errors.required">
-            confirm password is required
+            Retyped password is required
           </div>
           <div *ngIf="confirmpwd.errors.pattern">
-            confirm password need same with password
+            Your retyped password is not matched with your new created password.
           </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="text-right col-xs-3">User type</label>
-        <div class="ma-select-container ma-select-container--default ma-select-container--block">
-          <select class="ma-input ma-select ma-select--default ma-select--block" required
-                   name="registerType"
-          >
-            <option *ngFor="let type of registerTypes" [value]="type">{{type}}</option>
-          </select>
         </div>
       </div>
       <br>
-      <button class="button btn_lg btn_blue btn_full" type="submit" [disabled]="!signupForm.form.valid">CREATE A NEW ACCOUNT</button>
+      <button style="display: inline-block" class="button btn_lg btn_yellow" type="submit" [disabled]="!signupForm.form.valid">Sign up</button>
+<!--      <p><button (click)="openWindow()">Open</button></p>-->
     </form>
-  </div>
 </div>
+
+<kendo-window [top]="400" [left]="424" [width]="500" [height]="375" title="Weclome to Cocorico!"
+              *ngIf="windowOpened"
+              (close)="closeWindow()"
+>
+  <p style="font-size: 17px"><b>Hey {{signUpInfo.first_name}},</b></p>
+  <br>
+  <p style="font-size: 17px">Thank you for registering an account with Cocorico! We've sent an activation email to
+    <b>{{signUpInfo.username}}</b>. </p>
+    <br>
+    <p style="font-size: 17px">Please note that you cannot log in before activating your email. So
+  please check your email inbox!</p>
+  <br>
+  <p style="font-size: 17px">Regards,<br>Cocorico Team</p>
+  <br>
+  <button style="display: inline-block" class="button btn_yellow" (click)="goLogin()">I want to sign in!</button>
+</kendo-window>

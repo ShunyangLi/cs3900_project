@@ -18,7 +18,18 @@ import { ScripthackComponent } from './scripthack/scripthack.component';
 import { MapSidebarComponent } from './map-sidebar/map-sidebar.component';
 import { ChangeMapSidebarDirective } from './directives/change-map-sidebar.directive';
 import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive';
+<<<<<<< HEAD
+=======
+import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { BookingComponent } from './booking/booking.component';
+import { WindowModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+>>>>>>> 6e4a914ba9996f85d8182c21b8b3b4e8743d4dc7
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,14 +46,25 @@ import { SidebarRecommdDirective } from './directives/sidebar-recommd.directive'
     ScripthackComponent,
     MapSidebarComponent,
     ChangeMapSidebarDirective,
+<<<<<<< HEAD
     SidebarRecommdDirective
+=======
+    SidebarRecommdDirective,
+    BookingComRecommendationComponent,
+    SearchResultComponent,
+    BookingComponent
+>>>>>>> 6e4a914ba9996f85d8182c21b8b3b4e8743d4dc7
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChatModule,
+    BrowserAnimationsModule,
+    WindowModule,
+    ButtonsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

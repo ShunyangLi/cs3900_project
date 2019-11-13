@@ -38,7 +38,7 @@ layui.use('jquery', function() {
         $("#history").html(content);
       },
       error: function(data){
-        layer.msg("Can not get your profile information, pls reload");
+        layer.msg("Authentication failed. Please log in first.");
         window.location.assign('/homepage');
       }
     });
@@ -190,7 +190,7 @@ layui.use('table', function () {
     layer.open({
       type:1,
       title:"Add new hotel",
-      area:["500px","550px"],
+      area:["700px","800px"],
       content:$("#forms"),
     });
   }
