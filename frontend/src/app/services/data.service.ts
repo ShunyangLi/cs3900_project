@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
-import {SearchRes} from '../search-result/searchRes';
+import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
 
 @Injectable()
 export class DataService {
-  public data = new Subject<Array<SearchRes>>();
-  message: Array<SearchRes> = [];
+  public data = new Subject<Array<HotelSearchResultInfo>>();
+  message: Array<HotelSearchResultInfo> = [];
 
   constructor() { }
 
@@ -13,7 +13,7 @@ export class DataService {
     return this.data.asObservable();
   }
 
-  public updateData(result: Array<SearchRes>) {
+  public updateData(result: Array<HotelSearchResultInfo>) {
     this.data.next(result);
   }
 }

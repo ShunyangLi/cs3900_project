@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
 import {HomepageComponent} from '../homepage/homepage.component';
-import {SearchRes} from './searchRes';
+import {HotelSearchResultInfo} from './hotelSearchResultInfo';
 import {DataService} from '../services/data.service';
 
 @Component({
@@ -12,7 +12,7 @@ import {DataService} from '../services/data.service';
   providers: [DataService]
 })
 export class SearchResultComponent implements OnInit {
-  public result: Array<SearchRes>;
+  public result: Array<HotelSearchResultInfo>;
   // tslint:disable-next-line:variable-name ban-types
   public booking_id: string;
   public price: number;

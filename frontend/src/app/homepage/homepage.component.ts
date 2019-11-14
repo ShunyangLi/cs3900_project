@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {SearchInfo} from './SearchInfo';
+import {SearchReq} from './searchReq';
 import {SearchService} from '../services/search.service';
-import {SearchRes} from '../search-result/searchRes';
-import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
-import {Output, EventEmitter} from '@angular/core';
-import {DataService} from '../services/data.service';
+import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
+import {LocalStorageService} from '../services/local-storage.service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  providers: [SearchService, DataService]
+  providers: [SearchService, LocalStorageService]
 })
-export class HomepageComponent implements OnInit {
-  public message: Array<SearchRes> = [];
-  private searchInfo: SearchInfo;
-  private returnRes: string;
-  // private data: DataService;
 
-  constructor(private searchService: SearchService, private router: Router) {
-    this.searchInfo = new SearchInfo('', 'Large');
+export class HomepageComponent implements OnInit {
+  private searchReq: SearchReq;
+  private resStr: string;
+  public hotelSearchResultList: Array<string> = [];
+  constructor(private searchService: SearchService, private localStorageService: LocalStorageService) {
+    this.searchReq = new SearchReq('');
   }
 
   ngOnInit() {
@@ -27,35 +24,26 @@ export class HomepageComponent implements OnInit {
 
 
   public onSearchSubmit(): void {
-    this.searchService.search(this.searchInfo).subscribe(
+    this.searchService.search(this.searchReq.location).subscribe(
       res => {
-        this.returnRes = JSON.stringify(res);
-        JSON.parse(this.returnRes).res.forEach((obj) => {
-          const searchres = new SearchRes('', '', '', '', '', [], ''
-            , '', '', 1, '', '');
-          searchres.id = obj.id;
-          searchres.bathroom = obj.bedrooms;
-          searchres.bedrooms = obj.bedrooms;
-          searchres.description = obj.description;
-          searchres.email = obj.email;
-          searchres.img_url = obj.img_url;
-          searchres.location = obj.location;
-          searchres.name = obj.name;
-          searchres.phone = obj.phone;
-          searchres.price = obj.price;
-          searchres.room_type = obj.room_type;
-          searchres.web = obj.web;
-          // console.log(searchres.bathroom);
-          // console.log(searchres.web);
-          // console.log(searchres.img_url);
-          // console.log(searchres.price);
-          this.message.push(searchres);
-
+        console.log(res);
+        this.resStr = JSON.stringify(res);
+        JSON.parse(this.resStr).res.forEach((obj) => {
+          // const searchResult = new HotelSearchResultInfo('', '',
+          //                 '', [], '', '', '');
+          // searchResult.hotel_id = obj.hotel_id;
+          // searchResult.description = obj.description;
+          // searchResult.email = obj.email;
+          // searchResult.img_url = obj.img_url;
+          // searchResult.hotel_address = obj.hotel_address;
+          // searchResult.hotel_name = obj.hotel_name;
+          // searchResult.phone = obj.phone;
+          this.hotelSearchResultList.push(JSON.stringify(obj));
         });
-        // console.log(this.message);
-        // this.data.currentMessage.subscribe(message => this.message = message)
-        // this.data.updateData(this.message);
-        this.router.navigateByUrl('SearchResult', {state: {data: this.message}});
+        this.localStorageService.storeOnLocalStorage(this.hotelSearchResultList, 'hotelSearchResults');
+        window.location.assign('/SearchResult');
+
+
       }
     );
   }
