@@ -48,6 +48,8 @@ class Room(Resource):
 
         return make_response(jsonify({"res": hotel[0]}), 200)
 
+# 上面那俩是search和获取相对应的hotel rooms信息
+
 
 booking = api.namespace('booking', description="Booking Services")
 

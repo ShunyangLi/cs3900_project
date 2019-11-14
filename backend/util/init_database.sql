@@ -35,13 +35,16 @@ CREATE TABLE IF NOT EXISTS Hotel (
     FOREIGN KEY (host) REFERENCES User(username)
 );
 
+-- this part is new hotels
 CREATE TABLE IF NOT EXISTS Hotels (
     hotel_id INTEGER PRIMARY KEY ,
     hotel_name TEXT  NOT NULL ,
     hotel_address TEXT NOT NULL ,
     description TEXT NOT NULL ,
     phone TEXT NOT NULL ,
-    email TEXT NOT NULL
+    email TEXT NOT NULL,
+    host TEXT NOT NULL ,
+    FOREIGN KEY (host) REFERENCES User(username)
 );
 
 CREATE TABLE IF NOT EXISTS Rooms (
@@ -68,6 +71,7 @@ CREATE TABLE IF NOT EXISTS Rooms_img (
     url TEXT NOT NULL ,
     FOREIGN KEY (room_id) REFERENCES Rooms (room_id)
 );
+
 
 INSERT INTO Hotels(hotel_id,hotel_name, hotel_address, description, phone, email)
 VALUES (123312, 'UNSW', 'Randwick NSW 2031', 'A very good hotel', '1234567890', '123@qq.com');
