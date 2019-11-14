@@ -6,7 +6,7 @@ from util.request_handling import get_request_args,get_header, get_request_file
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
-
+path = os.getcwd()
 hotel = api.namespace('hotel', description="New hotel management services")
 
 """
@@ -129,7 +129,10 @@ class Management(Resource):
 
         # get the hotel id
         hotels = query_db("SELECT * FROM Hotels")
-        hotel_id = hotels[len(hotels) - 1]['id'] + 1
+        if len(hotels) == 0:
+            hotel_id = 0
+        else:
+            hotel_id = hotels[len(hotels) - 1]['hotel_id'] + 1
 
         hotel_name = get_request_args('hotel_name', str)
         hotel_address = get_request_args('hotel_address', str)
@@ -160,7 +163,7 @@ class Management(Resource):
             abort(403, 'This user do not have this hotel')
 
         # after check the hotel owner, then remove all the content
-        shutil.rmtree("/static/%s/%s" % (user['username'], hotel_id))
+        shutil.rmtree(path + "/static/%s/new%s" % (user['username'], hotel_id))
 
         query_db("DELETE FROM Hotels WHERE hotel_id='%s' AND host='%s'" % (hotel_id, user['username']))
         query_db("DELETE FROM Hotels_img WHERE hotel_id='%s'" % hotel_id)
@@ -200,7 +203,8 @@ class Management(Resource):
         # need to update the hotel's information
         query_db("""
         UPDATE Hotels SET hotel_name = '%s', hotel_address = '%s', description='%s', phone='%s', email='%s'
-        """ % (hotel_name, hotel_address, description, phone, email))
+        WHERE hotel_id = '%s'
+        """ % (hotel_name, hotel_address, description, phone, email, hotel_id))
 
         # if they do not upload files, then we do not remove url
         if files is not None:
@@ -217,6 +221,144 @@ class Management(Resource):
         return make_response(jsonify(message='success'), 200)
 
 
+# make a rooms management api
+room = api.namespace('room', description='Room management services')
+
+
+@room.route('/management', strict_slashes=False)
+@room.response(200, 'Success')
+@room.response(400, 'Missing args')
+@room.response(403, 'User do not have this hotel')
+@room.expect(room.parser().add_argument('Authorization', "Your Authorization Token in the form 'Token <AUTH_TOKEN>'",
+                                        location='headers'))
+class RoomManagement(Resource):
+
+    @room.doc(description='Add a new hotel')
+    @room.param('file', 'The images of this room')
+    @room.param('price', 'Room price')
+    @room.param('children', 'Max number of children')
+    @room.param('adults', 'Max number of adults')
+    @room.param('bathroom', 'Number of bathroom')
+    @room.param('bedroom', 'Number of bedroom')
+    @room.param('name', 'Room name')
+    @room.param('hotel_id', 'The hotel id of this room belong to.')
+    def post(self):
+        user = check_login(get_header(request))
+        hotel_id = get_request_args('hotel_id', str)
+
+        # check whether the user own this hotel
+        hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
+        if len(hotels) == 0:
+            abort(403, 'This user do not have this hotel')
+
+        # get all the args
+        name = get_request_args('name', str)
+        bedroom = get_request_args('bedroom', str)
+        bathroom = get_request_args('bathroom', str)
+        adults = get_request_args('adults', str)
+        children = get_request_args('children', str)
+        price = get_request_args('price', str)
+        files = get_request_file('file')
+
+        # check whether get images
+        if files is None:
+            return make_response(jsonify(message='You must upload at least one photo'), 403)
+
+        # get the room id
+        rooms = query_db("SELECT * FROM Rooms")
+        if len(rooms) == 0:
+            room_id = 0
+        else:
+            room_id = rooms[len(rooms) - 1]['room_id'] + 1
+
+        # insert the room into db
+        query_db("""
+        INSERT INTO Rooms(room_id, hotel_id, name, bedroom, bathroom, adults, children, price)
+        VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
+        """ % (room_id, hotel_id, name, bedroom, bathroom, adults, children, price))
+
+        # and then insert the room images
+        store_room_image(files, hotel_id, room_id, user['username'])
+
+        return make_response(jsonify(message='success'), 200)
+
+    @room.doc(description='Update room')
+    @room.param('file', 'The images of this room')
+    @room.param('price', 'Room price')
+    @room.param('children', 'Max number of children')
+    @room.param('adults', 'Max number of adults')
+    @room.param('bathroom', 'Number of bathroom')
+    @room.param('bedroom', 'Number of bedroom')
+    @room.param('name', 'Room name')
+    @room.param('room_id', 'The rooms id')
+    @room.param('hotel_id', 'The hotel id of this room belong to.')
+    def put(self):
+        user = check_login(get_header(request))
+        hotel_id = get_request_args('hotel_id', str)
+        room_id = get_request_args('room_id', str)
+        # check whether the user own this hotel
+        hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
+        if len(hotels) == 0:
+            abort(403, 'This user do not have this hotel')
+
+        rooms = query_db("SELECT * FROM Rooms WHERE room_id='%s'" % room_id)
+
+        if len(rooms) == 0:
+            abort(403, 'No such room')
+
+        # get all the args
+        name = get_request_args('name', str)
+        bedroom = get_request_args('bedroom', str)
+        bathroom = get_request_args('bathroom', str)
+        adults = get_request_args('adults', str)
+        children = get_request_args('children', str)
+        price = get_request_args('price', str)
+        files = get_request_file('file')
+
+        # if the user want to change the hotel images
+        if files is not None:
+            imgs = query_db("SELECT * FROM Rooms_img WHERE room_id='%s'" % room_id)
+
+            for img in imgs:
+                os.remove(img['url'])
+
+            query_db("DELETE FROM Rooms_img WHERE room_id='%s'" % room_id)
+
+            store_room_image(files,hotel_id, room_id, user['username'])
+
+        query_db("""
+        UPDATE Rooms SET name = '%s', bedroom = '%s', bathroom = '%s', adults = '%s', children = '%s', price = '%s'
+        WHERE room_id = '%s'
+        """ % (name, bedroom, bathroom, adults, children, price, room_id))
+
+        return make_response(jsonify(message='success'), 200)
+
+    @room.doc(description='Delete room')
+    @room.param('room_id', 'The room id which need to be deleted')
+    @room.param('hotel_id', 'Which hotel of this room belong to')
+    def delete(self):
+        # check the user firstly
+        user = check_login(get_header(request))
+        room_id = get_request_args('room_id', str)
+        hotel_id = get_request_args('hotel_id', str)
+
+        # check whether the user own this hotel
+        hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
+        if len(hotels) == 0:
+            abort(403, 'This user do not have this hotel')
+
+        # check rooms
+        rooms = query_db("SELECT * FROM Rooms WHERE room_id='%s' AND hotel_id='%s'" % (room_id, hotel_id))
+        if len(rooms) == 0:
+            abort(403, 'This rooms do not belong to this hotel')
+
+        # remove all the images of this room
+        shutil.rmtree(path + "/static/%s/new%s/%s" % (user['username'], hotel_id, room_id))
+
+        query_db("DELETE FROM Rooms WHERE room_id='%s'" % room_id)
+        query_db("DELETE FROM Rooms_img WHERE room_id='%s'" % room_id)
+
+        return make_response(jsonify(message='success'), 200)
 
 
 

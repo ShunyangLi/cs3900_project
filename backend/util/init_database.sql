@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Rooms (
     bedroom INTEGER NOT NULL ,
     bathroom INTEGER NOT NULL ,
     adults INTEGER NOT NULL ,
-    children NOT NULL ,
+    children INTEGER NOT NULL ,
     price REAL NOT NULL ,
     FOREIGN KEY (hotel_id) REFERENCES Hotels(hotel_id)
 );
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS Rooms_img (
 );
 
 
-INSERT INTO Hotels(hotel_id,hotel_name, hotel_address, description, phone, email)
-VALUES (123312, 'UNSW', 'Randwick NSW 2031', 'A very good hotel', '1234567890', '123@qq.com');
+INSERT INTO Hotels(hotel_id,hotel_name, hotel_address, description, phone, email, host)
+VALUES (123312, 'UNSW', 'Randwick NSW 2031', 'A very good hotel', '1234567890', '123@qq.com', '123@qq.com');
 INSERT INTO Rooms(room_id, hotel_id, name, bedroom, bathroom, adults, children, price)
 VALUES (121, 123312, 'cse', 2, 2, 2, 2, 100);
 
