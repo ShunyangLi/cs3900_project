@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Hotels (
     phone TEXT NOT NULL ,
     email TEXT NOT NULL,
     host TEXT NOT NULL ,
+    rating INTEGER DEFAULT 5,
     FOREIGN KEY (host) REFERENCES User(username)
 );
 

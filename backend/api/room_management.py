@@ -116,6 +116,17 @@ def check_login(token):
                                         location='headers'))
 class Management(Resource):
 
+    @hotel.doc(description='Get hotel and rooms according to username')
+    def get(self):
+        user = check_login(get_header(request))
+        hotels = query_db("SELECT * FROM Hotels WHERE host='%s'" % user['username'])
+
+        for h in hotels:
+            rooms = query_db("SELECT * FROM Rooms WHERE hotel_id='%s'" % h['hotel_id'])
+            h['rooms'] = rooms
+
+        return make_response(jsonify(res=hotels), 200)
+
     @hotel.doc(description='Post method is for upload new hotels')
     @hotel.param('file', 'Hotel images')
     @hotel.param('email', 'Hotel emails')
