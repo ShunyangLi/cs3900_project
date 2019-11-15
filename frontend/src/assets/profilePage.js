@@ -35,6 +35,7 @@ layui.use('jquery', function() {
             " </li>"
 
         }
+        if (i == 0) content += "<b>There is currently no booking history.</b>";
         $("#history").html(content);
       },
       error: function(data){
@@ -123,15 +124,17 @@ layui.use('table', function () {
     },
     cols: [[
       {type:'radio'},
-      {field:'id', width:100, title: 'Hotel ID', sort: true},
-      {field:'name', width:100, title: 'Hotel name', sort: true},
-      {field:'location', width:120, title: 'Hotel location', sort: true},
-      {field:'phone', width:100, title: 'Hotel phone', sort: true},
-      {field:'price', width:100, title: 'Hotel price', sort: true},
-      {field:'room_type', width:100, title: 'Hotel type', sort: true},
-      {field:'bathrooms', width:100, title: 'Bathroom', sort: true},
-      {field:'bedrooms', width:100, title: 'Bedroom', sort: true},
-      {field:'description', width:180, title: 'Hotel description', sort: true}
+      // {field:'id', width:100, title: 'Hotel ID', sort: true},
+      {field:'name', width:100, title: 'Name', sort: true},
+      {field:'location', width:120, title: 'Location', sort: true},
+      {field:'phone', width:100, title: 'Phone', sort: true},
+      {field:'price', width:100, title: 'Price', sort: true},
+      {field:'room_type', width:100, title: 'Type', sort: true},
+      {field:'bathrooms', width:120, title: 'Bathroom', sort: true},
+      {field:'bedrooms', width:120, title: 'Bedroom', sort: true},
+      {field:'adult', width:79, title: 'Adult', sort: true},
+      {field:'children', width:99, title: 'Children', sort: true},
+      {field:'description', width:180, title: 'Description', sort: true},
     ]],
     toolbar: '#hotelTools',
   });
