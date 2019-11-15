@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Hotels (
     phone TEXT NOT NULL ,
     email TEXT NOT NULL,
     host TEXT NOT NULL ,
+    rating INTEGER DEFAULT 5,
     FOREIGN KEY (host) REFERENCES User(username)
 );
 
@@ -74,9 +75,16 @@ CREATE TABLE IF NOT EXISTS Rooms_img (
 
 
 INSERT INTO Hotels(hotel_id,hotel_name, hotel_address, description, phone, email, host)
-VALUES (123312, 'UNSW', 'Randwick NSW 2031', 'A very good hotel', '1234567890', '123@qq.com', '123@qq.com');
+VALUES (123312, 'UNSW', 'Randwick NSW 2031', 'A very good hotel', '1234567890', 'unsw@unsw.com', '123@qq.com');
+
+INSERT INTO Hotels(hotel_id,hotel_name, hotel_address, description, phone, email, host)
+VALUES (123313, 'CSE', 'Randwick NSW 2031', 'A very good hotel', '1234567890', 'cse@cse.com', '123@qq.com');
+
 INSERT INTO Rooms(room_id, hotel_id, name, bedroom, bathroom, adults, children, price)
 VALUES (121, 123312, 'cse', 2, 2, 2, 2, 100);
+
+INSERT INTO Rooms(room_id, hotel_id, name, bedroom, bathroom, adults, children, price)
+VALUES (122, 123313, 'k17', 2, 2, 2, 2, 100);
 
 
 CREATE TABLE IF NOT EXISTS Hotel_img(
