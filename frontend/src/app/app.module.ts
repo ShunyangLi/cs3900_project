@@ -25,6 +25,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { BookingComponent } from './booking/booking.component';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { ListingmanComponent } from './listingman/listingman.component';
 
 // @ts-ignore
 @NgModule({
@@ -46,7 +47,8 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     SidebarRecommdDirective,
     BookingComRecommendationComponent,
     SearchResultComponent,
-    BookingComponent
+    BookingComponent,
+    ListingmanComponent
   ],
   imports: [
     BrowserModule,
