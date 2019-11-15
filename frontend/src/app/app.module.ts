@@ -26,6 +26,9 @@ import { BookingComponent } from './booking/booking.component';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ListingmanComponent } from './listingman/listingman.component';
+import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
+import { RoommanComponent } from './roomman/roomman.component';
+
 
 // @ts-ignore
 @NgModule({
@@ -48,7 +51,8 @@ import { ListingmanComponent } from './listingman/listingman.component';
     BookingComRecommendationComponent,
     SearchResultComponent,
     BookingComponent,
-    ListingmanComponent
+    ListingmanComponent,
+    RoommanComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { ListingmanComponent } from './listingman/listingman.component';
     ChatModule,
     BrowserAnimationsModule,
     WindowModule,
-    ButtonsModule
+    ButtonsModule,
+    GridModule,
+    PDFModule
   ],
   providers: [],
   bootstrap: [AppComponent]
