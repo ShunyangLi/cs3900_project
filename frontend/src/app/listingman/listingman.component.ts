@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {ListingInfo} from './listingInfo';
 import { map } from 'rxjs/operators';
 import {FormControl, FormGroup} from '@angular/forms';
+import {RoomInfo} from './roomInfo';
 
 @Component({
   selector: 'app-listingman',
@@ -22,9 +23,10 @@ export class ListingmanComponent implements OnInit {
   public token;
   public gridData: GridDataResult;
   public view: Observable<GridDataResult>;
-  // public roomGridData: GridDataResult;
-  // public roomView: Observable<GridDataResult>
-  // Edit form variables:
+  public loading = true;
+  public roomPageLoading = true;
+
+  // Edit hotel form variables:
   public isNew: boolean;
   public active = false;
   public editListing: ListingInfo;
@@ -36,6 +38,18 @@ export class ListingmanComponent implements OnInit {
     description: new FormControl()
   });
 
+  // Edit room form variables:
+  public isNewRoom: boolean;
+  public roomActive = false;
+  public editRoom: RoomInfo;
+  public editRoomForm: FormGroup = new FormGroup({
+    adults: new FormControl(),
+    bathroom: new FormControl(),
+    bedroom: new FormControl(),
+    children: new FormControl(),
+    name: new FormControl(),
+    price: new FormControl()
+  });
   constructor(private editService: EditFormService) {
     this.view = editService;
   }
@@ -51,6 +65,7 @@ export class ListingmanComponent implements OnInit {
       console.log(res);
       this.gridData = res;
     });
+    this.loading = false;
   }
 
   public getAllRoomData(hotelId: string): void {
@@ -68,14 +83,18 @@ export class ListingmanComponent implements OnInit {
     this.showRoom = true;
     this.curHotelName = dataItem.hotel_name;
     this.curHotelId = dataItem.hotel_id;
+    this.roomPageLoading = true;
     this.getAllRoomData(this.curHotelId);
+    this.roomPageLoading = false;
   }
 
   public onRemoveHotel({dataItem}): void {
     console.log(dataItem);
-    this.editService.remove(dataItem.hotel_id, this.token).subscribe(() =>
-      window.location.reload()
-    );
+    this.editService.remove(dataItem.hotel_id, this.token).subscribe(() => {
+        this.loading = true;
+        this.getAllData();
+        this.loading = false;
+    });
   }
 
   public onEditHotel({rowIndex, dataItem}): void {
@@ -114,22 +133,64 @@ export class ListingmanComponent implements OnInit {
     this.editService.saveHotel(this.editListing, this.token, this.isNew).subscribe(res => {
       console.log(res);
       this.closeHotelForm();
-      window.location.reload();
+      // window.location.reload();
+      this.loading = true;
+      this.getAllData();
+      this.loading = false;
     });
   }
 
   // Room Grid button handlers:
   public onEditRoom({dataItem}): void {
-
+    this.isNewRoom = false;
+    // tslint:disable-next-line:max-line-length
+    this.editRoom = new RoomInfo(dataItem.adults, dataItem.bathroom, dataItem.bedroom, dataItem.children, this.curHotelId, dataItem.name, dataItem.price, dataItem.room_id);
+    this.roomActive = true;
+    this.editRoomForm.reset(this.editRoom);
   }
 
   public onRemoveRoom({dataItem}): void {
-
+    this.token = window.localStorage.getItem('token');
+    this.editService.removeRoom(this.curHotelId, dataItem.room_id, this.token).subscribe(() => {
+      this.roomPageLoading = true;
+      this.getAllRoomData(this.curHotelId);
+      this.roomPageLoading = false;
+    });
   }
 
   public addNewRoom(): void {
-
+    this.isNewRoom = true;
+    this.editRoom = new RoomInfo('', '', '', '', this.curHotelId, '', '', '');
+    this.roomActive = true;
+    this.editRoomForm.reset(this.editRoom);
   }
 
+  public goBack(): void {
+    this.showRoom = false;
+    this.getAllData();
+  }
 
+  public saveRoomForm(): void {
+    this.editRoom.adults = this.editRoomForm.value.adults;
+    this.editRoom.children = this.editRoomForm.value.children;
+    this.editRoom.name = this.editRoomForm.value.name;
+    this.editRoom.bathroom = this.editRoomForm.value.bathroom;
+    this.editRoom.bedroom = this.editRoomForm.value.bedroom;
+    this.editRoom.price = this.editRoomForm.value.price;
+    this.editService.saveRoom(this.editRoom, this.token, this.isNewRoom).subscribe(res => {
+      console.log(res);
+      this.closeRoomForm();
+      // window.location.reload();
+      this.roomPageLoading = true;
+      this.getAllRoomData(this.curHotelId);
+      this.roomPageLoading = false;
+    });
+  }
+  public closeRoomForm(): void {
+    this.roomActive = false;
+  }
+
+  public cancelRoomForm(): void {
+    this.closeRoomForm();
+  }
 }
