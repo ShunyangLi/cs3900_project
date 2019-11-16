@@ -258,7 +258,7 @@ class RoomManagement(Resource):
         if len(hotels) == 0:
             abort(403, 'This user do not have this hotel')
 
-        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotels)
+        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
 
         return make_response(jsonify(res=rooms), 200)
 
