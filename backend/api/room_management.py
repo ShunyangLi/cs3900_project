@@ -381,7 +381,7 @@ class RoomManagement(Resource):
 
         # remove all the images of this room
         file_path = path + "/static/%s/new%s/%s" % (user['username'], hotel_id, room_id)
-        if os.isdir(file_path):
+        if os.path.isdir(file_path):
             shutil.rmtree(file_path)
 
         query_db("DELETE FROM Rooms WHERE room_id='%s'" % room_id)
