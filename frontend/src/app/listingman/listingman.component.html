@@ -3,19 +3,19 @@
     [data]="gridData"
     [height]="533"
     (edit) = "onEditHotel($event)"
-    (remove)="onRemoveHotel($event)">
-    <!--  (dataStateChange)="onStateChange($event)"-->
-    <!--  (add)="addHandler($event)"-->
+    (remove)="onRemoveHotel($event)"
+    (add)="addNewHotel()">
+
     <ng-template kendoGridToolbarTemplate>
       <button kendoGridAddCommand [primary]="true">Add Property</button>
       <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
     </ng-template>
+    <kendo-grid-column field="hotel_id" title="ID"></kendo-grid-column>
     <kendo-grid-column field="hotel_name" title="Name"></kendo-grid-column>
     <kendo-grid-column field="hotel_address" title="Address"></kendo-grid-column>
     <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>
     <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>
     <kendo-grid-column field="description" title="Description"></kendo-grid-column>
-
     <kendo-grid-column title="Actions" width="270">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
@@ -43,25 +43,27 @@
   </kendo-grid>
 </div>
 
+<!--Room forms-->
 <div *ngIf="showRoom">
   <kendo-grid
-    [data]="gridData"
+    [data]="roomGridData"
     [height]="533"
-    (edit) = "onEditHotel($event)"
-    (remove)="onRemoveHotel($event)">
-    <!--  (dataStateChange)="onStateChange($event)"-->
-    <!--  (add)="addHandler($event)"-->
+    (edit) = "onEditRoom($event)"
+    (remove)="onRemoveRoom($event)"
+    (add)="addNewRoom()">
+
     <ng-template kendoGridToolbarTemplate>
-      <b>{{ curHotelName }}</b>
-      <button kendoGridAddCommand [primary]="true">Add Property</button>
+      <b>{{ this.curHotelName }}</b>
+      <button kendoGridAddCommand [primary]="true">Add Room</button>
+      <button class="k-button k-grid-edit-command">Go back</button>
       <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
     </ng-template>
-    <kendo-grid-column field="hotel_name" title="Name"></kendo-grid-column>
-    <kendo-grid-column field="hotel_address" title="Address"></kendo-grid-column>
-    <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>
-    <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>
-    <kendo-grid-column field="description" title="Description"></kendo-grid-column>
-
+    <kendo-grid-column field="name" title="Room Name"></kendo-grid-column>
+<!--    <kendo-grid-column field="hotel_name" title="Name"></kendo-grid-column>-->
+<!--    <kendo-grid-column field="hotel_address" title="Address"></kendo-grid-column>-->
+<!--    <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>-->
+<!--    <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>-->
+<!--    <kendo-grid-column field="description" title="Description"></kendo-grid-column>-->
     <kendo-grid-column title="Actions" width="270">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
@@ -89,6 +91,43 @@
   </kendo-grid>
 </div>
 
-<!--<kendo-dialog [width]="300" [height]="450" (close)="closeForm()">-->
+<!--Add button and Edit button share the same form-->
+<kendo-dialog *ngIf="active" [width]="350" [height]="470" (close)="closeHotelForm()">
+  <kendo-dialog-titlebar>
+    {{ isNew ? 'Add new proterty' : 'Edit property' }}
+  </kendo-dialog-titlebar>
 
-<!--</kendo-dialog>-->
+  <form [formGroup]="editHotelForm">
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Hotel name</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="hotel_name" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Hotel address</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="hotel_address" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Phone</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="phone" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Contact email</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="email" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Description</label>
+      <textarea style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="description">
+      </textarea>
+    </div>
+  </form>
+
+
+  <kendo-dialog-actions>
+    <button class="k-button" (click)="cancelHotelForm()">Cancel</button>
+    <button class="k-button k-primary" (click)="saveHotelForm()">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
