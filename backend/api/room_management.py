@@ -169,13 +169,15 @@ class Management(Resource):
         # check user
         user = check_login(get_header(request))
         hotel_id = get_request_args('hotel_id', str)
-
+        
         hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
         if len(hotels) == 0:
             abort(403, 'This user do not have this hotel')
 
         # after check the hotel owner, then remove all the content
-        shutil.rmtree(path + "/static/%s/new%s" % (user['username'], hotel_id))
+        file_path = path + "/static/%s/new%s" % (user['username'], hotel_id)
+        if os.path.isdir(file_path):
+            shutil.rmtree(file_path)
 
         query_db("DELETE FROM Hotels WHERE hotel_id='%s' AND host='%s'" % (hotel_id, user['username']))
         query_db("DELETE FROM Hotels_img WHERE hotel_id='%s'" % hotel_id)
@@ -256,7 +258,7 @@ class RoomManagement(Resource):
         if len(hotels) == 0:
             abort(403, 'This user do not have this hotel')
 
-        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotels)
+        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
 
         return make_response(jsonify(res=rooms), 200)
 
@@ -378,7 +380,9 @@ class RoomManagement(Resource):
             abort(403, 'This rooms do not belong to this hotel')
 
         # remove all the images of this room
-        shutil.rmtree(path + "/static/%s/new%s/%s" % (user['username'], hotel_id, room_id))
+        file_path = path + "/static/%s/new%s/%s" % (user['username'], hotel_id, room_id)
+        if os.isdir(file_path):
+            shutil.rmtree(file_path)
 
         query_db("DELETE FROM Rooms WHERE room_id='%s'" % room_id)
         query_db("DELETE FROM Rooms_img WHERE room_id='%s'" % room_id)
