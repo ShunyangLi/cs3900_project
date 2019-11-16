@@ -157,8 +157,9 @@ class Management(Resource):
         VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')
         """ % (hotel_id, hotel_name, hotel_address, description, phone, email, user['username']))
 
-        # store the images
-        store_hotel_images(files, hotel_id, user['username'])
+        if files is not None:
+            # store the images
+            store_hotel_images(files, hotel_id, user['username'])
 
         return make_response(jsonify({'res': 'success'}), 200)
 
@@ -244,6 +245,21 @@ room = api.namespace('room', description='Room management services')
                                         location='headers'))
 class RoomManagement(Resource):
 
+    @room.doc(description='Get all rooms according to hotel id')
+    @room.param('hotel_id', 'The hotel id')
+    def get(self):
+        user = check_login(get_header(request))
+        hotel_id = get_request_args('hotel_id', str)
+
+        # check whether the user own this hotel
+        hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
+        if len(hotels) == 0:
+            abort(403, 'This user do not have this hotel')
+
+        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotels)
+
+        return make_response(jsonify(res=rooms), 200)
+
     @room.doc(description='Add a new hotel')
     @room.param('file', 'The images of this room')
     @room.param('price', 'Room price')
@@ -271,9 +287,6 @@ class RoomManagement(Resource):
         price = get_request_args('price', str)
         files = get_request_file('file')
 
-        # check whether get images
-        if files is None:
-            return make_response(jsonify(message='You must upload at least one photo'), 403)
 
         # get the room id
         rooms = query_db("SELECT * FROM Rooms")
@@ -288,8 +301,9 @@ class RoomManagement(Resource):
         VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
         """ % (room_id, hotel_id, name, bedroom, bathroom, adults, children, price))
 
-        # and then insert the room images
-        store_room_image(files, hotel_id, room_id, user['username'])
+        if files is not None:
+            # and then insert the room images
+            store_room_image(files, hotel_id, room_id, user['username'])
 
         return make_response(jsonify(message='success'), 200)
 
