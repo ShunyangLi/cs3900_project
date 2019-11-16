@@ -161,14 +161,12 @@
     <br>
     <div class="form-group">
       <label class="control-label" style="font-size: 17px">Max adults</label>
-      <textarea style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="adults">
-      </textarea>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="adults" />
     </div>
     <br>
     <div class="form-group">
       <label class="control-label" style="font-size: 17px">Max children</label>
-      <textarea style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="children">
-      </textarea>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="children" />
     </div>
   </form>
 
@@ -179,5 +177,5 @@
   </kendo-dialog-actions>
 </kendo-dialog>
 
-<div *ngIf="loading || roomPageLoading">Loading...</div>
-<div *ngIf="loading || roomPageLoading">Loading...</div>
+<div *ngIf="loading">Loading...</div>
+<!--<div *ngIf="roomPageLoading">Loading...</div>-->

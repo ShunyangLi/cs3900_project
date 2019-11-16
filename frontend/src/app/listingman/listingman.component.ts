@@ -24,7 +24,7 @@ export class ListingmanComponent implements OnInit {
   public gridData: GridDataResult;
   public view: Observable<GridDataResult>;
   public loading = true;
-  public roomPageLoading = true;
+  // public roomPageLoading = true;
 
   // Edit hotel form variables:
   public isNew: boolean;
@@ -83,9 +83,11 @@ export class ListingmanComponent implements OnInit {
     this.showRoom = true;
     this.curHotelName = dataItem.hotel_name;
     this.curHotelId = dataItem.hotel_id;
-    this.roomPageLoading = true;
+    // this.roomPageLoading = true;
+    this.loading = true;
     this.getAllRoomData(this.curHotelId);
-    this.roomPageLoading = false;
+    // this.roomPageLoading = false;
+    this.loading = false;
   }
 
   public onRemoveHotel({dataItem}): void {
@@ -152,9 +154,11 @@ export class ListingmanComponent implements OnInit {
   public onRemoveRoom({dataItem}): void {
     this.token = window.localStorage.getItem('token');
     this.editService.removeRoom(this.curHotelId, dataItem.room_id, this.token).subscribe(() => {
-      this.roomPageLoading = true;
+      // this.roomPageLoading = true;
+      this.loading = true;
       this.getAllRoomData(this.curHotelId);
-      this.roomPageLoading = false;
+      // this.roomPageLoading = false;
+      this.loading = false;
     });
   }
 
@@ -181,9 +185,11 @@ export class ListingmanComponent implements OnInit {
       console.log(res);
       this.closeRoomForm();
       // window.location.reload();
-      this.roomPageLoading = true;
+      // this.roomPageLoading = true;
+      this.loading = true;
       this.getAllRoomData(this.curHotelId);
-      this.roomPageLoading = false;
+      // this.roomPageLoading = false;
+      this.loading = false;
     });
   }
   public closeRoomForm(): void {
