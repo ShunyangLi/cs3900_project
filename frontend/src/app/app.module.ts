@@ -23,11 +23,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookingComRecommendationComponent } from './booking-com-recommendation/booking-com-recommendation.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { BookingComponent } from './booking/booking.component';
-import { WindowModule } from '@progress/kendo-angular-dialog';
+import {DialogModule, WindowModule} from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ListingmanComponent } from './listingman/listingman.component';
 import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
 import { RoommanComponent } from './roomman/roomman.component';
+import { VarDirective } from './directives/var.directive';
 
 
 // @ts-ignore
@@ -52,7 +53,8 @@ import { RoommanComponent } from './roomman/roomman.component';
     SearchResultComponent,
     BookingComponent,
     ListingmanComponent,
-    RoommanComponent
+    RoommanComponent,
+    VarDirective
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { RoommanComponent } from './roomman/roomman.component';
     WindowModule,
     ButtonsModule,
     GridModule,
-    PDFModule
+    PDFModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
