@@ -1,0 +1,48 @@
+<kendo-grid
+  [data]="gridData"
+  [height]="533">
+  <!--  (dataStateChange)="onStateChange($event)"-->
+  <!--  (edit)="editHandler($event)" (remove)="removeHandler($event)"-->
+  <!--  (add)="addHandler($event)"-->
+  <!--&gt;-->
+  <ng-template kendoGridToolbarTemplate>
+    <button kendoGridAddCommand [primary]="true">Add Property</button>
+    <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
+  </ng-template>
+  <kendo-grid-column field="hotel_name" title="Name"></kendo-grid-column>
+  <kendo-grid-column field="hotel_address" title="Address"></kendo-grid-column>
+  <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>
+  <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>
+  <kendo-grid-column field="description" title="Description"></kendo-grid-column>
+  <!--  <kendo-grid-column field="name" title="name"></kendo-grid-column>-->
+  <!--  <kendo-grid-column field="img[0].url" title="img"></kendo-grid-column>-->
+  <!--  <kendo-grid-column field="UnitPrice" title="Price"></kendo-grid-column>-->
+  <!--  <kendo-grid-column field="Discontinued" title="Discontinued"></kendo-grid-column>-->
+  <!--  <kendo-grid-column field="UnitsInStock" title="Units In Stock"></kendo-grid-column>-->
+  <kendo-grid-command-column title="Actions" width="260">
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <button kendoGridEditCommand [primary]="true">Update rooms</button>
+      <button kendoGridRemoveCommand>Remove</button>
+    </ng-template>
+  </kendo-grid-command-column>
+  <kendo-grid-pdf fileName="Listing.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true" [landscape]="true">
+    <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+    <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+      <div class="page-template">
+        <div class="header">
+          <div style="float: right">Page {{ pageNum }} of {{ totalPages }}</div>
+          Multi-page grid with automatic page breaking
+        </div>
+        <div class="footer">
+          Page {{ pageNum }} of {{ totalPages }}
+        </div>
+      </div>
+    </ng-template>
+  </kendo-grid-pdf>
+</kendo-grid>
+
+<!--<kendo-grid-edit-form [model]="editDataItem" [isNew]="isNew"-->
+<!--                      (save)="saveHandler($event)"-->
+<!--                      (cancel)="cancelHandler()">-->
+<!--</kendo-grid-edit-form>-->
