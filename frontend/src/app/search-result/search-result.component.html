@@ -56,7 +56,7 @@
               <div class="room_price_inner">
                 <span class="room_price_number">7000</span>
                 <small class="upper"> per night </small>
-                <button class="button  btn_yellow btn_full upper" type="submit"><a href="/rooms/{{s.hotel_id}}" target="_blank">Find Rooms</a></button>
+                <a href="/rooms/{{s.hotel_id}}" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Find Rooms</a>
               </div>
             </div>
           </div>
@@ -65,3 +65,7 @@
     </article>
   </div>
 </div>
+
+<div *ngIf="show.length == 0"><h1 style="text-align: center"><b>NO ACCOMMODATION FOUND :(</b></h1></div>
+<br>
+<br>

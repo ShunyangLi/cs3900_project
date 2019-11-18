@@ -199,4 +199,8 @@ export class ListingmanComponent implements OnInit {
   public cancelRoomForm(): void {
     this.closeRoomForm();
   }
+
+  public onImages(): void {
+
+  }
 }

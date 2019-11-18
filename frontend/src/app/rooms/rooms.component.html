@@ -3,10 +3,10 @@
   <div class="container">
     <div style="display: inline" class="vbf">
       <form>
-        <h3 style="font-family: Arial" class="col-md-4 col-sm-4 col-xs-8">{{hotelName}}</h3>
+        <p style="font-family: Arial;font-size: 22px" class="col-md-3 col-sm-3 col-xs-6"><b>{{hotelName}}</b></p>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="form_select">
-            <select name="booking-adults" class="form-control md_noborder_right" title="Adults" data-header="Adults">
+            <select name="booking-adults" class="form-control md_noborder_right" title="Max Adults" data-header="Adults">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="form_select">
-            <select name="booking-children" class="form-control" title="Children" data-header="Children">
+            <select name="booking-children" class="form-control" title="Max Children" data-header="Children">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -40,7 +40,56 @@
             </div>
           </div>
         </div>
+        <button class="button btn_yellow bb" style="margin-left: 10px">Filter</button>
       </form>
     </div>
 </div>
 </div>
+
+<!--Show the room-->
+<br>
+<div *ngFor="let sh of show">
+<div class="container">
+  <article class="room_list">
+    <div class="row row-flex">
+      <div class="col-lg-4 col-md-5 col-sm-12">
+        <figure>
+          <a href="#" class="hover_effect h_link h_blue">
+            <img src="../../assets/noimage.png" class="img-responsive" alt="Image">
+          </a>
+        </figure>
+      </div>
+      <div class="col-lg-8 col-md-7 col-sm-12">
+        <div class="room_details row-flex">
+          <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
+            <h3><a href="room.html">{{sh.name}}</a></h3>
+            <p>Bedroom: {{sh.bedroom}}</p>
+            <p>Bathroom: {{sh.bathroom}}</p>
+            <p>Max adult: {{sh.adults}}</p>
+            <p>Max children: {{sh.children}}</p>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 room_price">
+            <div class="room_price_inner">
+              <span class="room_price_number">${{sh.price}}</span>
+              <small class="upper"> per night </small>
+              <div *ngIf="!filtered">
+                <div class="layui-card" style="margin-top: 10px;">
+                  <div style="margin-top: 2px">
+                    <p><b>You need to filter availability before booking any room.</b></p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="filtered">
+                <a href="#" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+</div>
+<div *ngIf="show.length == 0"><h1 style="font-family: Arial;text-align: center"><b>NO ROOM FOUND :(</b></h1></div>
+<br>
+<br>

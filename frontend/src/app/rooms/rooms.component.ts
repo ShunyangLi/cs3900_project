@@ -12,9 +12,10 @@ import {RoomInfo} from './roomInfo';
 })
 export class RoomsComponent implements OnInit {
 
-  show: Array<RoomInfo> = [];
+  public show: Array<RoomInfo> = [];
   tmp: RoomInfo;
   hotelName: string;
+  filtered = false;
   // tslint:disable-next-line:max-line-length
   constructor(private activatedRoute: ActivatedRoute, private searchService: SearchService) { }
 
@@ -32,6 +33,7 @@ export class RoomsComponent implements OnInit {
         // @ts-ignore
         res.res.rooms.forEach((obj) => {
           this.tmp = obj;
+          console.log(this.tmp);
           this.show.push(this.tmp);
         });
       }
