@@ -43,3 +43,12 @@ def get_header(req, required=True):
         abort(403, "Not get the token")
 
     return token
+
+
+def format_str(info):
+    """
+    replace ' into '' for database format
+    :param info: the string
+    :return: new string convert ' into ''
+    """
+    return info.replace('\'', '\'\'')

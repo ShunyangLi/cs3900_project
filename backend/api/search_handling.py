@@ -3,7 +3,7 @@ import os
 import datetime
 from app import api
 from flask import make_response, jsonify
-from util.request_handling import get_request_args
+from util.request_handling import get_request_args, format_str
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
@@ -20,6 +20,7 @@ class SearchHotel(Resource):
     @search.doc(description='For the search function we do not require token, just use the API. \n ')
     def get(self):
         location = get_request_args('location', str)
+        location = format_str(location)
         location_math = '%'+location.upper()+'%'
 
         res = query_db(" SELECT * FROM Hotels h WHERE upper(h.hotel_address) like '%s' " % location_math)
@@ -131,3 +132,17 @@ class CheckAvailability(Resource):
         return make_response(jsonify(res=res), 200)
 
 
+chatbox_search = api.namespace('chatbox-search', description="Search functions for chatbox")
+@chatbox_search.route('/', strict_slashes=False)
+class ChatSearch(Resource):
+
+    @chatbox_search.doc(description='Get all the hotels by location')
+    @chatbox_search.param('location', 'The location of hotel')
+    def get(self):
+        location = get_request_args('location', str)
+        location = format_str(location)
+        location_math = '%' + location.upper() + '%'
+
+        hotels = query_db("SELECT * FROM Hotel h WHERE upper(h.location) like '%s' " % location_math)
+
+        return make_response(jsonify(res=hotels), 200)

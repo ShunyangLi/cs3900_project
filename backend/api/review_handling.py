@@ -1,7 +1,7 @@
 import json
 from app import api
 from flask import make_response, jsonify
-from util.request_handling import get_request_args
+from util.request_handling import get_request_args, format_str
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
@@ -27,6 +27,7 @@ class Review(Resource):
     def post(self):
         hotel_id = get_request_args('hotel_id', str)
         review_info = get_request_args('review_info', str)
+        review_info = format_str(review_info)
 
         query_db("INSERT INTO Hotels_review VALUES (hotel_id, review) VALUES ('%s', '%s')" % (hotel_id, review_info))
 
