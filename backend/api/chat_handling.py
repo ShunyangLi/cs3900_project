@@ -49,8 +49,6 @@ class Chat(Resource):
             res = res.json()
             hotel_id = res['res'][0]['id']
 
-        print('your email is')
-        print(email)
         if email != '':
             book_info = {}
             book_info['comment'] = ''
@@ -60,7 +58,6 @@ class Chat(Resource):
             book_info['email'] = email
             book_info['name'] = firstname + ' ' + lastname
             book_info['hotel_id'] = hotel_id
-            print('request send\n')
             requests.post("http://127.0.0.1:9000/chatbox-booking", data=book_info)
 
         # return agent response
@@ -95,12 +92,14 @@ def checkInfo(parameters):
         email = parameters.fields['email'].string_value
     # print('this is dats!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
     # print(dates)
-    if not dates:
+    if dates:
         arrival_date = dates.list_value[0][0:10]
         departure_date = dates.list_value[-1][0:10]
         departure_date = datetime.datetime.strptime(departure_date, "%Y-%m-%d")
         departure_date = departure_date+datetime.timedelta(days=1)
         departure_date = str(departure_date)[0:10]
+        print(departure_date)
+        print(arrival_date)
 
     return firstname, lastname, hotel, address, arrival_date, departure_date, email
 
