@@ -1,4 +1,4 @@
-export class HotelSearchResultInfo {
+export class HotelSearchResultInfoPrice {
   constructor(
     // tslint:disable-next-line:variable-name
     public hotel_id: string,
@@ -14,7 +14,7 @@ export class HotelSearchResultInfo {
     public host: string,
     public rating: string,
     // tslint:disable-next-line:variable-name
-    // public min_price: string
+    public min_price: string
   ) {}
 
 

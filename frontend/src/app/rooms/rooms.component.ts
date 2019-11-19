@@ -3,6 +3,8 @@ import {SearchService} from '../services/search.service';
 import {ActivatedRoute} from '@angular/router';
 import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
 import {RoomInfo} from './roomInfo';
+import {CheckAvaData} from './checkAvaData';
+// import {BookingService} from '../services/booking.service';
 
 @Component({
   selector: 'app-rooms',
@@ -17,6 +19,7 @@ export class RoomsComponent implements OnInit {
   hotelName: string;
   filtered = false;
   // tslint:disable-next-line:max-line-length
+  check: CheckAvaData = new CheckAvaData('', '', '', '', '');
   constructor(private activatedRoute: ActivatedRoute, private searchService: SearchService) { }
 
   ngOnInit() {
@@ -40,4 +43,7 @@ export class RoomsComponent implements OnInit {
     );
   }
 
+  public onSubmitCheck(): void {
+
+  }
 }
