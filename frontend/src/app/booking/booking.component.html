@@ -1,1 +1,65 @@
-<p>booking works!</p>
+<app-top-navigation></app-top-navigation>
+<div style="margin-left: 25%;margin-right: 25%;margin-top: 33px;margin-bottom: 33px" class="vbf">
+<form (ngSubmit)="onBookSubmit()" #signupForm="ngForm" class="inner">
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Name</b></label>
+    <input style="color: black;font-size: 14px" id="name" type="text" class="form-control" required pattern="[a-zA-Z ]+"
+           [(ngModel)]="this.bookinInfo.name" name="firstname"
+           #name="ngModel"
+    >
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+         class="alert alert-danger">
+      <div *ngIf="name.errors.required">
+        Your name is required.
+      </div>
+      <div *ngIf="name.errors.pattern">
+        Your name must be letters.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Email</b></label>
+    <input style="color: black;font-size: 14px" id="email" type="email" class="form-control" required email
+           [(ngModel)]="bookinInfo.username" name="email"
+           #email="ngModel"
+    >
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+         class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Username (email) is required.
+      </div>
+      <div *ngIf="email.errors.email">
+        Username must be in email address format.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Adults</b></label>
+    <input style="color: black;font-size: 14px" id="Adults" type="text" class="form-control" required
+            name="Adults"
+    >
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Childs</b></label>
+    <input style="color: black;font-size: 14px" id="Childs" type="text" class="form-control" required
+            name="Adults"
+    >
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Check in</b></label>
+    <input style="color: black;font-size: 14px" id="checkin" type="text" class="form-control" required
+           name="checkin"
+    >
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Check out</b></label>
+    <input style="color: black;font-size: 14px" id="checkout" type="text" class="form-control" required
+           name="checkout"
+    >
+  </div>
+
+  <br>
+  <button style="display: inline-block" class="button btn_lg btn_yellow" type="submit" [disabled]="!signupForm.form.valid">Submit</button>
+  <!--      <p><button (click)="openWindow()">Open</button></p>-->
+</form>
+</div>

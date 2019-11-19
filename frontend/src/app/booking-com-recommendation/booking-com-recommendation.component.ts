@@ -17,31 +17,55 @@ export class BookingComRecommendationComponent implements OnInit {
 
 
   public today = new Date().toLocaleDateString();
+
   constructor(private recService: RecommendationService) {
 
   }
-
+  public curUrl: string;
   ngOnInit() {
     this.recService.RecInfo().subscribe(
       res => {
-        console.log(res);
         this.resStr = JSON.stringify(res);
-        JSON.parse(this.resStr).res.forEach((obj) => {
-
-          obj.result.forEach((hotel) => {
-            const bookingres = new BookingExa('', '', 100);
-            bookingres.name = hotel.hotel_name_trans;
-            bookingres.address = hotel.address;
-            bookingres.price = hotel.min_total_price;
-            this.allHotelsInfo.push(bookingres);
-           });
+        // console.log(JSON.parse(this.resStr);
+        const obj = JSON.parse(this.resStr);
+        obj.result.forEach((bookres) => {
+          const bookingres = new BookingExa('', '', '', '');
+          bookingres.name = bookres.hotel_name_trans;
+          if (bookres.district === '') {
+            bookingres.address = '<b>Address:</b> ' + bookres.address + ', <b>Postcode:</b> ' + bookres.zip;
+          } else {
+            bookingres.address = '<b>Address:</b> ' + bookres.address +
+              ' <b>District:</b> ' + bookres.district + ', <b>Postcode:</b> ' + bookres.zip;
           }
-        );
-      }
-    );
+          if (bookres.min_total_price === '') {
+            console.log(bookres.min_total_price)
+            bookres.min_total_price = '120';
+          }
+          bookingres.price = '<b>Price: </b> $' + bookres.min_total_price;
+          bookingres.url = bookres.url;
+          this.allHotelsInfo.push(bookingres);
+        });
+
+        // JSON.parse(this.resStr).res.forEach((obj) => {
+        //
+        //   // obj.result.forEach((hotel) => {
+        //   //   const bookingres = new BookingExa('', '', 100);
+        //   //   bookingres.name = hotel.hotel_name_trans;
+        //   //   bookingres.address = hotel.address;
+        //   //   bookingres.price = hotel.min_total_price;
+        //   //   this.allHotelsInfo.push(bookingres);
+        //   //  });
+        //   }
+        // );
+        // }
+        // );
+      });
+
   }
 
+  public onClick(url: string): void {
+    window.open(url, '_blank');
+  }
 }
-
 
 
