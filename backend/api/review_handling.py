@@ -5,7 +5,7 @@ from util.request_handling import get_request_args
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
-review = api.namespace('hotel/review', description="Hotel review Services")
+review = api.namespace('hotel-review', description="Hotel review Services")
 
 
 @review.route('/', strict_slashes=False)

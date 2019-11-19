@@ -95,7 +95,7 @@ def check_date(start_date, end_date, bookings):
     return False
 
 
-check_availability = api.namespace('check/availability', description="Check availability Services")
+check_availability = api.namespace('check-availability', description="Check availability Services")
 
 
 @check_availability.route('/', strict_slashes=False)
@@ -117,7 +117,7 @@ class CheckAvailability(Resource):
         rooms = query_db("SELECT * FROM Rooms WHERE hotel_id='%s'" % hotel_id)
 
         for room in rooms:
-            bookings = query_db("SELECT * FROM Booking WHERE room_id='%s'" % rooms['room_id'])
+            bookings = query_db("SELECT * FROM Booking WHERE room_id='%s'" % room['room_id'])
 
             if int(adult) > int(room['adults']) or int(children) > int(room['children']):
                 continue
