@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpMethods} from './httpMethods';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public saveHotelImage(token: string, image: File, h: HotelSearchResultInfo): Observable<{}> {
-    console.log(token);
     const formData = new FormData();
     formData.append('hotel_id', h.hotel_id);
     formData.append('hotel_name', h.hotel_name);
@@ -24,13 +24,13 @@ export class ImageService {
     // for (const key of formData.entries()) { console.log(key[0] + ', ' + key[1]); }
     const options = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
         Authorization: token,
-        // mimeType: 'multipart/form-data'
+        'Content-Type': 'application/json',
       }),
-      // content: formData
+      data: formData
     };
-    return this.http.put('http://nomoreprojectpls.com/hotel/management/', JSON.stringify(formData), options);
+    // console.log(options.headers);
+    return this.http.put('http://127.0.0.1:9000/hotel/management', options);
   }
 
 }
