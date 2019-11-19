@@ -1,15 +1,31 @@
 <app-top-navigation></app-top-navigation>
-<kendo-tabstrip>
-  <kendo-tabstrip-tab [title]="'Paris'" [selected]="true">
-    <ng-template kendoTabContent>
-      <img src="../../assets/images/spa.jpg">
-    </ng-template>
-  </kendo-tabstrip-tab>
+<div class="page_title gradient_overlay">
+  <p *ngIf="!isRoom" style="color: black;font-size: 26px;font-family:Arial;font-weight: bold;margin-left: 40px">
+    {{this.curHotel.hotel_name}} Images&nbsp;&nbsp;&nbsp;
+  </p>
+  <p *ngIf="isRoom" style="color: black;font-size: 26px;font-family:Arial;font-weight: bold;margin-left: 40px">
+    Room Images Management
+  </p>
+</div>
+<br>
+<kendo-tabstrip style="margin-left: 20%; margin-right: 20%">
+<!--  <kendo-tabstrip-tab [title]="'Paris'" [selected]="true">-->
+<!--    <ng-template kendoTabContent>-->
+<!--      <img src="../../assets/images/spa.jpg">-->
+<!--    </ng-template>-->
+<!--  </kendo-tabstrip-tab>-->
 </kendo-tabstrip>
+<div *ngIf="noImage" style="margin-left: 20%;margin-right: 20%;margin-top: 2%;color: black;font-size: 19px">No image uploaded.</div>
+<br><br>
 
-<form>
-  <input>
+<form (ngSubmit)="onHotelImageSubmit(imageInput)" #imageForm="ngForm" class="example-wrapper" style="margin-left: 20%;margin-right: 20%">
+  <div class="k-dropzone k-button k-upload k-primary">
+      <input type="file" #imageInput accept="image/*" required>
+  </div>
+  &nbsp;
+  <button type="submit" class="k-button k-primary" style="margin: 1em 0;" [disabled]="!imageForm.form.valid">Submit</button>
 </form>
+
 <br>
 <br>
 
