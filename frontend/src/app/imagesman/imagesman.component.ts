@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditFormService} from '../services/edit-form.service';
-import {FileInfo, FileRestrictions} from '@progress/kendo-angular-upload';
 import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
 import {ImageService} from '../services/image.service';
 
