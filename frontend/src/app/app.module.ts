@@ -32,8 +32,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { ImagesmanComponent } from './imagesman/imagesman.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommentsComponent } from './comments/comments.component';
-import { EditorModule } from '@progress/kendo-angular-editor';
-import { UploadModule } from '@progress/kendo-angular-upload';
+// import { EditorModule } from '@progress/kendo-angular-editor';
 
 
 
@@ -80,8 +79,7 @@ import { UploadModule } from '@progress/kendo-angular-upload';
     PDFModule,
     DialogModule,
     LayoutModule,
-    EditorModule,
-    UploadModule
+//    EditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
