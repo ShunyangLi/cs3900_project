@@ -2,7 +2,7 @@ import os
 import shutil
 from app import api
 from flask import make_response, jsonify, request
-from util.request_handling import get_request_args,get_header, get_request_file
+from util.request_handling import get_request_args,get_header, get_request_file, format_str
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
@@ -123,6 +123,11 @@ class Management(Resource):
 
         for h in hotels:
             rooms = query_db("SELECT * FROM Rooms WHERE hotel_id='%s'" % h['hotel_id'])
+            for r in rooms:
+                img = query_db("SELECT * FROM Rooms_img WHERE room_id='%s'" % r['room_id'])
+                r['img_url'] = img
+            hotel_img = query_db("SELECT * FROM Hotels_img WHERE hotel_id='%s'" % h['hotel_id'])
+            h['img_url'] = hotel_img
             h['rooms'] = rooms
 
         return make_response(jsonify(res=hotels), 200)
@@ -155,7 +160,8 @@ class Management(Resource):
         query_db("""
         INSERT INTO Hotels(hotel_id, hotel_name, hotel_address, description, phone, email, host) 
         VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')
-        """ % (hotel_id, hotel_name, hotel_address, description, phone, email, user['username']))
+        """ % (hotel_id, format_str(hotel_name), format_str(hotel_address),
+               format_str(description), phone, email, user['username']))
 
         if files is not None:
             # store the images
@@ -185,8 +191,8 @@ class Management(Resource):
         rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
         query_db("DELETE FROM Rooms WHERE hotel_id='%s'" % hotel_id)
 
-        for room in rooms:
-            query_db("DELETE FROM Rooms_img WHERE room_id='%s'" % room['room_id'])
+        for r in rooms:
+            query_db("DELETE FROM Rooms_img WHERE room_id='%s'" % r['room_id'])
 
         return make_response(jsonify(message='success'), 200)
 
@@ -218,7 +224,7 @@ class Management(Resource):
         query_db("""
         UPDATE Hotels SET hotel_name = '%s', hotel_address = '%s', description='%s', phone='%s', email='%s'
         WHERE hotel_id = '%s'
-        """ % (hotel_name, hotel_address, description, phone, email, hotel_id))
+        """ % (format_str(hotel_name), format_str(hotel_address), format_str(description), phone, email, hotel_id))
 
         # if they do not upload files, then we do not remove url
         if files is not None:
@@ -258,7 +264,11 @@ class RoomManagement(Resource):
         if len(hotels) == 0:
             abort(403, 'This user do not have this hotel')
 
+        # get all the room's image
         rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
+        for r in rooms:
+            room_img = query_db("SELECT * FROM Rooms_img WHERE room_id = '%s'" % r['room_id'])
+            r['img_url'] = room_img
 
         return make_response(jsonify(res=rooms), 200)
 
@@ -289,7 +299,6 @@ class RoomManagement(Resource):
         price = get_request_args('price', str)
         files = get_request_file('file')
 
-
         # get the room id
         rooms = query_db("SELECT * FROM Rooms")
         if len(rooms) == 0:
@@ -301,7 +310,7 @@ class RoomManagement(Resource):
         query_db("""
         INSERT INTO Rooms(room_id, hotel_id, name, bedroom, bathroom, adults, children, price)
         VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
-        """ % (room_id, hotel_id, name, bedroom, bathroom, adults, children, price))
+        """ % (room_id, hotel_id, format_str(name), bedroom, bathroom, adults, children, price))
 
         if files is not None:
             # and then insert the room images
@@ -356,7 +365,7 @@ class RoomManagement(Resource):
         query_db("""
         UPDATE Rooms SET name = '%s', bedroom = '%s', bathroom = '%s', adults = '%s', children = '%s', price = '%s'
         WHERE room_id = '%s'
-        """ % (name, bedroom, bathroom, adults, children, price, room_id))
+        """ % (format_str(name), bedroom, bathroom, adults, children, price, room_id))
 
         return make_response(jsonify(message='success'), 200)
 

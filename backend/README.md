@@ -75,3 +75,8 @@ sqlite3 util/data.sqlite < util/init_database.sql
 ```bash
 Call API /cleanDB
 ``` 
+
+# Make the hotels rating become random
+```bash
+python3 util/generate_rating.py
+```

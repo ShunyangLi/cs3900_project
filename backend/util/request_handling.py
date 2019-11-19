@@ -24,6 +24,11 @@ def get_request_args(arg_name, arg_type, required=True):
 
 
 def get_request_file(arg_name):
+    """
+    Get files in the requests according to file name
+    :param arg_name: the files name
+    :return: list of files or None
+    """
     parser = reqparse.RequestParser()
     parser.add_argument(arg_name, location='files', type=FileStorage, action='append')
     args = parser.parse_args()
@@ -38,3 +43,12 @@ def get_header(req, required=True):
         abort(403, "Not get the token")
 
     return token
+
+
+def format_str(info):
+    """
+    replace ' into '' for database format
+    :param info: the string
+    :return: new string convert ' into ''
+    """
+    return info.replace('\'', '\'\'')

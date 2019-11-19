@@ -39,6 +39,11 @@ def get_token():
 
 
 def invalid_email(email):
+    """
+    Check whether the email is valid format
+    :param email: the email address
+    :return: True or False
+    """
     if re.match('^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$', email) is None:
         return False
     return True

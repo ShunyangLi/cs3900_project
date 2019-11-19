@@ -6,6 +6,9 @@ from util.request_handling import get_request_args,get_header, get_request_file
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
+"""
+This API is working for map search
+"""
 
 info = api.namespace('hotel-info', description="Hotel info for map services")
 
