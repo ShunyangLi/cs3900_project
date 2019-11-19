@@ -25,6 +25,15 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
     this.getAll(token).subscribe(dt => super.next(dt));
   }
 
+  public getHotels(token: string): Observable<{}> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
+    return this.http.get(this.url + this.path, options);
+  }
   // http get
   public getAll(token: string): Observable<{}> {
     this.loading = true;

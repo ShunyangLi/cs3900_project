@@ -33,6 +33,8 @@ import { ImagesmanComponent } from './imagesman/imagesman.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommentsComponent } from './comments/comments.component';
 import { EditorModule } from '@progress/kendo-angular-editor';
+import { UploadModule } from '@progress/kendo-angular-upload';
+
 
 
 
@@ -78,7 +80,8 @@ import { EditorModule } from '@progress/kendo-angular-editor';
     PDFModule,
     DialogModule,
     LayoutModule,
-    EditorModule
+    EditorModule,
+    UploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
