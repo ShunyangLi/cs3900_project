@@ -205,6 +205,7 @@ class Management(Resource):
     @hotel.param('hotel_name', 'Hotel name')
     @hotel.param('hotel_id', 'Hotel id which need to be updated')
     def put(self):
+        print(request.form)
         user = check_login(get_header(request))
         hotel_id = get_request_args('hotel_id', str)
 
