@@ -26,11 +26,12 @@ export class ImagesmanComponent implements OnInit {
     if (window.location.href.match('.*/images/hotel/.*')) {
       this.hotelId = this.activatedRoute.snapshot.paramMap.get('hotelId');
       this.editService.getHotels(this.token).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         // @ts-ignore
         res.res.forEach((obj) => {
           // tslint:disable-next-line:triple-equals
           if (obj.hotel_id == this.hotelId) {
+            window.localStorage.setItem('update_hotel', JSON.stringify(obj));
             // tslint:disable-next-line:max-line-length
             this.curHotel = new HotelSearchResultInfo(obj.hotel_id, obj.description, obj.email, [], obj.hotel_address, obj.hotel_name, obj.phone, obj.host, obj.rating);
             // tslint:disable-next-line:triple-equals
@@ -50,7 +51,7 @@ export class ImagesmanComponent implements OnInit {
   public onHotelImageSubmit(imageInput: any) {
     const file: File = imageInput.files[0];
     console.log(file);
-    this.imageService.saveHotelImage(this.token, file, this.curHotel).subscribe(res =>
-    console.log(res));
+    // this.imageService.saveHotelImage(this.token, file, this.curHotel).subscribe(res =>
+    // console.log(res));
   }
 }

@@ -18,7 +18,7 @@ def get_request_args(arg_name, arg_type, required=True):
     res = args.get(arg_name)
 
     if res is None and required:
-        abort(400, "Missing args")
+        abort(400, "Missing args: %s" % arg_name)
 
     return res
 

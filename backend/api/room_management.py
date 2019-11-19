@@ -207,7 +207,6 @@ class Management(Resource):
     def put(self):
         user = check_login(get_header(request))
         hotel_id = get_request_args('hotel_id', str)
-
         # check whether the hotel belongs to this user
         hotels = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s' AND host='%s'" % (hotel_id, user['username']))
         if len(hotels) == 0:
