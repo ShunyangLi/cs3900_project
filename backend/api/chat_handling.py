@@ -13,6 +13,10 @@ import datetime
 chat = api.namespace('chat', description="Authentication Services")
 session_id = 10
 
+# chat sample
+# Book a room in jamison, 190 Smith Street on 12/1 and 12/2, 
+# my name is Li Ding, we have 3 adults and 2 children
+
 
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
@@ -40,7 +44,7 @@ class Chat(Resource):
                 session_id += 1
                 return "Sorry. Can't find this hotel"
         
-        firstname, lastname, hotel, address, arrival_date, departure_date, email = checkInfo(response.query_result.parameters)
+        firstname, lastname, hotel, address, arrival_date, departure_date, email = checkInfo(response, response.query_result.parameters)
         # find hotel id by address
         hotel_id = -1
         if address != '':
@@ -50,6 +54,7 @@ class Chat(Resource):
             hotel_id = res['res'][0]['id']
 
         if email != '':
+        # if response.query_result.intent.display_name == 'Booking room - yes':
             book_info = {}
             book_info['comment'] = ''
             book_info['price'] = random.randint(100,300)
@@ -58,19 +63,13 @@ class Chat(Resource):
             book_info['email'] = email
             book_info['name'] = firstname + ' ' + lastname
             book_info['hotel_id'] = hotel_id
+            # print(book_info)
             requests.post("http://127.0.0.1:9000/chatbox-booking", data=book_info)
 
         # return agent response
         return response.query_result.fulfillment_text
 
-# def bookRoom(self):
-#     user_info = {'app_name': 'ci_build', 'version': '0.0.2',
-#     'hashcode':'5feb565e7c88b9cfc985d29039a2b4f2b9a92a22'}
-#     book_info = {'app_name': 'ci_build', 'version': '0.0.2',
-#     'hashcode':'5feb565e7c88b9cfc985d29039a2b4f2b9a92a22'}
-#     return requests.post("http://127.0.0.1:9000/booking", data=user_info)
-
-def checkInfo(parameters):
+def checkInfo(response, parameters):
     firstname = lastname = hotel = address = email = arrival_date = departure_date = ""
     dates = []
     numAdult = numChild = -1
@@ -90,16 +89,17 @@ def checkInfo(parameters):
         numChild = parameters.fields['numChild']
     if email == '':
         email = parameters.fields['email'].string_value
-    # print('this is dats!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
-    # print(dates)
-    if dates:
+    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # print(type(dates.list_value))
+    # print(dates.list_value)
+    if email != '':
         arrival_date = dates.list_value[0][0:10]
         departure_date = dates.list_value[-1][0:10]
         departure_date = datetime.datetime.strptime(departure_date, "%Y-%m-%d")
         departure_date = departure_date+datetime.timedelta(days=1)
         departure_date = str(departure_date)[0:10]
-        print(departure_date)
-        print(arrival_date)
+        # print(departure_date)
+        # print(arrival_date)
 
     return firstname, lastname, hotel, address, arrival_date, departure_date, email
 
