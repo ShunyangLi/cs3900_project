@@ -6,9 +6,12 @@ from flask_restplus import abort, Resource
 from util.db_handling import query_db
 from util.mail_handling import send_mail
 from util.auth import generate_activate_token, check_token, get_token
+import random
+import time
+import datetime
 
 chat = api.namespace('chat', description="Authentication Services")
-session_id = 1
+session_id = 10
 
 
 @chat.route('/', strict_slashes=False)
@@ -37,14 +40,29 @@ class Chat(Resource):
                 session_id += 1
                 return "Sorry. Can't find this hotel"
         
-        firstname, lastname, hotel, address, dates, numAdult, numChild = checkInfo(response.query_result.parameters)
-        # if address != '':
-        #     res = requests.get("http://nomoreprojectpls.com/search/hotel?location=%s" % address)
-        #     res.raise_for_status()
-        #     res = res.json()
-        #     # hotel_id = res['res']['hotel_id']
-        #     print(res)
-        #     # print(hotel_id)
+        firstname, lastname, hotel, address, arrival_date, departure_date, email = checkInfo(response.query_result.parameters)
+        # find hotel id by address
+        hotel_id = -1
+        if address != '':
+            res = requests.get("http://127.0.0.1:9000/chatbox-search?location=%s" % address)
+            res.raise_for_status()
+            res = res.json()
+            hotel_id = res['res'][0]['id']
+
+        print('your email is')
+        print(email)
+        if email != '':
+            book_info = {}
+            book_info['comment'] = ''
+            book_info['price'] = random.randint(100,300)
+            book_info['check_out'] = departure_date
+            book_info['check_in'] = arrival_date
+            book_info['email'] = email
+            book_info['name'] = firstname + ' ' + lastname
+            book_info['hotel_id'] = hotel_id
+            print('request send\n')
+            requests.post("http://127.0.0.1:9000/chatbox-booking", data=book_info)
+
         # return agent response
         return response.query_result.fulfillment_text
 
@@ -56,7 +74,7 @@ class Chat(Resource):
 #     return requests.post("http://127.0.0.1:9000/booking", data=user_info)
 
 def checkInfo(parameters):
-    firstname = lastname = hotel = address = ""
+    firstname = lastname = hotel = address = email = arrival_date = departure_date = ""
     dates = []
     numAdult = numChild = -1
     if firstname == "":
@@ -73,14 +91,18 @@ def checkInfo(parameters):
         numAdult = parameters.fields['numAdult']
     if numChild == -1:
         numChild = parameters.fields['numChild']
-    # print("returned value: {}\n".format(firstname))
-    # print("returned value: {}\n".format(lastname))
-    # print("returned value: {}\n".format(hotel))
-    # print("returned value: {}\n".format(address))
-    # print("returned value: {}\n".format(dates))
-    # print("returned value: {}\n".format(numAdult))
-    # print("returned value: {}\n".format(numChild))
-    return firstname, lastname, hotel, address, dates, numAdult, numChild
+    if email == '':
+        email = parameters.fields['email'].string_value
+    # print('this is dats!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
+    # print(dates)
+    if not dates:
+        arrival_date = dates.list_value[0][0:10]
+        departure_date = dates.list_value[-1][0:10]
+        departure_date = datetime.datetime.strptime(departure_date, "%Y-%m-%d")
+        departure_date = departure_date+datetime.timedelta(days=1)
+        departure_date = str(departure_date)[0:10]
+
+    return firstname, lastname, hotel, address, arrival_date, departure_date, email
 
 def searchHotel(response):
     city = response.query_result.parameters.fields['city'].string_value
