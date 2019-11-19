@@ -32,7 +32,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { ImagesmanComponent } from './imagesman/imagesman.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommentsComponent } from './comments/comments.component';
-import { EditorModule } from '@progress/kendo-angular-editor';
+// import { EditorModule } from '@progress/kendo-angular-editor';
 
 
 
@@ -79,7 +79,7 @@ import { EditorModule } from '@progress/kendo-angular-editor';
     PDFModule,
     DialogModule,
     LayoutModule,
-    EditorModule,
+//    EditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
