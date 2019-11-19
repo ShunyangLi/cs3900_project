@@ -11,6 +11,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {BookingComponent} from './booking/booking.component';
 import {RoomsComponent} from "./rooms/rooms.component";
+import {ImagesmanComponent} from "./imagesman/imagesman.component";
+import {CommentsComponent} from "./comments/comments.component";
 
 const routes: Routes = [
 
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'rooms/:hotelId', component: RoomsComponent},
   { path: 'Booking', component: BookingComponent},
   {path: 'activate/:token', component: ActivateComponent},
+  {path: 'images/hotel/:hotelId', component: ImagesmanComponent},
+  {path: 'images/room/:roomId', component: ImagesmanComponent},
+  {path: 'comments/:hotelId', component: CommentsComponent},
   { path: 'SearchResult', component: SearchResultComponent},
   { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

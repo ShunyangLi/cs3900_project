@@ -47,7 +47,7 @@
 </div>
 
 <!--Room forms-->
-<div *ngIf="showRoom && !roomPageLoading">
+<div *ngIf="showRoom">
   <kendo-grid
     [data]="gridData"
     [height]="533"
@@ -71,8 +71,10 @@
     <kendo-grid-column title="Actions" width="200">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
-        &nbsp;
-        <button kendoGridRemoveCommand [primary]="true">Remove</button>
+        &nbsp;&nbsp;
+        <button class="k-button k-primary k-grid-edit-command" (click)="onImages(dataItem)">Images</button>
+        &nbsp;&nbsp;
+        <button kendoGridRemoveCommand [primary]="true" style="margin-top: 4px">Remove</button>
       </ng-template>
     </kendo-grid-column>
 
