@@ -11,6 +11,8 @@ export class HotelSearchResultInfo {
     // tslint:disable-next-line:variable-name
     public hotel_name: string,
     public phone: string,
+    public host: string,
+    public rating: string
   ) {}
 
 

@@ -1,2 +1,21 @@
-<h3>Booking.com Top Hotel Recommendations on {{this.today}}</h3>
 
+<div  id="mapsidebar" style=" align-items: end;overflow: auto; height: 600px; width: 520px;" >
+  <p style="color:gray;  margin-bottom: 16px; margin-left: 17px;font-size: 17px;font-family: Arial">Booking.com Top Hotel Recommendations on {{this.today}}</p>
+  <!--  {{this.displayHotelsInfo.length}}-->
+    <ul *ngFor="let displayHotel of this.allHotelsInfo" style="margin-left: 7px;margin-right: 7px">
+      <li>
+        <div  class="card bg-light mb-3" style="cursor: pointer;margin-bottom: 16px;" (click)="onClick(displayHotel.url)">
+
+          <div class="card-body" style="color: gray" >
+            <!--          <a href="/homepage"><h5 class="card-title" style="color: black">-->
+            <b>{{ displayHotel.name }}</b>
+            &nbsp; <a href="{{displayHotel.url}}"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+            <!--          </h5></a>-->
+            <div class="card-text"><div [innerHTML]="displayHotel.address"></div></div>
+            <div class="card-text"><div [innerHTML]="displayHotel.price"></div></div>
+
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>

@@ -1,7 +1,17 @@
 <app-top-navigation></app-top-navigation>
-<kendo-chat style="margin-left: 100px; margin-bottom: 10px;font-size: 19px"
+<div class="row">
+<div class="col-md-6">
+<kendo-chat
         [messages]="feed | async"
         [user]="user"
         (sendMessage)="sendMessage($event)"
       >
 </kendo-chat>
+</div>
+  <div class="col-md-6">
+    <app-booking-com-recommendation> </app-booking-com-recommendation>
+  </div>
+</div>
+
+
+

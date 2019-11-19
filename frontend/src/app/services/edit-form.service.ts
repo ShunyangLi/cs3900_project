@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import {GridDataResult} from '@progress/kendo-angular-grid';
 import {ListingInfo} from '../listingman/listingInfo';
+import {RoomInfo} from '../listingman/roomInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,7 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
       tap(() => this.loading = false));
   }
 
-  // http post and put
+  // hotel http post and put
   public saveHotel(hotel: ListingInfo, token: string, isNew: boolean) {
     const options = {
       headers: new HttpHeaders({
@@ -80,7 +81,22 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
 
   }
 
-  // http delete
+  // room http post and put
+  public saveRoom(room: RoomInfo, token, isNewRoom: boolean) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
+    const body = JSON.stringify(room);
+    if (isNewRoom) {
+      return this.http.post(this.url + this.roomPath, body, options);
+    } else {
+      return this.http.put(this.url + this.roomPath, body, options);
+    }
+  }
+  // hotel http delete
   public remove(hotelId: string, token: string) {
     const options = {
       headers: new HttpHeaders({
@@ -91,8 +107,22 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
         hotel_id: hotelId
       }
     };
-
     console.log(options);
     return this.http.delete(this.url + this.path, options);
+  }
+
+  // room http remove
+  public removeRoom(hotelId: string, roomId: string, token: string) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      }),
+      body: {
+        hotel_id: hotelId,
+        room_id: roomId
+      }
+    };
+    return this.http.delete(this.url + this.roomPath, options);
   }
 }

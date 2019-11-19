@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginInfo} from '../login/loginInfo';
 import {HttpMethods} from './httpMethods';
@@ -19,6 +19,16 @@ export class AuthenticationService extends HttpMethods {
     return super.httpPost(logInInfo, this.path);
     // const body = JSON.stringify(logInInfo);
     // return this.http.post(this.backendUrl + this.path, body, this.httpOptions);
+  }
+
+  public auth(token: string): Observable<{}> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
+    return this.http.get(this.backendUrl + '/auth/profile', options);
   }
 
 }

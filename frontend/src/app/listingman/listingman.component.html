@@ -1,10 +1,11 @@
-<div *ngIf="!showRoom">
+<div *ngIf="!showRoom && !loading">
   <kendo-grid
     [data]="gridData"
     [height]="533"
     (edit) = "onEditHotel($event)"
     (remove)="onRemoveHotel($event)"
     (add)="addNewHotel()">
+<!--    (dataStateChange)="onStateChange($event)"-->
 
     <ng-template kendoGridToolbarTemplate>
       <button kendoGridAddCommand [primary]="true">Add Property</button>
@@ -16,13 +17,15 @@
     <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>
     <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>
     <kendo-grid-column field="description" title="Description"></kendo-grid-column>
-    <kendo-grid-column title="Actions" width="270">
+    <kendo-grid-column title="Actions" width="210">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
         &nbsp;
-        <button class="k-button k-primary k-grid-edit-command" (click)="onShowRooms(dataItem)">Show Rooms</button>
+        <button class="k-button k-primary k-grid-edit-command" (click)="onShowRooms(dataItem)">Rooms</button>
         &nbsp;
-        <button kendoGridRemoveCommand [primary]="true">Remove</button>
+        <button class="k-button k-primary k-grid-edit-command" style="margin-top: 3px" (click)="onImages(dataItem)">Images</button>
+        &nbsp;
+        <button kendoGridRemoveCommand [primary]="true" style="margin-top: 3px">Remove</button>
       </ng-template>
     </kendo-grid-column>
 
@@ -46,7 +49,7 @@
 <!--Room forms-->
 <div *ngIf="showRoom">
   <kendo-grid
-    [data]="roomGridData"
+    [data]="gridData"
     [height]="533"
     (edit) = "onEditRoom($event)"
     (remove)="onRemoveRoom($event)"
@@ -55,26 +58,27 @@
     <ng-template kendoGridToolbarTemplate>
       <b>{{ this.curHotelName }}</b>
       <button kendoGridAddCommand [primary]="true">Add Room</button>
-      <button class="k-button k-grid-edit-command">Go back</button>
+      <button class="k-button k-grid-edit-command" (click)="goBack()">Go back</button>
       <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
     </ng-template>
-    <kendo-grid-column field="name" title="Room Name"></kendo-grid-column>
-<!--    <kendo-grid-column field="hotel_name" title="Name"></kendo-grid-column>-->
-<!--    <kendo-grid-column field="hotel_address" title="Address"></kendo-grid-column>-->
-<!--    <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>-->
-<!--    <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>-->
-<!--    <kendo-grid-column field="description" title="Description"></kendo-grid-column>-->
-    <kendo-grid-column title="Actions" width="270">
+    <kendo-grid-column field="room_id" title="ID"></kendo-grid-column>
+    <kendo-grid-column field="name" title="Name"></kendo-grid-column>
+    <kendo-grid-column field="price" title="Price"></kendo-grid-column>
+    <kendo-grid-column field="bedroom" title="Bedrooms"></kendo-grid-column>
+    <kendo-grid-column field="bathroom" title="Bathrooms"></kendo-grid-column>
+    <kendo-grid-column field="adults" title="Max adults"></kendo-grid-column>
+    <kendo-grid-column field="children" title="Max children"></kendo-grid-column>
+    <kendo-grid-column title="Actions" width="200">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
-        &nbsp;
-        <button class="k-button k-primary k-grid-edit-command" (click)="onShowRooms(dataItem)">Show Rooms</button>
-        &nbsp;
-        <button kendoGridRemoveCommand [primary]="true">Remove</button>
+        &nbsp;&nbsp;
+        <button class="k-button k-primary k-grid-edit-command" (click)="onImages(dataItem)">Images</button>
+        &nbsp;&nbsp;
+        <button kendoGridRemoveCommand [primary]="true" style="margin-top: 4px">Remove</button>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-pdf fileName="Listing.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true" [landscape]="true">
+    <kendo-grid-pdf fileName="ListingRoom.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true" [landscape]="true">
       <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
       <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
         <div class="page-template">
@@ -131,3 +135,51 @@
     <button class="k-button k-primary" (click)="saveHotelForm()">Save</button>
   </kendo-dialog-actions>
 </kendo-dialog>
+
+<!--Room form-->
+<kendo-dialog *ngIf="roomActive" [width]="350" [height]="470" (close)="closeRoomForm()">
+  <kendo-dialog-titlebar>
+    {{ isNewRoom ? 'Add new room' : 'Edit room' }}
+  </kendo-dialog-titlebar>
+
+  <form [formGroup]="editRoomForm">
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Room name</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="name" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Price</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="price" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Bedrooms</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="bedroom" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Bathrooms</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="bathroom" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Max adults</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="adults" />
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label" style="font-size: 17px">Max children</label>
+      <input style="font-size: 17px;width: 300px" type="text" class="k-textbox" formControlName="children" />
+    </div>
+  </form>
+
+
+  <kendo-dialog-actions>
+    <button class="k-button" (click)="cancelRoomForm()">Cancel</button>
+    <button class="k-button k-primary" (click)="saveRoomForm()">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+<div *ngIf="loading">Loading...</div>
+<!--<div *ngIf="roomPageLoading">Loading...</div>-->
