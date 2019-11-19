@@ -18,9 +18,9 @@
 <div *ngIf="noImage" style="margin-left: 20%;margin-right: 20%;margin-top: 2%;color: black;font-size: 19px">No image uploaded.</div>
 <br><br>
 
-<form (ngSubmit)="onHotelImageSubmit(imageInput)" #imageForm="ngForm" class="example-wrapper" style="margin-left: 20%;margin-right: 20%">
+<form (ngSubmit)="onHotelImageSubmit(imageInput)" #imageForm="ngForm" id="formContent" class="example-wrapper" style="margin-left: 20%;margin-right: 20%">
   <div class="k-dropzone k-button k-upload k-primary">
-      <input type="file" #imageInput accept="image/*" required>
+      <input type="file" #imageInput accept="image/*" name="file" required>
   </div>
   &nbsp;
   <button type="submit" class="k-button k-primary" style="margin: 1em 0;" [disabled]="!imageForm.form.valid">Submit</button>
@@ -29,3 +29,4 @@
 <br>
 <br>
 
+<app-scripthack src="../../assets/update_hotel.js" type="text/javascript"></app-scripthack>

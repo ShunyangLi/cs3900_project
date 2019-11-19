@@ -4,15 +4,18 @@
   <p style="color: black;font-size: 26px;font-family:Arial;font-weight: bold;margin-left: 40px">{{hotelName}} <u><em>Reviews</em></u></p>
 </div>
 <br><br>
-<div class="example-config" style="color:black;width: 900px;margin-left: 17%;font-size: 17px  ">
-  <div [innerHTML]="this.s"></div>
+<div *ngFor="let comment of comments">
+  <div class="example-config" style="color:black;width: 900px;margin-left: 17%;font-size: 17px  ">
+    <div [innerHTML]="comment"></div>
+  </div>
 </div>
-
+<div *ngIf="comments.length === 0" style="color:black;width: 900px;margin-left: 17%;font-size: 17px">NO COMMENTS</div>
 <br>
 <p style="color: black;margin-left: 17%;font-size: 17px;color: orangered">Note: If you resubmit the review, the new comment will replace the older one.</p>
+
 <form [formGroup]="myForm" style="width: 900px;margin-left: 17%">
   <div class="example-wrapper">
-    <kendo-editor formControlName="editor" style="height: 350px;"></kendo-editor>
+<!--    <kendo-editor formControlName="editor" style="height: 350px;"></kendo-editor>-->
     <input type="hidden" formControlName="user">
   </div>
   <br>
