@@ -31,4 +31,4 @@ class Info(Resource):
         response = requests.request("GET", url, headers=headers, params=querystring)
 
         print(response.text)
-        # return make_response(response.text, 200)
+        return make_response(response.text, 200)
