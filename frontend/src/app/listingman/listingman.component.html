@@ -17,13 +17,15 @@
     <kendo-grid-column field="phone" title="Phone"></kendo-grid-column>
     <kendo-grid-column field="email" title="Contact Email"></kendo-grid-column>
     <kendo-grid-column field="description" title="Description"></kendo-grid-column>
-    <kendo-grid-column title="Actions" width="230">
+    <kendo-grid-column title="Actions" width="210">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button  kendoGridEditCommand [primary]="true">Edit</button>
         &nbsp;
         <button class="k-button k-primary k-grid-edit-command" (click)="onShowRooms(dataItem)">Rooms</button>
         &nbsp;
-        <button kendoGridRemoveCommand [primary]="true">Remove</button>
+        <button class="k-button k-primary k-grid-edit-command" style="margin-top: 3px" (click)="onImages(dataItem)">Images</button>
+        &nbsp;
+        <button kendoGridRemoveCommand [primary]="true" style="margin-top: 3px">Remove</button>
       </ng-template>
     </kendo-grid-column>
 

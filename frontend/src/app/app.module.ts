@@ -29,6 +29,7 @@ import { ListingmanComponent } from './listingman/listingman.component';
 import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
 import { RoommanComponent } from './roomman/roomman.component';
 import { VarDirective } from './directives/var.directive';
+import { RoomsComponent } from './rooms/rooms.component';
 
 
 // @ts-ignore
@@ -54,7 +55,8 @@ import { VarDirective } from './directives/var.directive';
     BookingComponent,
     ListingmanComponent,
     RoommanComponent,
-    VarDirective
+    VarDirective,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,

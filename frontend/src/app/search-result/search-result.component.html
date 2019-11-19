@@ -1,5 +1,5 @@
 <app-top-navigation></app-top-navigation>
-<div class="page_title gradient_overlay" style="background: url(images/page_title_bg.jpg);">
+<div class="page_title gradient_overlay">
   <div class="container">
     <div class="inner">
       <form (ngSubmit)="onSearchSubmit()" class="form-inline">
@@ -11,13 +11,61 @@
         &nbsp;&nbsp;&nbsp;<p style="display: inline;color: whitesmoke;font-weight: bold;font-family: Arial;font-size: 19px">Sorted by</p>
         &nbsp;&nbsp;&nbsp;
         <label style="color: whitesmoke;font-size: 19px;font-family:Arial;font-weight: bold ">
-          <input type="checkbox" value=""> Price (lowest first)
+          <input type="radio" name="sortOrder" (click)="onPriceClick()"> Price (lowest first)
         </label>
         &nbsp;&nbsp;&nbsp;
         <label style="color: whitesmoke;font-size: 19px;font-family:Arial;font-weight: bold ">
-          <input type="checkbox" value=""> Rating
+          <input type="radio" name="sortOrder" (click)="onRatingClick()"> Rating (highest first)
+        </label>
+        &nbsp;&nbsp;&nbsp;
+        <label style="color: whitesmoke;font-size: 19px;font-family:Arial;font-weight: bold ">
+          <input type="radio" name="sortOrder" (click)="onSortNameClick()"> Name (A-Z)
         </label>
       </form>
     </div>
   </div>
 </div>
+
+<!--Display search results-->
+<br>
+<div class="container">
+  <div *ngFor="let s of show">
+    <article class="room_list">
+      <div class="row">
+        <div class="col-lg-4 col-md-5 col-sm-12">
+          <figure>
+            <div class="room_list_slider owl-carousel">
+    <!--          <div class="item" *ngFor="let img of res.img_url">-->
+                <a  class="hover_effect h_link h_blue"><img src = "../../assets/noimage.png" alt="Image"></a>
+    <!--          </div>-->
+            </div>
+          </figure>
+        </div>
+        <div class="col-lg-8 col-md-7 col-sm-12">
+          <div class="room_details">
+            <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
+              <h3><a href="/rooms/{{s.hotel_id}}" target="_blank" style="font-family: Arial"><b>{{s.hotel_name}}</b></a></h3>
+              <br><p style="font-size: 17px; display: inline"><b>Rating: </b></p><div *ngFor="let rate of counter(s.rating)" style="display: inline">
+                <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
+              </div>
+              <p style="font-size: 17px"><b>Address:</b> {{s.hotel_address}}</p>
+              <p style="font-size: 17px"><b>Email:</b> {{s.email}}&nbsp;&nbsp;&nbsp;<b>Phone:</b> {{s.phone}}</p>
+              <p style="font-size: 17px"><b>Description: </b>{{s.description}}</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 room_price" style="height: 242px">
+              <div class="room_price_inner">
+                <span class="room_price_number">7000</span>
+                <small class="upper"> per night </small>
+                <a href="/rooms/{{s.hotel_id}}" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Find Rooms</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div *ngIf="show.length == 0"><h1 style="text-align: center"><b>NO ACCOMMODATION FOUND :(</b></h1></div>
+<br>
+<br>
