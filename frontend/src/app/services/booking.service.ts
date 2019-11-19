@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CheckAvaData} from '../rooms/checkAvaData';
+import {BookingInfo} from "../booking/BookingInfo";
 // import {BookingInfo} from '../booking/BookingInfo';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class BookingService {
 
   public checkAva(check: CheckAvaData): Observable<{}> {
     return this.http.post('http://nomoreprojectpls.com/check-availability/', JSON.stringify(check), this.httpOptions);
+  }
+
+  public book(b: BookingInfo): Observable<{}> {
+    return this.http.post('http://nomoreprojectpls.com/booking/', JSON.stringify(b), this.httpOptions);
   }
 }

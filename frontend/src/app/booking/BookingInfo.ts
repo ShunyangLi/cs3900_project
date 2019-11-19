@@ -2,13 +2,12 @@ export class BookingInfo {
   constructor(
     public name: string,
     // tslint:disable-next-line:variable-name
-    public booking_id: string,
-    public username: string,
-    public passport: string,
+    public room_id: string,
+    public email: string,
     // tslint:disable-next-line:variable-name
-    public check_in_date: string,
+    public check_in: string,
     // tslint:disable-next-line:variable-name
-    public check_out_date: string,
+    public check_out: string,
     public price: string,
     // tslint:disable-next-line:variable-name
     public comment: string

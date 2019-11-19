@@ -53,6 +53,8 @@ export class RoomsComponent implements OnInit {
       this.show = res.res;
       console.log('show');
       console.log(this.show);
+      window.localStorage.setItem('checkAva', JSON.stringify(this.check));
+
     });
   }
 }
