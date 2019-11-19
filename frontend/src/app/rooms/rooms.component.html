@@ -29,14 +29,14 @@
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="input-group">
             <div class="form_date">
-              <input type="text" class="datepicker form-control md_noborder_right" name="booking-checkin" placeholder="Arrival Date" readonly [(ngModel)]="check.check_in">
+              <input type="date" class="form-control" name="booking-checkin" placeholder="Arrival Date" [(ngModel)]="check.check_in">
             </div>
           </div>
         </div>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="input-group">
             <div class="form_date">
-              <input type="text" class="datepicker form-control" name="booking-checkout" placeholder="Departure Date" readonly>
+              <input type="date" class="form-control" name="booking-checkout" placeholder="Departure Date" [(ngModel)]="check.check_out">
             </div>
           </div>
         </div>
@@ -46,7 +46,6 @@
 </div>
 </div>
 
-{{check.check_in}}
 <!--Show the room-->
 <br>
 <div *ngFor="let sh of show">

@@ -1,16 +1,16 @@
 export class RoomInfo {
   constructor(
-    adults: string,
-    bathroom: string,
-    bedroom: string,
-    children: string,
+    public adults: string,
+    public bathroom: string,
+    public bedroom: string,
+    public children: string,
     // tslint:disable-next-line:variable-name
-    hotel_id: string,
+    public hotel_id: string,
     // tslint:disable-next-line:variable-name
-    img_url: Array<string>,
-    name: string,
-    price: string,
+    public img_url: Array<string>,
+    public name: string,
+    public price: string,
     // tslint:disable-next-line:variable-name
-    room_id: string
+    public room_id: string
   ) {}
 }

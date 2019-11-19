@@ -1,12 +1,12 @@
 export class CheckAvaData {
   constructor(
-      children: string,
-      adult: string,
+    // tslint:disable-next-line:variable-name
+    public hotel_id: string,
+    public children: string,
+    public adult: string,
       // tslint:disable-next-line:variable-name
-      check_in: string,
+    public check_in: string,
       // tslint:disable-next-line:variable-name
-      check_out: string,
-      // tslint:disable-next-line:variable-name
-      hotel_id: string
+    public check_out: string,
   ) {}
 }
