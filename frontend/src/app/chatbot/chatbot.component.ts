@@ -5,7 +5,7 @@ import { switchMap, map, windowCount, scan, take, tap } from 'rxjs/operators';
 
 import { ChatModule, Message, User, Action, ExecuteActionEvent, SendMessageEvent } from '@progress/kendo-angular-conversational-ui';
 import {ChatService} from '../services/chat.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',

@@ -6,6 +6,7 @@ import api.booking_handling
 import api.hotel_info_for_map
 import api.hotel_management
 import api.booking_com_forward
+import api.room_management
 
 
 @app.route('/cleanDB')

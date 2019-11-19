@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {BookingExa} from './bookingExa';
 import {HotelSideBarInfo} from '../map-sidebar/hotelSideBarInfo';
-import {MapService} from "../services/map.service";
-import {LocalStorageService} from "../services/local-storage.service";
+import {MapService} from '../services/map.service';
+import {LocalStorageService} from '../services/local-storage.service';
+import {RecommendationService} from '../services/recommendation.service';
 
 @Component({
   selector: 'app-booking-com-recommendation',
@@ -12,37 +13,32 @@ import {LocalStorageService} from "../services/local-storage.service";
 })
 export class BookingComRecommendationComponent implements OnInit {
   public allHotelsInfo: Array<BookingExa> = [];
-  public ex1 = new BookingExa('merton', '17 Gardeners Road,Mascot', 100, '', '');
-  public ex2 = new BookingExa('M', '10 Geoage Street,Sydney', 200, '', '');
-  public ex3 = new BookingExa('PPP', '213 XXXXXX Street, Burwood', 300, '', '');
+  private resStr: string;
+
 
   public today = new Date().toLocaleDateString();
-  constructor() {
+  constructor(private recService: RecommendationService) {
 
   }
 
   ngOnInit() {
-    this.allHotelsInfo.push(this.ex1, this.ex2, this.ex3);
+    this.recService.RecInfo().subscribe(
+      res => {
+        console.log(res);
+        this.resStr = JSON.stringify(res);
+        JSON.parse(this.resStr).res.forEach((obj) => {
 
-  }
-  public onToggle(hotel): void {
-    // console.log(hotel);
-    if (hotel.bgColor === '#95d8e2') {
-      hotel.bgColor = '#ffc107';
-      // hotel.fontColor = '#fff';
-    } else {
-      hotel.bgColor = '#95d8e2';
-      // hotel.fontColor = '#000';
-    }
-    event = new CustomEvent(
-      'updateIcon', {
-        detail: {
-          message: hotel.location,
-          time: new Date()
-        },
-        bubbles: true,
-        cancelable: true
-      });
+          obj.result.forEach((hotel) => {
+            const bookingres = new BookingExa('', '', 100);
+            bookingres.name = hotel.hotel_name_trans;
+            bookingres.address = hotel.address;
+            bookingres.price = hotel.min_total_price;
+            this.allHotelsInfo.push(bookingres);
+           });
+          }
+        );
+      }
+    );
   }
 
 }

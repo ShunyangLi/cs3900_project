@@ -7,7 +7,7 @@ from flask_restplus import Api
 from flask_cors import CORS
 
 
-app = Flask(__name__, template_folder='../templates')
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['SECRET_KEY'] = 'hard to guess what is the key'
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'

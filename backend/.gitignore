@@ -12,3 +12,4 @@ build/
 .idea/
 /__pycache__/
 NEXT.md
+static

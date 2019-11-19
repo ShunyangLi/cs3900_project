@@ -4,7 +4,6 @@
   <!-- This part is for add hotel -->
   <div class="layui-row" style="display: none" id="forms">
     <form class="layui-form" id="formContent" method="post" enctype="multipart/form-data">
-    <!--   我太难了，设计page     -->
       <!--   This is for hotel name   -->
       <div class="layui-form-item" style="margin-top: 2%">
         <label class="layui-form-label">Hotel name<span style="color: red">*</span></label>
@@ -111,9 +110,9 @@
     <div class="layui-col-md9">
       <div class="layui-tab">
         <ul class="layui-tab-title">
-          <li class="layui-this">Profile</li>
-          <li>History</li>
-          <li>Hotel manage</li>
+          <li class="layui-this" style="font-size: 17px;font-weight: bold">Profile</li>
+          <li style="font-size: 17px;font-weight: bold">History</li>
+          <li style="font-size: 17px;font-weight: bold">Listing management</li>
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
@@ -132,25 +131,25 @@
               <div class="layui-col-md9">
                 <!-- Email for user -->
                 <div class="layui-form-item">
-                  <label class="layui-form-label">Email: </label>
+                  <label class="layui-form-label"style="font-size: 17px;font-weight: bold">Username:</label>
                   <div class="layui-input-inline">
-                    <input type="text" id="email" name="email" value="123@qq.com" readonly autocomplete="off" class="layui-input">
+                    <input style="font-size: 17px" type="text" id="email" name="email" value="123@qq.com" readonly autocomplete="off" class="layui-input" disabled>
                   </div>
                 </div>
 
                 <!-- Last name for user -->
                 <div class="layui-form-item">
-                  <label class="layui-form-label">Last name: </label>
+                  <label class="layui-form-label" style="font-size: 17px;font-weight: bold">Last name: </label>
                   <div class="layui-input-inline">
-                    <input type="text" id="last_name" name="lastName" value="hello" autocomplete="on" class="layui-input">
+                    <input style="font-size: 17px" type="text" id="last_name" name="lastName" value="hello" autocomplete="on" class="layui-input">
                   </div>
                 </div>
 
                 <!-- First name -->
                 <div class="layui-form-item">
-                  <label class="layui-form-label">First name: </label>
+                  <label class="layui-form-label" style="font-size: 17px;font-weight: bold">First name: </label>
                   <div class="layui-input-inline">
-                    <input type="text" id="first_name" name="firstName" value="hello" autocomplete="on" class="layui-input">
+                    <input style="font-size: 17px" type="text" id="first_name" name="firstName" value="hello" autocomplete="on" class="layui-input">
                   </div>
                 </div>
 
@@ -164,24 +163,24 @@
 
                 <!-- New password -->
                 <div class="layui-form-item">
-                  <label class="layui-form-label">Password: </label>
+                  <label class="layui-form-label" style="font-size: 17px;font-weight: bold">Password: </label>
                   <div class="layui-input-inline">
-                    <input type="password" id="password" class="layui-input" name="newpassword1" value="">
+                    <input style="font-size: 17px" type="password" id="password" class="layui-input" name="newpassword1" value="" disabled>
                   </div>
                 </div>
 
                 <!-- birthday -->
                 <div class="layui-form-item">
-                  <label class="layui-form-label">Birthday: </label>
+                  <label class="layui-form-label" style="font-size: 17px;font-weight: bold">Date of birth: </label>
                   <div class="layui-input-inline">
-                    <input type="text" id="birthday" placeholder="yyyy-MM-dd" id="birthday" name="birthday" autocomplete="on" class="layui-input">
+                    <input style="font-size: 17px" type="text" id="birthday" placeholder="yyyy-MM-dd" id="birthday" name="birthday" autocomplete="on" class="layui-input">
                   </div>
                 </div>
 
                 <!-- Button submit -->
                 <div class="layui-form-item" style="margin-left: 25%">
                   <div class="layui-input-block">
-                    <button type="button" class="button" id="submit" style="width: 100px" lay-submit="">Update</button>
+                    <button type="button" class="button" id="submit" style="width: 100px;" lay-submit="">Update</button>
                   </div>
                 </div>
               </div>
@@ -189,14 +188,15 @@
           </div>
 
           <!-- another page of history -->
-          <div class="layui-tab-item" style="margin-top: 10%;">
+          <div class="layui-tab-item" style="margin-top: 20px">
             <ul class="layui-timeline" id="history">
             </ul>
           </div>
 
           <!-- This div is for the host's hotel -->
-          <div class="layui-tab-item" style="margin-top: 10%;" style="width: 130%">
-            <table class="layui-hide" id="hotels" lay-filter="hotels"></table>
+          <div class="layui-tab-item" style="margin-left:0px;margin-top: 20px;margin-right: 20px" style="width: 1000px">
+            <app-listingman></app-listingman>
+<!--            <table class="layui-hide" id="hotels" lay-filter="hotels"></table>-->
           </div>
 
         </div>

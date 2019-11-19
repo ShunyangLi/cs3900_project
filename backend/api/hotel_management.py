@@ -36,7 +36,7 @@ def store_files(files, hotel_id, username):
     if not os.path.isdir(target):
         os.mkdir(target)
 
-    target = "static/%s/%s" % (username, hotel_id)
+    target = "static/%s/old%s" % (username, hotel_id)
     if not os.path.isdir(target):
         os.mkdir(target)
 

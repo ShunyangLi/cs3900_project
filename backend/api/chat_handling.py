@@ -24,10 +24,12 @@ class Chat(Resource):
         
         response = detect_intent_texts("test-gtqown", session_id, message, "en")
         # hotel name and address
+        checkInfo(response.query_result.parameters)
         hotel = response.query_result.parameters.fields['hotel'].string_value
         address = response.query_result.parameters.fields['address'].string_value
-        print(hotel)
-        print(address)
+        # print(hotel)
+        # print(address)
+        # print(response.query_result)
         # check if it's correct
         if hotel != "" and address != "":
             res = query_db("select * from hotel where name = '%s' and location = '%s'" % (hotel, address))
@@ -66,6 +68,35 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
             response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
+        #print(response.query_result.parameters)
         # #print('Fulfillment text: {}\n'.format(
         #     response.query_result.parameters.fields['hotel'].string_value))
     return response
+
+def bookRoom(self):
+    user_info = {'app_name': 'ci_build', 'version': '0.0.2',
+    'hashcode':'5feb565e7c88b9cfc985d29039a2b4f2b9a92a22'}
+    book_info = {'app_name': 'ci_build', 'version': '0.0.2',
+    'hashcode':'5feb565e7c88b9cfc985d29039a2b4f2b9a92a22'}
+    return requests.post("http://127.0.0.1:9000/booking", data=user_info)
+
+def checkInfo(parameters):
+    firstname = lastname = hotel = address = ""
+    dates = []
+    if firstname == "":
+        firstname = parameters.fields['firstName'].string_value
+    if lastname == "":
+        lastname = parameters.fields['lastName'].string_value
+    if hotel == "":
+        hotel = parameters.fields['hotel'].string_value
+    if address == "":
+        address = parameters.fields['address'].string_value
+    if dates == []:
+        dates = parameters.fields['date']
+    print("returned value: {}\n".format(firstname))
+    print("returned value: {}\n".format(lastname))
+    print("returned value: {}\n".format(hotel))
+    print("returned value: {}\n".format(address))
+    print("returned value: {}\n".format(dates))
+    return firstname, lastname, hotel, address, dates
+
