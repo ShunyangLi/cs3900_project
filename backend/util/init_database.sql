@@ -94,19 +94,24 @@ CREATE TABLE IF NOT EXISTS Hotel_img(
 );
 
 CREATE TABLE IF NOT EXISTS Booking (
-    booking_id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    booking_id INTEGER PRIMARY KEY,
     username TEXT,
-    hotel_id INTEGER NOT NULL,
     name TEXT NOT NULL ,
-    passport TEXT NOT NULL,
+    hotel_id INTEGER NOT NULL,
+    room_id INTEGER NOT NULL,
+    email TEXT NOT NULL,
     booking_date TEXT NOT NULL,
     check_in_date TEXT NOT NULL,
-    days INTEGER NOT NULL,
+    check_out_date TEXT NOT NULL,
     price REAL NOT NULL,
-    comment TEXT,
-    FOREIGN KEY (hotel_id) REFERENCES Hotel (id)
+    comment TEXT
 );
 
+-- add hotel review table
+CREATE TABLE IF NOT EXISTS Hotels_review (
+    hotel_id TEXT NOT NULL ,
+    review TEXT
+);
 
 CREATE TABLE IF NOT EXISTS Comments(
     comment_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

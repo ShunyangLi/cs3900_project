@@ -4,58 +4,16 @@ from util.request_handling import get_request_args,get_header
 from flask_restplus import abort, Resource
 from util.db_handling import query_db
 
-search = api.namespace('search', description="search Services")
-
-
-@search.route('/hotel', strict_slashes=False)
-@search.response(200, 'success')
-@search.response(404, 'Missing args')
-@search.response(403, 'Errors')
-class Search(Resource):
-
-    @search.param('location', 'The room type user required')
-    @search.doc(description='For the search function we do not require token, just use the API. \n ')
-    def get(self):
-        location = get_request_args('location', str)
-        location_math = '%'+location.upper()+'%'
-
-        res = query_db(" SELECT * FROM Hotels h WHERE upper(h.hotel_address) like '%s' " % location_math)
-        for r in res:
-            r['img_url'] = query_db("SELECT url FROM Hotels_img WHERE hotel_id = '%s'" % r['hotel_id'])
-
-        return make_response(jsonify({'res': res}), 200)
-
-
-@search.route('/room', strict_slashes=False)
-@search.response(200, 'success')
-@search.response(404, 'Missing args')
-@search.response(403, 'Errors')
-class Room(Resource):
-
-    @search.param('hotel_id', 'The room type user required')
-    @search.doc(description='Get the hotels details and rooms info\n ')
-    def get(self):
-        hotel_id = get_request_args('hotel_id', str, required=True)
-        hotel = query_db("SELECT * FROM Hotels WHERE hotel_id = '%s'" % hotel_id)
-        img_url = query_db("SELECT url FROM Hotels_img WHERE hotel_id = '%s'" % hotel_id)
-        hotel[0]['img_url'] = img_url
-
-        rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
-        for room in rooms:
-            room['img_url'] = query_db("SELECT * FROM Rooms_img WHERE room_id = '%s'" % room['room_id'])
-
-        hotel[0]['rooms'] = rooms
-
-        return make_response(jsonify({"res": hotel[0]}), 200)
-
-# 上面那俩是search和获取相对应的hotel rooms信息
-
-
 booking = api.namespace('booking', description="Booking Services")
 
 
 # for check the token
 def check_user(token):
+    """
+    according to token, get the user's details
+    :param token: the token arg
+    :return: the user's information from database
+    """
     user = query_db("SELECT * FROM User WHERE token = '%s'" % token)
     if len(user) == 0:
         abort(400, 'Incorrect token, please login')
@@ -72,6 +30,8 @@ def check_date(start_date, end_date, bookings):
 @booking.response(200, 'success')
 @booking.response(404, 'Missing args')
 @booking.response(403, 'Errors')
+@booking.expect(booking.parser().add_argument('Authorization', "Your Authorization Token in the form 'Token <AUTH_TOKEN>'",
+                                        location='headers'))
 class Booking(Resource):
 
     @booking.doc(description='Get the booking history according to booking id')

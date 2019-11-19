@@ -14,8 +14,10 @@ tmr_str = tmr.strftime("%Y-%m-%d")
 dep = tmr + datetime.timedelta(days=1)
 dep_str = dep.strftime("%Y-%m-%d")
 
+
 @info.route('/', strict_slashes=False)
 class Info(Resource):
+
     @info.doc(description="Forward booking.com results to the frontend")
     def get(self):
 #         return make_response(jsonify({'res': hotels}), 200)

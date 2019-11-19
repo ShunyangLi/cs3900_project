@@ -123,6 +123,11 @@ class Management(Resource):
 
         for h in hotels:
             rooms = query_db("SELECT * FROM Rooms WHERE hotel_id='%s'" % h['hotel_id'])
+            for r in rooms:
+                img = query_db("SELECT * FROM Rooms_img WHERE room_id='%s'" % r['room_id'])
+                r['img_url'] = img
+            hotel_img = query_db("SELECT * FROM Hotels_img WHERE hotel_id='%s'" % h['hotel_id'])
+            h['img_url'] = hotel_img
             h['rooms'] = rooms
 
         return make_response(jsonify(res=hotels), 200)
@@ -258,7 +263,11 @@ class RoomManagement(Resource):
         if len(hotels) == 0:
             abort(403, 'This user do not have this hotel')
 
+        # get all the room's image
         rooms = query_db("SELECT * FROM Rooms WHERE hotel_id = '%s'" % hotel_id)
+        for r in rooms:
+            room_img = query_db("SELECT * FROM Rooms_img WHERE room_id = '%s'" % r['room_id'])
+            r['img_url'] = room_img
 
         return make_response(jsonify(res=rooms), 200)
 
