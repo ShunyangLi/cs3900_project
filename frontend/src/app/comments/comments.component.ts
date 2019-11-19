@@ -2,23 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
+import {CommentsService} from '../services/comments.service';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css'],
-  providers: [AuthenticationService]
+  providers: [AuthenticationService, CommentsService]
 })
 export class CommentsComponent implements OnInit {
-  s = '@Chares<br><br><p>this is a good picture!!</p><img src="../../assets/images/spa.jpg">';
+  public comments: Array<string> = new Array<string>();
   public myForm: FormGroup = new FormGroup({
     // tslint:disable-next-line:max-line-length
     editor: new FormControl('<p><strong><em><u>Room Name:</u></em></strong></p><br><p><em><u><strong>Write your reviews:</strong></u></em></p><br><p><strong><em><u>Share some pictures:</u></em></strong></p></p>'),
     user: new FormControl('<b>@Anonymous</b><br><br>')
   });
-
+  hotelId: string;
   hotelName: string;
-  constructor(private activatedRoute: ActivatedRoute, private authService: AuthenticationService) { }
+  constructor(private activatedRoute: ActivatedRoute, private authService: AuthenticationService, private cs: CommentsService) { }
 
   ngOnInit() {
 
@@ -32,6 +33,7 @@ export class CommentsComponent implements OnInit {
       });
     }
     const hotelId = this.activatedRoute.snapshot.paramMap.get('hotelId');
+    this.hotelId = hotelId;
     JSON.parse(window.localStorage.getItem('hotelSearchResults')).addrList.forEach((obj => {
       const tmp = JSON.parse(obj);
       // tslint:disable-next-line:triple-equals
@@ -39,9 +41,21 @@ export class CommentsComponent implements OnInit {
         this.hotelName = tmp.hotel_name;
       }
     }));
+
+    this.cs.getComments(hotelId).subscribe((res) => {
+      // @ts-ignore
+      res.res.forEach((obj) => {
+        this.comments.push(obj.review);
+      })
+      console.log(res);
+    });
   }
 
   public onSubmitComment(): void {
-    console.log(this.myForm.controls.user.value);
+    // console.log(this.myForm.controls.editor.value);
+    this.cs.postComments(this.myForm.controls.user.value + this.myForm.controls.editor.value, this.hotelId).subscribe((res) => {
+      console.log(res);
+      window.location.reload();
+    });
   }
 }
