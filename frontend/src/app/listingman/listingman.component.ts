@@ -200,7 +200,11 @@ export class ListingmanComponent implements OnInit {
     this.closeRoomForm();
   }
 
-  public onImages(): void {
-
+  public onImages(dataItem): void {
+    if (this.showRoom) {
+      window.open('/images/room/' + dataItem.room_id, '_blank');
+    } else {
+      window.open('/images/hotel/' + dataItem.hotel_id, '_blank');
+    }
   }
 }

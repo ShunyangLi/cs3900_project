@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import {GridDataResult} from '@progress/kendo-angular-grid';
 import {ListingInfo} from '../listingman/listingInfo';
-import {RoomInfo} from "../listingman/roomInfo";
+import {RoomInfo} from '../listingman/roomInfo';
 
 @Injectable({
   providedIn: 'root'

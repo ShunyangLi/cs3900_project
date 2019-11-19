@@ -27,9 +27,14 @@ import {DialogModule, WindowModule} from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ListingmanComponent } from './listingman/listingman.component';
 import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
-import { RoommanComponent } from './roomman/roomman.component';
 import { VarDirective } from './directives/var.directive';
 import { RoomsComponent } from './rooms/rooms.component';
+import { ImagesmanComponent } from './imagesman/imagesman.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { CommentsComponent } from './comments/comments.component';
+import { EditorModule } from '@progress/kendo-angular-editor';
+
+
 
 
 // @ts-ignore
@@ -54,9 +59,10 @@ import { RoomsComponent } from './rooms/rooms.component';
     SearchResultComponent,
     BookingComponent,
     ListingmanComponent,
-    RoommanComponent,
     VarDirective,
-    RoomsComponent
+    RoomsComponent,
+    ImagesmanComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,9 @@ import { RoomsComponent } from './rooms/rooms.component';
     ButtonsModule,
     GridModule,
     PDFModule,
-    DialogModule
+    DialogModule,
+    LayoutModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
