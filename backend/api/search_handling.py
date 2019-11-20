@@ -81,8 +81,8 @@ def check_date(start_date, end_date, bookings):
     vacant = False
 
     for b in bookings:
-        bStart = extract_date(b['checkin_date'])
-        bEnd = extract_date(b['checkout_date'])
+        bStart = extract_date(b['check_in_date'])
+        bEnd = extract_date(b['check_out_date'])
         if end < bStart:
             vacant = True
         elif start > bEnd:
@@ -116,10 +116,8 @@ class CheckAvailability(Resource):
         children = get_request_args('children', str)
         res = []
         rooms = query_db("SELECT * FROM Rooms WHERE hotel_id='%s'" % hotel_id)
-
         for room in rooms:
             bookings = query_db("SELECT * FROM Booking WHERE room_id='%s'" % room['room_id'])
-
             if int(adult) > int(room['adults']) or int(children) > int(room['children']):
                 continue
 
