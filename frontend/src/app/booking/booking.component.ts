@@ -39,10 +39,11 @@ export class BookingComponent implements OnInit {
   }
 
   public onBookSubmit(): void {
+    this.submitted = true;
     console.log(this.bookingInfo);
     this.bookingService.book(this.bookingInfo).subscribe((res) => {
       console.log(res);
-      window.location.assign('/homepage');
+      // window.location.assign('/homepage');
     });
   }
 }
