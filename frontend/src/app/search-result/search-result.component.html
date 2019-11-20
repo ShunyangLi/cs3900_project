@@ -36,7 +36,14 @@
           <figure>
             <div class="room_list_slider owl-carousel">
     <!--          <div class="item" *ngFor="let img of res.img_url">-->
+              <div *ngIf="s.img_url.length == 0">
                 <a  class="hover_effect h_link h_blue"><img src = "../../assets/noimage.png" alt="Image"></a>
+              </div>
+              <div *ngIf="s.img_url.length != 0">
+                <div *ngFor="let img of s.img_url">
+                  <a  class="hover_effect h_link h_blue"><img src = "http://nomoreprojectpls.com/{{img.url}}" alt="Image"></a>
+                </div>
+              </div>
     <!--          </div>-->
             </div>
           </figure>
@@ -54,7 +61,7 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 room_price" style="height: 242px">
               <div class="room_price_inner">
-                <span class="room_price_number">7000</span>
+                <span class="room_price_number">Min ${{s.min_price}}</span>
                 <small class="upper"> per night </small>
                 <a href="/rooms/{{s.hotel_id}}" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Find Rooms</a>
               </div>

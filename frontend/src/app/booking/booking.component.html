@@ -1,10 +1,12 @@
 <app-top-navigation></app-top-navigation>
+<div *ngIf="!submitted">
 <div style="margin-left: 25%;margin-right: 25%;margin-top: 33px;margin-bottom: 33px" class="vbf">
 <form (ngSubmit)="onBookSubmit()" #signupForm="ngForm" class="inner">
   <div class="form-group">
+    <h3 style="text-align: center;color: black">Booking Form</h3>
     <label style="color: black;font-size: 14px"><b>Name</b></label>
     <input style="color: black;font-size: 14px" id="name" type="text" class="form-control" required pattern="[a-zA-Z ]+"
-           [(ngModel)]="this.bookinInfo.name" name="firstname"
+           [(ngModel)]="this.bookingInfo.name" name="firstname"
            #name="ngModel"
     >
     <div *ngIf="name.invalid && (name.dirty || name.touched)"
@@ -20,46 +22,62 @@
   <div class="form-group">
     <label style="color: black;font-size: 14px"><b>Email</b></label>
     <input style="color: black;font-size: 14px" id="email" type="email" class="form-control" required email
-           [(ngModel)]="bookinInfo.username" name="email"
+           [(ngModel)]="bookingInfo.email" name="email"
            #email="ngModel"
     >
     <div *ngIf="email.invalid && (email.dirty || email.touched)"
          class="alert alert-danger">
       <div *ngIf="email.errors.required">
-        Username (email) is required.
+        Email is required.
       </div>
       <div *ngIf="email.errors.email">
-        Username must be in email address format.
+        Email must be in email format.
       </div>
     </div>
   </div>
   <div class="form-group">
     <label style="color: black;font-size: 14px"><b>Adults</b></label>
     <input style="color: black;font-size: 14px" id="Adults" type="text" class="form-control" required
-            name="Adults"
+            name="Adults" disabled [(ngModel)]="this.check.adult"
     >
   </div>
   <div class="form-group">
     <label style="color: black;font-size: 14px"><b>Childs</b></label>
     <input style="color: black;font-size: 14px" id="Childs" type="text" class="form-control" required
-            name="Adults"
+            name="Childs" disabled [(ngModel)]="this.check.children"
     >
   </div>
   <div class="form-group">
     <label style="color: black;font-size: 14px"><b>Check in</b></label>
     <input style="color: black;font-size: 14px" id="checkin" type="text" class="form-control" required
-           name="checkin"
+           name="checkin" disabled [(ngModel)]="this.check.check_in"
     >
   </div>
   <div class="form-group">
     <label style="color: black;font-size: 14px"><b>Check out</b></label>
     <input style="color: black;font-size: 14px" id="checkout" type="text" class="form-control" required
-           name="checkout"
+           name="checkout" disabled [(ngModel)]="this.check.check_out"
     >
   </div>
-
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Comments</b></label>
+    <textarea style="color: black;font-size: 14px" id="comment" type="text" class="form-control"
+           name="comment" [(ngModel)]="this.bookingInfo.comment"
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label style="color: black;font-size: 14px"><b>Total cost</b></label>
+    <input style="color: black;font-size: 14px" id="price" type="text" class="form-control" required
+           name="price" disabled [(ngModel)]="this.totalCost"
+    >
+  </div>
   <br>
   <button style="display: inline-block" class="button btn_lg btn_yellow" type="submit" [disabled]="!signupForm.form.valid">Submit</button>
   <!--      <p><button (click)="openWindow()">Open</button></p>-->
 </form>
+</div>
+</div>
+<div *ngIf="submitted">
+  <p style="text-align: center;color: black;font-size: 35px">A comfirmation email has been sent to your email address {{this.bookingInfo.email}}! Please check your inbox.</p>
+  <p style="text-align: center;color: black;font-size: 35px">You may close this page</p>
 </div>

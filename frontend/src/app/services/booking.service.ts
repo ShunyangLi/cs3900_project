@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {SignUpInfo} from "../signup/signUpInfo";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {CheckAvaData} from '../rooms/checkAvaData';
 import {BookingInfo} from "../booking/BookingInfo";
-import {HttpMethods} from "./httpMethods";
+// import {BookingInfo} from '../booking/BookingInfo';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookingService extends HttpMethods{
-  private readonly path = '/auth/booking';
-  constructor(http: HttpClient) {
-    super(http);
+export class BookingService {
+  protected readonly httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  };
+  constructor(private http: HttpClient) {
   }
-  public booking(bookingInfo: BookingInfo): Observable<{}> {
-    console.log('submitted data: ');
-    console.log(bookingInfo);
-    return this.httpPost(bookingInfo, this.path);
+
+  public checkAva(check: CheckAvaData): Observable<{}> {
+    return this.http.post('http://nomoreprojectpls.com/check-availability/', JSON.stringify(check), this.httpOptions);
+  }
+
+  public book(b: BookingInfo): Observable<{}> {
+    return this.http.post('http://nomoreprojectpls.com/booking/', JSON.stringify(b), this.httpOptions);
   }
 }

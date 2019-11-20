@@ -7,6 +7,7 @@ import {DataService} from '../services/data.service';
 import {SearchService} from '../services/search.service';
 import {LocalStorageService} from '../services/local-storage.service';
 import {SearchReq} from '../homepage/searchReq';
+import {HotelSearchResultInfoPrice} from './hotelSearchInfoPrice';
 
 @Component({
   selector: 'app-search-result',
@@ -19,7 +20,7 @@ export class SearchResultComponent implements OnInit {
   private searchReq: SearchReq;
   private resStr: string;
   public hotelSearchResultList: Array<string> = [];
-  public show: Array<HotelSearchResultInfo> = [];
+  public show: Array<HotelSearchResultInfoPrice> = [];
   constructor(private searchService: SearchService, private localStorageService: LocalStorageService) {
     this.searchReq = new SearchReq('');
   }
@@ -47,6 +48,7 @@ export class SearchResultComponent implements OnInit {
 
   public onPriceClick(): void {
     console.log('change price');
+    this.show.sort((a, b) => (a.min_price > b.min_price) ? 1 : (b.min_price > a.min_price) ? -1 : 0);
   }
 
   public onRatingClick(): void {

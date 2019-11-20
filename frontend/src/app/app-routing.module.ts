@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatbotComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'rooms/:hotelId', component: RoomsComponent},
-  { path: 'Booking', component: BookingComponent},
+  { path: 'Booking/:roomId/:price', component: BookingComponent},
   {path: 'activate/:token', component: ActivateComponent},
   {path: 'images/hotel/:hotelId', component: ImagesmanComponent},
   {path: 'images/room/:roomId', component: ImagesmanComponent},

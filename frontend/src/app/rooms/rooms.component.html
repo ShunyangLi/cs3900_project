@@ -2,11 +2,11 @@
 <div class="page_title">
   <div class="container">
     <div style="display: inline" class="vbf">
-      <form>
+      <form (ngSubmit)="onSubmitCheck()">
         <p style="font-family: Arial;font-size: 22px" class="col-md-3 col-sm-3 col-xs-6"><b>{{hotelName}}</b></p>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="form_select">
-            <select name="booking-adults" class="form-control md_noborder_right" title="Max Adults" data-header="Adults">
+            <select name="booking-adults" class="form-control md_noborder_right" title="Max Adults" data-header="Adults" [(ngModel)]="check.adult">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="form_select">
-            <select name="booking-children" class="form-control" title="Max Children" data-header="Children">
+            <select name="booking-children" class="form-control" title="Max Children" data-header="Children" [(ngModel)]="check.children">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -29,14 +29,14 @@
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="input-group">
             <div class="form_date">
-              <input type="text" class="datepicker form-control md_noborder_right" name="booking-checkin" placeholder="Arrival Date" readonly>
+              <input type="date" class="form-control" name="booking-checkin" placeholder="Arrival Date" [(ngModel)]="check.check_in">
             </div>
           </div>
         </div>
         <div class="form-group col-md-2 col-sm-2 col-xs-4 nopadding">
           <div class="input-group">
             <div class="form_date">
-              <input type="text" class="datepicker form-control" name="booking-checkout" placeholder="Departure Date" readonly>
+              <input type="date" class="form-control" name="booking-checkout" placeholder="Departure Date" [(ngModel)]="check.check_out">
             </div>
           </div>
         </div>
@@ -62,11 +62,14 @@
       <div class="col-lg-8 col-md-7 col-sm-12">
         <div class="room_details row-flex">
           <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
-            <h3><a href="room.html">{{sh.name}}</a></h3>
-            <p>Bedroom: {{sh.bedroom}}</p>
-            <p>Bathroom: {{sh.bathroom}}</p>
-            <p>Max adult: {{sh.adults}}</p>
-            <p>Max children: {{sh.children}}</p>
+            <h3><a href="room.html"><b>{{sh.name}}</b></a></h3>
+            <br>
+            <div style="font-size: 19px">
+              <p><i class="fa fa-bed" aria-hidden="true"></i>&nbsp;Bedroom: {{sh.bedroom}}</p>
+              <p><i class="fa fa-bath" aria-hidden="true"></i> Bathroom: {{sh.bathroom}}</p>
+              <p><i class="fa fa-female" aria-hidden="true"></i><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Max adult: {{sh.adults}}</p>
+              <p><i class="fa fa-child" aria-hidden="true"></i><i class="fa fa-child" aria-hidden="true"></i>&nbsp;Max children: {{sh.children}}</p>
+            </div>
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12 room_price">
             <div class="room_price_inner">
@@ -80,7 +83,7 @@
                 </div>
               </div>
               <div *ngIf="filtered">
-                <a href="#" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Book Now</a>
+                <a href="/Booking/{{sh.room_id}}/{{sh.price}}" target="_blank" class="button  btn_yellow btn_full upper" type="submit">Book Now</a>
               </div>
             </div>
           </div>

@@ -33,11 +33,12 @@ export class ImagesmanComponent implements OnInit {
           if (obj.hotel_id == this.hotelId) {
             window.localStorage.setItem('update_hotel', JSON.stringify(obj));
             // tslint:disable-next-line:max-line-length
-            this.curHotel = new HotelSearchResultInfo(obj.hotel_id, obj.description, obj.email, [], obj.hotel_address, obj.hotel_name, obj.phone, obj.host, obj.rating);
+            this.curHotel = new HotelSearchResultInfo(obj.hotel_id, obj.description, obj.email, obj.img_url, obj.hotel_address, obj.hotel_name, obj.phone, obj.host, obj.rating);
             // tslint:disable-next-line:triple-equals
             if (this.curHotel.img_url.length != 0) {
               this.noImage = false;
             }
+            // console.log(this.curHotel.img_url);
           }
         });
       });

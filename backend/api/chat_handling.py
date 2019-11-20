@@ -112,7 +112,7 @@ def searchHotel(response):
     num = 1
     for hotel in res['res']:
         ret_val += '%i' % num + ':\n'
-        ret_val += 'Hotel Name: ' + hotel['description'] + '\n'
+        ret_val += 'Hotel Name: ' + hotel['hotel_name'] + '\n'
         ret_val += 'Hotel Address: ' + hotel['hotel_address'] + '\n'
         num += 1
     return ret_val
