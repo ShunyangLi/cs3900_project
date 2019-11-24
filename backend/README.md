@@ -2,7 +2,7 @@
 
 # How to deploy the backend
 
-We require python3.6 or higher version. Please install python3 and pip3 before set up the backend.
+We require python3.6 or higher version and sqlite3. Please install python3, pip3 and sqlite3 before set up the backend. 
 
 1. If you want to use the virtual environment (venv) you run those command:
 
@@ -33,6 +33,46 @@ We require python3.6 or higher version. Please install python3 and pip3 before s
    ```shell
    deactivate
    ```
+
+# Install Python3 and SQLite
+
+If you do not install python3 or SQlite, you can follow those command to install them.
+
+## Install SQlite
+
+- To install on Linux system (Ubuntu or Debian) please execute below commands:
+
+  ```shell
+  sudo apt-get update
+  sudo apt-get install sqlite3
+  ```
+
+- To install on Mac system please execute below commands:
+
+  ```shell
+  brew install sqlite3
+  ```
+
+  - If you donot install `brew` you can execute this command:
+
+    ```shell
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
+
+## Install python3
+
+- On Mac system execute below command:
+
+  ```
+  brew install python3
+  ```
+
+- On Linux system execute below command:
+
+  ```shell
+  sudo apt-get update
+  sudo apt-get install python3.6
+  ```
 
 # Backend of the project
 
