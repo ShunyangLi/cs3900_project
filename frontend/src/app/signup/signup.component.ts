@@ -8,17 +8,6 @@ import {
 } from '@angular/forms';
 
 
-function matchValues(
-  matchTo: string // name of the control to match to
-): (AbstractControl) => ValidationErrors | null {
-  return (control: AbstractControl): ValidationErrors | null => {
-    return !!control.parent &&
-    !!control.parent.value &&
-    control.value === control.parent.controls[matchTo].value
-      ? null
-      : { isMatching: false };
-  };
-}
 
 @Component({
   selector: 'app-signup',
@@ -32,20 +21,26 @@ export class SignupComponent implements OnInit {
   private signUpInfo: SignUpInfo;
   private secondTypedPwd: string;
   public registerTypes = ['individual', 'enterprise'];
-  constructor(private signUpService: SignupService, private formBuilder: FormBuilder) {
+
+  /**
+   * This class is the controller for sign up form web page
+   * @param signUpService Http connection service for sign up controller
+   *
+   */
+  constructor(private signUpService: SignupService) {
     this.signUpInfo = new SignUpInfo('', '', '', '', '', 'individual');
   }
 
   ngOnInit(): void {
   }
 
-
+  /**
+   * The handler for submit the signup information to backend service and navigate to other page
+   */
   public onSignUpSubmit(): void {
     this.alreadyRegistered = false
-    console.log(this.signUpInfo);
     this.signUpService.signup(this.signUpInfo).subscribe(
       res => {
-        console.log(res);
         this.openWindow();
       },
       error => {
@@ -54,6 +49,9 @@ export class SignupComponent implements OnInit {
     );
   }
 
+  /**
+   * set window open
+   */
   public openWindow(): void {
     this.windowOpened = true;
   }
@@ -62,6 +60,9 @@ export class SignupComponent implements OnInit {
     this.windowOpened = false;
   }
 
+  /**
+   * navigate to login page
+   */
   public goLogin(): void {
     window.location.assign('/login');
   }

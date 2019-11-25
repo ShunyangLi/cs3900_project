@@ -8,7 +8,10 @@ import {Observable} from "rxjs";
 })
 export class RecommendationService extends HttpMethods {
   private readonly path = '/bookingcomForward'
-
+  /**
+   * This service is for get the hotel recommendation
+   * @param http connect to backend
+   */
   constructor(http: HttpClient) {
     super(http);
   }

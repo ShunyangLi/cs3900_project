@@ -17,9 +17,18 @@ export class MapSidebarComponent implements OnInit {
   public displayHotelsInfo: Array<HotelSideBarInfo> = []; // current hotels on the map
   private resStr: string;
   public init = true;
+
+  /**
+   * This class is the controller the side bar of map
+   * @param mapService Http connection services for Map
+   * @param localStorageService Http connection for storage information
+   */
   constructor(private mapService: MapService, private localStorageService: LocalStorageService) {
   }
 
+  /**
+   *  Initialisation of the hotel on the map to the list, get all information from mapservice
+   */
   ngOnInit() {
     this.mapService.getAllHotels().subscribe(
       res => {
@@ -53,6 +62,10 @@ export class MapSidebarComponent implements OnInit {
     );
   }
 
+  /**
+   * Change the color when click the map button
+   * @param hotel is which hotel user select
+   */
   public onToggle(hotel): void {
     // console.log(hotel);
     if (hotel.bgColor === '#95d8e2') {

@@ -7,6 +7,9 @@ export class DataService {
   public data = new Subject<Array<HotelSearchResultInfo>>();
   message: Array<HotelSearchResultInfo> = [];
 
+  /**
+   * This service control the hotel search result
+   */
   constructor() { }
 
   public getData() {

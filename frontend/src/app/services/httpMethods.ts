@@ -2,6 +2,9 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 export abstract class HttpMethods {
+  /**
+   * this class is basic for connect backend such as post and get method
+   */
   protected readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -23,12 +26,21 @@ export abstract class HttpMethods {
     this.http = http;
   }
 
+  /**
+   * post object to backend
+   * @param obj
+   * @param path
+   */
   public httpPost(obj: any, path: string): Observable<{}> {
     const body = JSON.stringify(obj);
     console.log(body);
     return this.http.post(this.backendUrl + path, body, this.httpOptions);
   }
 
+  /**
+   * Get object from backend
+   * @param path
+   */
   public httpGet(path: string): Observable<{}> {
     return this.http.get(this.backendUrl + path, this.httpOptions);
   }

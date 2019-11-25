@@ -14,14 +14,22 @@ import {RecommendationService} from '../services/recommendation.service';
 export class BookingComRecommendationComponent implements OnInit {
   public allHotelsInfo: Array<BookingExa> = [];
   private resStr: string;
-
-
   public today = new Date().toLocaleDateString();
 
+  /**
+   * This class is for the BookingRecommendation which using booking api
+   *
+   *
+   * @param recService Http connection service for api
+   */
   constructor(private recService: RecommendationService) {
 
   }
   public curUrl: string;
+
+  /**
+   *  get Json file from api and extract address postcode name and price from it
+   */
   ngOnInit() {
     this.recService.RecInfo().subscribe(
       res => {
@@ -63,6 +71,10 @@ export class BookingComRecommendationComponent implements OnInit {
 
   }
 
+  /**
+   * Click the recommendation will open the booking page
+   * @param url of booking page
+   */
   public onClick(url: string): void {
     window.open(url, '_blank');
   }
