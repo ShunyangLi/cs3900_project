@@ -38,7 +38,7 @@ import datetime
 
 chat = api.namespace('chat', description="Authentication Services")
 # session id for DialogFlow chat
-session_id = 10
+session_id = 1
 
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
