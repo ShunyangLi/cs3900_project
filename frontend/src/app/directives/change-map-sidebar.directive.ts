@@ -5,7 +5,10 @@ import {MapSidebarComponent} from '../map-sidebar/map-sidebar.component';
   selector: '[appChangeMapSidebar]'
 })
 export class ChangeMapSidebarDirective {
-
+  /**
+   * This class if for the mapside bar
+   * @param mapSidebar component from other ts file
+   */
   constructor(private mapSidebar: MapSidebarComponent) { }
   @HostListener('updateMapSidebar', ['$event']) onChange() {
     this.mapSidebar.init = false;
