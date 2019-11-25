@@ -29,4 +29,8 @@ You have to build backend dev server and frontend dev serve separately in two di
 - Step 4: You are ready to go! Open a tab in your browser and type `http://localhost:4200` to start exploring our website. (You may have opened this tab when you set up the Angular dev server)
 
 ## Acknowledgement
-- TODO
+- We use this [HTML template](http://www.bootstrapmb.com/item/420/preview) for our project graphical user interface.
+- We use [Dialogflow](https://dialogflow.com) to develop our booking chatbot.
+- We use [Mapbox](https://www.mapbox.com) to develop our iterinaray planner component on the frontend.
+- We use [booking.com API provided by RapidAPI](https://rapidapi.com/apidojo/api/booking) to develop our room recommendations on the side of chatbot.
+- You can read more regarding API reference in our final report. 
