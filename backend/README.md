@@ -74,6 +74,20 @@ If you do not install python3 or SQlite, you can follow those command to install
   sudo apt-get install python3.6
   ```
 
+## Install pip3
+
+To install `pip3` in your system, you can execute the following command:
+
+```shell
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+```
+
+And then:
+
+```shell
+python3 get-pip.py
+```
+
 # Backend of the project
 
 - Include **API**, **database**, and helper functions
