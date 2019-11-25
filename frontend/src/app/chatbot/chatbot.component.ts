@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 
 import { Subject, from, merge, Observable } from 'rxjs';
 import { switchMap, map, windowCount, scan, take, tap } from 'rxjs/operators';

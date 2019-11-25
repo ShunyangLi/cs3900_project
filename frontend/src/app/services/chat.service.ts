@@ -20,9 +20,18 @@ export class ChatService {
   private backendURL = 'http://127.0.0.1:9000';
   private readonly path = '/chat/';
   private answer: any;
+
+  /**
+   * This service is for chat bot
+   * @param http connect to backend
+   */
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * submit question that user typed to backend api and return answer
+   * @param question
+   */
   public submit(question: string): void {
     this.sendMsg(new ChatMsg(question)).subscribe(
       res => {
@@ -33,6 +42,10 @@ export class ChatService {
 
   }
 
+  /**
+   * send message
+   * @param chatMsg massage that user typed
+   */
   public sendMsg(chatMsg: ChatMsg): Observable<{}> {
     // this.chatMsg.message = userInput;
     console.log('submitted data: ');

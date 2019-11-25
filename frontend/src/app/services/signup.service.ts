@@ -11,13 +11,19 @@ import {SignUpInfo} from '../signup/signUpInfo';
 export class SignupService extends HttpMethods {
 
   private readonly path = '/auth/signup';
+  /**
+   * This service is for sign up
+   * @param http connect to backend
+   */
   constructor(http: HttpClient) {
     super(http);
   }
 
+  /**
+   * post sign information to backend
+   * @param signupInfo
+   */
   public signup(signupInfo: SignUpInfo): Observable<{}> {
-    console.log('submitted data: ');
-    console.log(signupInfo);
     return this.httpPost(signupInfo, this.path);
   }
 }

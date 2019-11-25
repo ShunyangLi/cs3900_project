@@ -8,9 +8,18 @@ import {HttpMethods} from './httpMethods';
   providedIn: 'root'
 })
 export class ImageService {
-
+  /**
+   * this service is for update image
+   * @param http
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * save the hotel image
+   * @param token
+   * @param image
+   * @param h hotel search result
+   */
   public saveHotelImage(token: string, image: File, h: HotelSearchResultInfo): Observable<{}> {
     const formData = new FormData();
     formData.append('hotel_id', h.hotel_id);

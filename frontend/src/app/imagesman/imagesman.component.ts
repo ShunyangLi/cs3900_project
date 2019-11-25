@@ -19,8 +19,18 @@ export class ImagesmanComponent implements OnInit {
   noImage = true;
   curHotel: HotelSearchResultInfo;
   // tslint:disable-next-line:max-line-length
+  /**
+   * This class is the controller for hotel image update
+   * @param router
+   * @param activatedRoute get the current activated route
+   * @param editService Http connection service for edit information of hotel
+   * @param imageService Http connection service for send image
+   */
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private editService: EditFormService, private imageService: ImageService) { }
 
+  /**
+   * Initialisation for update image
+   */
   ngOnInit() {
     this.token = window.localStorage.getItem('token');
     if (window.location.href.match('.*/images/hotel/.*')) {
@@ -49,6 +59,11 @@ export class ImagesmanComponent implements OnInit {
 
   }
 
+  /**
+   *  The handler for submitting the image form
+   *  it will send the image to backend server
+   * @param imageInput any image
+   */
   public onHotelImageSubmit(imageInput: any) {
     const file: File = imageInput.files[0];
     console.log(file);

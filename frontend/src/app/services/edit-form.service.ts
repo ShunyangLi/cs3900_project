@@ -15,16 +15,29 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
   path = '/hotel/management';
   roomPath = '/room/management';
   loading = false;
+
+  /**
+   * this service for add remove and edit hotel information
+   * @param http connect backend
+   */
   constructor(private http: HttpClient) {
     super(null);
   }
 
+  /**
+   * get the user's hotel
+   * @param token
+   */
   public read(token: string) {
 
     // @ts-ignore
     this.getAll(token).subscribe(dt => super.next(dt));
   }
 
+  /**
+   * get user hotel
+   * @param token
+   */
   public getHotels(token: string): Observable<{}> {
     const options = {
       headers: new HttpHeaders({
@@ -34,7 +47,11 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
     };
     return this.http.get(this.url + this.path, options);
   }
-  // http get
+
+  /**
+   * get all result
+   * @param token
+   */
   public getAll(token: string): Observable<{}> {
     this.loading = true;
     const options = {
@@ -51,6 +68,11 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
       tap(() => this.loading = false));
   }
 
+  /**
+   * get room of hotel
+   * @param token
+   * @param hotelId
+   */
   public readRoom(token: string, hotelId: string) {
     this.getAllRoom(token, hotelId).subscribe(dt => super.next(dt));
   }
@@ -72,6 +94,12 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
       tap(() => this.loading = false));
   }
 
+  /**
+   * save the hotel
+   * @param hotel hotel information
+   * @param token
+   * @param isNew check weather is new hotel
+   */
   // hotel http post and put
   public saveHotel(hotel: ListingInfo, token: string, isNew: boolean) {
     const options = {
@@ -90,6 +118,12 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
 
   }
 
+  /**
+   * save the room
+   * @param room room information
+   * @param token
+   * @param isNewRoom check weather is new room
+   */
   // room http post and put
   public saveRoom(room: RoomInfo, token, isNewRoom: boolean) {
     const options = {
@@ -106,6 +140,11 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
     }
   }
   // hotel http delete
+  /**
+   * remove the hotel
+   * @param hotelId
+   * @param token
+   */
   public remove(hotelId: string, token: string) {
     const options = {
       headers: new HttpHeaders({
@@ -121,6 +160,12 @@ export class EditFormService extends BehaviorSubject<GridDataResult> {
   }
 
   // room http remove
+  /**
+   * remove the room of a hotel
+   * @param hotelId
+   * @param roomId
+   * @param token
+   */
   public removeRoom(hotelId: string, roomId: string, token: string) {
     const options = {
       headers: new HttpHeaders({

@@ -11,6 +11,11 @@ export class LocalStorageService {
   private addrListObj = new AddrListObj([]);
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
+  /**
+   * this service is used for storage information
+   * @param addresses  information that stored
+   * @param storageKey key
+   */
   public storeOnLocalStorage(addresses: Array<string>, storageKey): void {
     const addrList: Array<string> = [];
     addresses.forEach(addr => {

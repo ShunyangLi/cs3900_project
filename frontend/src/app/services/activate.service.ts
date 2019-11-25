@@ -11,10 +11,19 @@ import {Token} from '../activate/token';
 export class ActivateService extends HttpMethods {
 
   private readonly path = '/auth/activate';
+
+  /**
+   * This class is for activate account
+   * @param http httpClient for connection backend service
+   */
   constructor(http: HttpClient) {
     super(http);
   }
 
+  /**
+   * Post user's token to backend
+   * @param token user's token
+   */
   public activate(token: Token): Observable<{}> {
     return this.httpPost(token, this.path);
   }
