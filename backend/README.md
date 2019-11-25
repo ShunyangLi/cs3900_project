@@ -1,4 +1,4 @@
-![passing](https://img.shields.io/badge/build-passing-green)![License](https://img.shields.io/badge/License-Python3.7-blue.svg)
+![passing](https://img.shields.io/badge/build-passing-green) ![License](https://img.shields.io/badge/License-Python3.7-blue.svg)
 
 # How to deploy the backend
 

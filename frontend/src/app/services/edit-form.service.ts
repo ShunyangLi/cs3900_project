@@ -11,7 +11,7 @@ import {RoomInfo} from '../listingman/roomInfo';
 })
 export class EditFormService extends BehaviorSubject<GridDataResult> {
 
-  url = 'http://nomoreprojectpls.com';
+  url = 'http://localhost:9000';
   path = '/hotel/management';
   roomPath = '/room/management';
   loading = false;

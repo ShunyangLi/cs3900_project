@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 })
 export class SearchService extends HttpMethods {
   // @ts-ignore
-  backendUrl = 'http://nomoreprojectpls.com';
+  backendUrl = 'http://localhost:9000';
   private  path = '/search/hotel';
   roomPath = '/search/room';
   constructor(http: HttpClient) {

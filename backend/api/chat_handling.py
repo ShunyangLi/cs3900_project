@@ -10,13 +10,35 @@ import random
 import time
 import datetime
 
+# backend for Chatbot
+# We use DialogFlow to create Chatbot
+# Chatbot has two functions:
+#   - Search hotels in a specific area
+#   - Book a room
+#
+# 1.Search
+#   parameter: address
+#   return: a list of hotels
+# sample input:
+# "Hi, could you search the hotels in Randwick?"
+#
+# 2.Book room
+#   parameter: firstname, lastname, hotel name, hotel address, 
+#               booking date, number of adults, number of children
+#               email address
+#   return: Bot will ask for information you didn't state
+# sample input:
+# 1. "Hi, could you help me book a room?"
+#    "What's your first name?"
+#    ....
+#    ....
+# 2."Book a room in jamison, 190 Smith Street on 12/1 and 12/2, 
+# my name is Li Ding, we have 3 adults and 2 children"
+
+
 chat = api.namespace('chat', description="Authentication Services")
+# session id for DialogFlow chat
 session_id = 10
-
-# chat sample
-# Book a room in jamison, 190 Smith Street on 12/1 and 12/2, 
-# my name is Li Ding, we have 3 adults and 2 children
-
 
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
@@ -27,14 +49,16 @@ class Chat(Resource):
     @chat.doc(description="This is for chat box handling")
     def post(self):
         global session_id
+        # get user's input message from frontend
         message = [get_request_args('message', str)]
-        
+        # send user's message to DialogFlow and get response
         response = detect_intent_texts("test-gtqown", session_id, message, "en")
-        # search hotels
+        # id the intent is Search
+        # return searched hotels to user
         if response.query_result.intent.display_name == "Search":
             return searchHotel(response)
 
-        # hotel name and address
+        # get hotel name and address from response
         hotel = response.query_result.parameters.fields['hotel'].string_value
         address = response.query_result.parameters.fields['address'].string_value
         # check if it's correct
@@ -43,7 +67,7 @@ class Chat(Resource):
             if len(res) == 0:
                 session_id += 1
                 return "Sorry. Can't find this hotel"
-        
+        # get firstname, lastname, hotel, address, arrival_date, departure_date, email from response
         firstname, lastname, hotel, address, arrival_date, departure_date, email = checkInfo(response, response.query_result.parameters)
         # find hotel id by address
         hotel_id = -1
@@ -52,9 +76,8 @@ class Chat(Resource):
             res.raise_for_status()
             res = res.json()
             hotel_id = res['res'][0]['id']
-
+        # When get email, send a booking request to backend
         if email != '':
-        # if response.query_result.intent.display_name == 'Booking room - yes':
             book_info = {}
             book_info['comment'] = ''
             book_info['price'] = random.randint(100,300)
@@ -63,12 +86,14 @@ class Chat(Resource):
             book_info['email'] = email
             book_info['name'] = firstname + ' ' + lastname
             book_info['hotel_id'] = hotel_id
-            # print(book_info)
             requests.post("http://127.0.0.1:9000/chatbox-booking", data=book_info)
 
-        # return agent response
+        # return bot's response
         return response.query_result.fulfillment_text
 
+# get response from DialogFlow
+# return variables:
+# firstname, lastname, hotel, address, arrival_date, departure_date, email
 def checkInfo(response, parameters):
     firstname = lastname = hotel = address = email = arrival_date = departure_date = ""
     dates = []
@@ -89,20 +114,18 @@ def checkInfo(response, parameters):
         numChild = parameters.fields['numChild']
     if email == '':
         email = parameters.fields['email'].string_value
-    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    # print(type(dates.list_value))
-    # print(dates.list_value)
+    # caculate arrival date and departure date
     if email != '':
         arrival_date = dates.list_value[0][0:10]
         departure_date = dates.list_value[-1][0:10]
         departure_date = datetime.datetime.strptime(departure_date, "%Y-%m-%d")
         departure_date = departure_date+datetime.timedelta(days=1)
         departure_date = str(departure_date)[0:10]
-        # print(departure_date)
-        # print(arrival_date)
 
     return firstname, lastname, hotel, address, arrival_date, departure_date, email
 
+# send search hotel request
+# return a string of the list of hotels
 def searchHotel(response):
     city = response.query_result.parameters.fields['city'].string_value
     res = requests.get("http://nomoreprojectpls.com/search/hotel?location=%s" % city)
@@ -110,6 +133,7 @@ def searchHotel(response):
     res = res.json()
     ret_val = ''
     num = 1
+    # add hotels' information to a string
     for hotel in res['res']:
         ret_val += '%i' % num + ':\n'
         ret_val += 'Hotel Name: ' + hotel['hotel_name'] + '\n'
@@ -117,6 +141,8 @@ def searchHotel(response):
         num += 1
     return ret_val
 
+# copied from google document
+# https://cloud.google.com/dialogflow/docs/quick/api#detect-intent-text-python
 def detect_intent_texts(project_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
 
@@ -144,7 +170,4 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
             response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
-        #print(response.query_result.parameters)
-        # print('Fulfillment text: {}\n'.format(
-        #     response.query_result.parameters.fields['hotel'].string_value))
     return response

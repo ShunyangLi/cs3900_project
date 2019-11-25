@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {SearchService} from '../services/search.service';
-import {HotelSearchResultInfo} from '../search-result/hotelSearchResultInfo';
-import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {BookingInfo} from './BookingInfo';
 import {BookingService} from '../services/booking.service';
 import {CheckAvaData} from '../rooms/checkAvaData';
-import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
+
 export class BookingComponent implements OnInit {
   public bookingInfo: BookingInfo;
   roomId: string;
@@ -19,15 +17,23 @@ export class BookingComponent implements OnInit {
   price: string;
   totalCost: string;
   submitted = false;
+
+  /**
+   * This class is the controller for booking form web page
+   * @param bookingService HTTP connection service for booking page controller
+   * @param activatedRoute the helper object to grab room_id and room price strings from the URL
+   */
   constructor(private bookingService: BookingService, private activatedRoute: ActivatedRoute) {
   }
 
+  /**
+   * Initialisation of rendering activation page: prefill some values in the booking form
+   */
   ngOnInit() {
     this.roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
     this.price = this.activatedRoute.snapshot.paramMap.get('price');
     this.check = JSON.parse(window.localStorage.getItem('checkAva'));
-    this.bookingInfo = new BookingInfo(  '', this.roomId, '', this.check.check_in,
-      this.check.check_out, '', '');
+    this.bookingInfo = new BookingInfo('', this.roomId, '', this.check.check_in, this.check.check_out, '', '');
 
     const d1 = new Date(this.check.check_in + 'T00:00:00');
     const d2 = new Date(this.check.check_out + 'T00:00:00');
@@ -38,12 +44,15 @@ export class BookingComponent implements OnInit {
     this.bookingInfo.price = this.totalCost;
   }
 
+  /**
+   * The handler for submitting the booking form
+   * It will send the data to the backend server.
+   */
   public onBookSubmit(): void {
     this.submitted = true;
     console.log(this.bookingInfo);
     this.bookingService.book(this.bookingInfo).subscribe((res) => {
       console.log(res);
-      // window.location.assign('/homepage');
     });
   }
 }
