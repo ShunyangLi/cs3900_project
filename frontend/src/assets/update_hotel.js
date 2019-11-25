@@ -13,7 +13,7 @@ layui.use('jquery', function() {
     formdata.append('email', hotel_info.email);
     console.log(token);
     $.ajax({
-      url: "http://nomoreprojectpls.com/hotel/management",
+      url: "http://localhost:9000/hotel/management",
       type: "PUT",
       headers: {
         "Authorization": window.localStorage.getItem('token')

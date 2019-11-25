@@ -23,7 +23,7 @@ export class CommentsService {
    */
   public getComments(hotelId: string) {
     const params = new HttpParams().set('hotel_id', hotelId);
-    return this.http.get('http://nomoreprojectpls.com/hotel-review', {params});
+    return this.http.get('http://localhost:9000/hotel-review', {params});
   }
 
   /**
@@ -36,6 +36,6 @@ export class CommentsService {
       review_info: review,
       hotel_id: hotelId
     };
-    return this.http.post('http://nomoreprojectpls.com/hotel-review', JSON.stringify(tmp), this.httpOptions);
+    return this.http.post('http://localhost:9000/hotel-review', JSON.stringify(tmp), this.httpOptions);
   }
 }
