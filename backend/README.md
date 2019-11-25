@@ -1,6 +1,82 @@
+![passing](https://img.shields.io/badge/build-passing-green) ![License](https://img.shields.io/badge/License-Python3.7-blue.svg)
+
+# How to deploy the backend
+
+We require python3.6 or higher version and sqlite3. Please install python3, pip3 and sqlite3 before set up the backend. 
+
+1. If you want to use the virtual environment (venv) you run those command:
+
+   ```shell
+   sudo apt install python3-venv
+   ```
+
+2. Create a new venv in the current directory:
+
+   ```shell
+   python3 -m venv venv
+   ```
+
+3. Active venv:
+
+   ```shell
+   source venv/bin/activate
+   ```
+
+4. Install python3 package:
+
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+5. Deactivate the venv:
+
+   ```shell
+   deactivate
+   ```
+
+# Install Python3 and SQLite
+
+If you do not install python3 or SQlite, you can follow those command to install them.
+
+## Install SQlite
+
+- To install on Linux system (Ubuntu or Debian) please execute below commands:
+
+  ```shell
+  sudo apt-get update
+  sudo apt-get install sqlite3
+  ```
+
+- To install on Mac system please execute below commands:
+
+  ```shell
+  brew install sqlite3
+  ```
+
+  - If you donot install `brew` you can execute this command:
+
+    ```shell
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
+
+## Install python3
+
+- On Mac system execute below command:
+
+  ```
+  brew install python3
+  ```
+
+- On Linux system execute below command:
+
+  ```shell
+  sudo apt-get update
+  sudo apt-get install python3.6
+  ```
+
 # Backend of the project
 
-- Include **API**, **db**, and helper functions
+- Include **API**, **database**, and helper functions
 
 - Tree structure
 
@@ -8,43 +84,39 @@
   .
   ├── README.md
   ├── api
-  │   └── auth_handling.py
+  │   ├── auth_handling.py
+  │   ├── booking_com_forward.py
+  │   ├── booking_handling.py
+  │   ├── chat_handling.py
+  │   ├── hotel_info_for_map.py
+  │   ├── hotel_management.py
+  │   ├── review_handling.py
+  │   ├── room_management.py
+  │   └── search_handling.py
   ├── app
   │   └── __init__.py
   ├── requirements.txt
   ├── run.py
   ├── templates
-  │   └── activate.html
+  │   ├── activate.html
+  │   └── booking.html
   └── util
       ├── auth.py
       ├── data.sqlite
       ├── db_handling.py
+      ├── generate_rating.py
       ├── init_database.sql
       ├── mail_handling.py
       └── request_handling.py
   ```
 
-# How to deploy backend
+# Flask CORS
+This is about how to solve the flask cors issue.
 
-- `pip3 install -r requirements.txt`
-- `python3 run.py`
+The fisrt method is config the app after request.
 
-# How to test API
-在测试不同的request的请求的时候，只需要把`DELETE`换成相对应的request方式就行。
-添加args的方式：`-d "arg1=xxx&arg2=xxx"`。在测试需要用不同的URL。例如：
-```bash
-curl -X DELETE "http://127.0.0.1:8000/auth/close" -H "accept: application/json" -d "username=shunyangli0@gmail.com&password=li19980812"
-```
-```bash
-curl -X GET "http://127.0.0.1:8000/auth/send" -H "accept: application/json" -d "username=shunyangli0@gmail.com"
-```
-当然也可以直接在浏览器中打开测试。
-
-# Flask CROS
-因为前端JQuery或者AJAX请求API数据时会存在一些跨域请求的问题有两种解决方法：
-第一种是在app request之后自定义header：
 ```python
-# Configuring cross requests
+# Configuring cors requests
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,session_id')
@@ -53,7 +125,7 @@ def after_request(response):
     return response
 
 ```
-第二种是调用package`flask_cors`来解决：
+The sencond methos is using the package`flask_cors` (this is what we use)：
 ```python
 from flask import Flask
 from flask_cors import CORS
@@ -62,19 +134,20 @@ CORS(app)
 
 ```
 
-# How to use API
-在`API.md`文档里面有具体的描述API的作用，method，args以及response。
-
 # How to init database
-在`backend`文件夹下执行:
+In the `backend` directory execute:
 ```bash
+rm util/data.sqlite
 sqlite3 util/data.sqlite < util/init_database.sql
 ```
 
 # How to init database in API
+
+Call the API:
+
 ```bash
-Call API /cleanDB
-``` 
+/cleanDB
+```
 
 # Make the hotels rating become random
 ```bash
