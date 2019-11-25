@@ -9,7 +9,7 @@
     - You can go to [backend/README.md](./backend/README.md) to see its internal directory tree structure.
 - `frontend/` directory contains:
     - all frontend code using Angular8 framework;
-    - You can go to [frontend/README.md](./frontend/README.md) to see all frontend component descriptions.
+    - [frontend/src/app](./frontend/src/app) contains all Angular components. You can find each component description in our final report.
 
 ## Team members:
 

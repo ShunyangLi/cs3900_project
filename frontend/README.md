@@ -32,4 +32,16 @@ Note: This set-up requires `Node.js` and `Angular CLI` installed.
         ** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
         ℹ ｢wdm｣: Compiled successfully.
     ```
-- Step 3: Open a tab in your browser and navigate to `http://localhost:4200/`. 
+- Step 3: Open a tab in your browser and navigate to `http://localhost:4200/`.
+
+## Code documentation (comments)
+There are a lot of files in Angular framework, but you don't need to understand all in order to understand our project frontend. A lot of
+files are testing, configuration or external library files and you can completely ignore them. Therefore, we did not add comments
+on those files. 
+
+Here are the list of useful files where we have added comments or explanation. It contains all frontend functionalities and you may only focus on them.
+- All TypeScript files in `frontend/src/app` except any file with `*.spec.ts` as suffix.
+- Some JavaScript files in `frontend/src/assets`.
+    - `displayMap.js`, `loginStatus.js`, `profilePage.js`, `update_hotel.js`
+
+We did not add comments on `html` files because they are all static and can be self-explained.

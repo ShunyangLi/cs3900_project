@@ -1,3 +1,7 @@
+/**
+ * This is the JSON data object for transmitting booking information via HTTP connection between
+ * backend and frontend
+ */
 export class BookingInfo {
   constructor(
     public name: string,
