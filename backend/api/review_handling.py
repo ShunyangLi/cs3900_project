@@ -29,8 +29,6 @@ class Review(Resource):
         review_info = get_request_args('review_info', str)
         review_info = format_str(review_info)
 
-        print(review_info)
-
         query_db("INSERT INTO Hotels_review (hotel_id, review) VALUES ('%s', '%s')" % (hotel_id, review_info))
 
         return make_response(jsonify(res='success'), 200)

@@ -110,7 +110,8 @@ CREATE TABLE IF NOT EXISTS Booking (
 -- add hotel review table
 CREATE TABLE IF NOT EXISTS Hotels_review (
     hotel_id TEXT NOT NULL ,
-    review TEXT
+    review TEXT,
+    FOREIGN KEY (hotel_id) REFERENCES Hotels(hotel_id)
 );
 
 CREATE TABLE IF NOT EXISTS Comments(
