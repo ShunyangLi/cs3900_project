@@ -99,7 +99,7 @@ class Register(Resource):
                  (email, password, first_name, last_name, birthday,user_type, 'False', ''))
 
         token = generate_activate_token(email, expires_in=3600)
-        # TODO when you testing, just do not send mail, just print the token, run in api page
+
         url = 'http://127.0.0.1:4200/activate/' + token.decode("utf-8")
         send_mail(email, 'Activate your account', 'activate', action_url=url)
         return make_response(jsonify({"message": "success"}), 200)
