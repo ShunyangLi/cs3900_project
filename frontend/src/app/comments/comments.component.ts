@@ -11,6 +11,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
   styleUrls: ['./comments.component.css'],
   providers: [AuthenticationService, CommentsService]
 })
+
 export class CommentsComponent implements OnInit {
   public comments: Array<string> = new Array<string>();
   public myForm: FormGroup = new FormGroup({
@@ -30,12 +31,25 @@ export class CommentsComponent implements OnInit {
     width: 'auto'
   };
 
+  /**
+   * This class is the controller for comments web page
+   * @param activatedRoute the helper object to grab hotel_id string from the URL
+   * @param authService HTTP connection service for authenticating users when writing comments
+   * so that the user first name can be displayed.
+   * @param cs HTTP connection service for comment web page controller: sending comment strings to backend
+   */
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthenticationService, private cs: CommentsService) { }
 
+  /**
+   * Initialisation of rendering comment web page:
+   * 1. It authenticate users who is currently logging in
+   * 2. It shows all comments written by other people and stored in our database
+   */
   ngOnInit() {
     console.log(this.myForm.controls.editor.value);
     if (window.localStorage.getItem('token')) {
 
+      // authenticating user login token
       this.authService.auth(window.localStorage.getItem('token')).subscribe((res) => {
         // @ts-ignore
         const firstName = res.profile.first_name;
@@ -54,6 +68,7 @@ export class CommentsComponent implements OnInit {
       }
     }));
 
+    // getting all existing comments:
     this.cs.getComments(hotelId).subscribe((res) => {
       // @ts-ignore
       res.res.forEach((obj) => {
@@ -63,6 +78,9 @@ export class CommentsComponent implements OnInit {
     });
   }
 
+  /**
+   * The handler for transmitting the comment string to the backend via HTTP connection
+   */
   public onSubmitComment(): void {
     // console.log(this.myForm.controls.editor.value);
     this.cs.postComments(this.myForm.controls.user.value + this.myForm.controls.editor.value, this.hotelId).subscribe((res) => {

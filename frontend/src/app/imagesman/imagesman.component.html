@@ -12,7 +12,7 @@
 <div *ngFor="let img of curHotel.img_url">
   <kendo-tabstrip-tab [title]="'image'" [selected]="true">
     <ng-template kendoTabContent>
-      <img src="http://nomoreprojectpls.com/{{img.url}}">
+      <img src="http://localhost:9000/{{img.url}}">
     </ng-template>
   </kendo-tabstrip-tab>
 </div>
