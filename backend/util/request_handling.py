@@ -8,9 +8,15 @@ from flask_restplus import abort
 from werkzeug.datastructures import FileStorage
 
 
-# get request args
-# POST GET DELETE all can get args from this
 def get_request_args(arg_name, arg_type, required=True):
+    """
+    It will get the argument value according to the name.
+    And it will check whether required
+    :param arg_name: the argument name
+    :param arg_type: the argument type
+    :param required: whether necessary
+    :return: the argument value
+    """
     parser = reqparse.RequestParser()
     parser.add_argument(arg_name, type=arg_type)
     args = parser.parse_args()

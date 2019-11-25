@@ -18,10 +18,10 @@ export class BookingService {
   }
 
   public checkAva(check: CheckAvaData): Observable<{}> {
-    return this.http.post('http://nomoreprojectpls.com/check-availability/', JSON.stringify(check), this.httpOptions);
+    return this.http.post('http://localhost:9000/check-availability/', JSON.stringify(check), this.httpOptions);
   }
 
   public book(b: BookingInfo): Observable<{}> {
-    return this.http.post('http://nomoreprojectpls.com/booking/', JSON.stringify(b), this.httpOptions);
+    return this.http.post('http://localhost:9000/booking/', JSON.stringify(b), this.httpOptions);
   }
 }

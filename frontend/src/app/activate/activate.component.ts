@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ParamMap, ActivatedRoute, Route} from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import {Token} from './token';
 import {ActivateService} from '../services/activate.service';
 
@@ -11,23 +9,36 @@ import {ActivateService} from '../services/activate.service';
   styleUrls: ['./activate.component.css'],
   providers: [ActivateService]
 })
+
 export class ActivateComponent implements OnInit {
 
   private token: Token;
-  constructor(private activatedRoute: ActivatedRoute, private activateService: ActivateService, private route: Router) {
+
+  /**
+   *
+   * This class is the controller for email sign up activation page.
+   * @param activatedRoute the helper object to grab token string from URL
+   * @param activateService HTTP connection service for activation controller
+   */
+  constructor(private activatedRoute: ActivatedRoute, private activateService: ActivateService) {
     this.token = new Token('');
   }
 
+  /**
+   * Initialisation of rendering activation page
+   * 1. get the token string from URL
+   * 2. send the token string to the backend server
+   */
   ngOnInit() {
     this.token.token = this.activatedRoute.snapshot.paramMap.get('token');
     this.activateService.activate(this.token).subscribe(
       res => console.log(res)
     );
-
-    // setTimeout(() => {
-    //   this.route.navigate(['/homepage']).then();
-    // }, 2000); // 2s
   }
+
+  /**
+   * Navigate to login page
+   */
   public goLogin(): void {
     window.location.assign('/login');
   }

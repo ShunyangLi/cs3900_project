@@ -1,5 +1,5 @@
 let token = window.localStorage.getItem('token');
-let request_url = 'http://nomoreprojectpls.com';
+let request_url = 'http://localhost:9000';
 
 layui.use('jquery', function() {
   var $ = layui.jquery;
