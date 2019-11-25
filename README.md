@@ -23,7 +23,7 @@
 ## Set up instructions:
 You have to build backend dev server and frontend dev serve separately in two different terimals in your computer.
 - Step 0: Open a terminal in your computer.
-- Step 1(Building frontend dev server): Follow the instructions in [frontend/README.md](./fontend/README.md) to set up Angular frontend dev server.
+- Step 1(Building frontend dev server): Follow the instructions in [frontend/README.md](./frontend/README.md) to set up Angular frontend dev server.
 - Step 2: Open another terimal in your computer.
 - Step 3(Building backend dev server): Follow the instructions in [backend/README.md](./backend/README.md) to set up Flask backend dev server.
 - Step 4: You are ready to go! Open a tab in your browser and type `http://localhost:4200` to start exploring our website. (You may have opened this tab when you set up the Angular dev server)
