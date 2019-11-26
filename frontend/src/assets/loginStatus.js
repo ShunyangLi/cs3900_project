@@ -3,6 +3,9 @@ let request_url = 'http://localhost:9000';
 
 layui.use('jquery', function() {
   var $ = layui.jquery;
+  // if we can get token, that means login already
+  // so it hide the signup buttton and add the user avatar
+  // also add logout buttton
   if (token) {
     $("#singup_status").hide();
     $("#loginStatus").hide();
@@ -46,7 +49,7 @@ layui.use('jquery', function() {
 
 });
 
-
+// init the logout button
 function Logout() {
   window.localStorage.clear();
   window.location.assign('/homepage');

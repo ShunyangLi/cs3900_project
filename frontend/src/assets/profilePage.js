@@ -2,11 +2,12 @@ let layer;
 let $;
 let url_method = "POST";
 let update_id = null;
-
+// init layer for alter message
 layui.use('layer', function () {
   layer = layui.layer;
 });
 
+// init the JQuery
 layui.use('jquery', function() {
   $ = layui.jquery;
   $(document).ready(function() {
@@ -39,6 +40,7 @@ layui.use('jquery', function() {
         $("#history").html(content);
       },
       error: function(data){
+        // if API response not success then show the error message
         layer.msg("Authentication failed. Please log in first.");
         window.location.assign('/homepage');
       }

@@ -1,9 +1,15 @@
+// we use JQuery to upload hotel images
+// because angular2 is not working.
+
 layui.use('jquery', function() {
   $ = layui.jquery;
+  // detect the submit action
   $("#formContent").submit(function(e){
     e.preventDefault();
+    // get the current hotel details
     let hotel_info = JSON.parse(window.localStorage.getItem('update_hotel'));
 
+    // init the FormData
     let formdata = new FormData(this);
     formdata.append('hotel_id', hotel_info.hotel_id);
     formdata.append('hotel_name', hotel_info.hotel_name);
@@ -11,7 +17,8 @@ layui.use('jquery', function() {
     formdata.append('description', hotel_info.description);
     formdata.append('phone', hotel_info.phone);
     formdata.append('email', hotel_info.email);
-    console.log(token);
+    // console.log(token);
+    // Use ajax the request API
     $.ajax({
       url: "http://localhost:9000/hotel/management",
       type: "PUT",
