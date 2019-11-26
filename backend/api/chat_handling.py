@@ -128,7 +128,7 @@ def checkInfo(response, parameters):
 # return a string of the list of hotels
 def searchHotel(response):
     city = response.query_result.parameters.fields['city'].string_value
-    res = requests.get("http://nomoreprojectpls.com/search/hotel?location=%s" % city)
+    res = requests.get("http://127.0.0.1:9000/search/hotel?location=%s" % city)
     res.raise_for_status()
     res = res.json()
     ret_val = ''
