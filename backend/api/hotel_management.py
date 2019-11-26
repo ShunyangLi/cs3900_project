@@ -52,6 +52,7 @@ def store_files(files, hotel_id, username):
             ))
 
 
+
 @manage.route('/')
 @manage.response(200, 'Success')
 @manage.response(400, 'Missing args')

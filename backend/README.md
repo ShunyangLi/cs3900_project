@@ -34,6 +34,20 @@ We require python3.6 or higher version and sqlite3. Please install python3, pip3
    deactivate
    ```
 
+# Dialogflow Authentication
+
+We use dialogflow in the chatbot functions, so before you run the backend you need to `export` the authentication files. Firstly, you need to get the current path, execute this command then you can get the current directory.
+
+```bash
+pwd
+```
+
+And then execute the `export` commad. The `current_path` is the `pwd` command result.
+
+```shell
+export GOOGLE_APPLICATION_CREDENTIALS="current_path/auth.json"
+```
+
 # Install Python3 and SQLite
 
 If you do not install python3 or SQlite, you can follow those command to install them.
