@@ -50,14 +50,25 @@ export class ListingmanComponent implements OnInit {
     name: new FormControl(),
     price: new FormControl()
   });
+
+  /**
+   * This class is controller for add hotel , delete hotel and edit hotel
+   * @param editService Http connection service fro edit hotel information
+   */
   constructor(private editService: EditFormService) {
     this.view = editService;
   }
 
+  /**
+   * initialisation of the data
+   */
   public ngOnInit(): void {
     this.getAllData();
   }
 
+  /**
+   * Through the user's token to get all hotel that user has
+   */
   public getAllData(): void {
     this.token = window.localStorage.getItem('token');
     this.editService.read(this.token);
@@ -68,6 +79,10 @@ export class ListingmanComponent implements OnInit {
     this.loading = false;
   }
 
+  /**
+   * get the room data
+   * @param hotelId the hotel id
+   */
   public getAllRoomData(hotelId: string): void {
     this.token = window.localStorage.getItem('token');
     this.editService.readRoom(this.token, hotelId);
@@ -78,6 +93,10 @@ export class ListingmanComponent implements OnInit {
     });
   }
 
+  /**
+   * show the rooms
+   * @param dataItem the data contain hotel name and hotel id
+   */
   // Hotel grid three buttons handlers:
   public onShowRooms(dataItem): void {
     this.showRoom = true;
@@ -90,6 +109,10 @@ export class ListingmanComponent implements OnInit {
     this.loading = false;
   }
 
+  /**
+   * remove the hotel
+   * @param dataItem the data contain hotel name and hotel id
+   */
   public onRemoveHotel({dataItem}): void {
     console.log(dataItem);
     this.editService.remove(dataItem.hotel_id, this.token).subscribe(() => {
@@ -99,6 +122,11 @@ export class ListingmanComponent implements OnInit {
     });
   }
 
+  /**
+   * edit the hotel information
+   * @param rowIndex
+   * @param dataItem the data contain hotel name and hotel id
+   */
   public onEditHotel({rowIndex, dataItem}): void {
     console.log(rowIndex);
     console.log(dataItem);
@@ -109,6 +137,9 @@ export class ListingmanComponent implements OnInit {
     this.editHotelForm.reset(this.editListing);
   }
 
+  /**
+   * add new hotel to hotel list
+   */
   // Edit Hotel Form handlers:
   public addNewHotel(): void {
     this.isNew = true;
@@ -117,14 +148,23 @@ export class ListingmanComponent implements OnInit {
     this.editHotelForm.reset(this.editListing);
   }
 
+  /**
+   * close the hotel form
+   */
   public closeHotelForm(): void {
     this.active = false;
   }
 
+  /**
+   * cancel the hotel form
+   */
   public cancelHotelForm(): void {
     this.closeHotelForm();
   }
 
+  /**
+   * save the hotel form
+   */
   public saveHotelForm(): void {
     // console.log(this.editHotelForm.value);
     this.editListing.hotel_name = this.editHotelForm.value.hotel_name;
@@ -142,6 +182,10 @@ export class ListingmanComponent implements OnInit {
     });
   }
 
+  /**
+   * edit the room of hotel
+   * @param dataItem the data contain room information
+   */
   // Room Grid button handlers:
   public onEditRoom({dataItem}): void {
     this.isNewRoom = false;
@@ -151,6 +195,10 @@ export class ListingmanComponent implements OnInit {
     this.editRoomForm.reset(this.editRoom);
   }
 
+  /**
+   * remove room of hotel
+   * @param dataItem the data contain room and hotel information
+   */
   public onRemoveRoom({dataItem}): void {
     this.token = window.localStorage.getItem('token');
     this.editService.removeRoom(this.curHotelId, dataItem.room_id, this.token).subscribe(() => {
@@ -162,6 +210,9 @@ export class ListingmanComponent implements OnInit {
     });
   }
 
+  /**
+   * add new room to hotel
+   */
   public addNewRoom(): void {
     this.isNewRoom = true;
     this.editRoom = new RoomInfo('', '', '', '', this.curHotelId, '', '', '');
@@ -169,11 +220,17 @@ export class ListingmanComponent implements OnInit {
     this.editRoomForm.reset(this.editRoom);
   }
 
+  /**
+   * back to hotel page
+   */
   public goBack(): void {
     this.showRoom = false;
     this.getAllData();
   }
 
+  /**
+   * save the room form
+   */
   public saveRoomForm(): void {
     this.editRoom.adults = this.editRoomForm.value.adults;
     this.editRoom.children = this.editRoomForm.value.children;
@@ -192,14 +249,25 @@ export class ListingmanComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  /**
+   * close room form
+   */
   public closeRoomForm(): void {
     this.roomActive = false;
   }
 
+  /**
+   * cancel the room form
+   */
   public cancelRoomForm(): void {
     this.closeRoomForm();
   }
 
+  /**
+   * open the room page
+   * @param dataItem the data contain room and hotel information
+   */
   public onImages(dataItem): void {
     if (this.showRoom) {
       window.open('/images/room/' + dataItem.room_id, '_blank');

@@ -14,19 +14,27 @@ import {RecommendationService} from '../services/recommendation.service';
 export class BookingComRecommendationComponent implements OnInit {
   public allHotelsInfo: Array<BookingExa> = [];
   private resStr: string;
-
-
   public today = new Date().toLocaleDateString();
 
+  /**
+   * This class is for the BookingRecommendation which using booking api
+   *
+   *
+   * @param recService Http connection service for api
+   */
   constructor(private recService: RecommendationService) {
 
   }
   public curUrl: string;
+
+  /**
+   *  get Json file from api and extract address postcode name and price from it
+   *  then html get this information and print it
+   */
   ngOnInit() {
     this.recService.RecInfo().subscribe(
       res => {
         this.resStr = JSON.stringify(res);
-        // console.log(JSON.parse(this.resStr);
         const obj = JSON.parse(this.resStr);
         obj.result.forEach((bookres) => {
           const bookingres = new BookingExa('', '', '', '');
@@ -38,7 +46,6 @@ export class BookingComRecommendationComponent implements OnInit {
               ' <b>District:</b> ' + bookres.district + ', <b>Postcode:</b> ' + bookres.zip;
           }
           if (bookres.min_total_price === '') {
-            console.log(bookres.min_total_price)
             bookres.min_total_price = '120';
           }
           bookingres.price = '<b>Price: </b> $' + bookres.min_total_price;
@@ -46,23 +53,14 @@ export class BookingComRecommendationComponent implements OnInit {
           this.allHotelsInfo.push(bookingres);
         });
 
-        // JSON.parse(this.resStr).res.forEach((obj) => {
-        //
-        //   // obj.result.forEach((hotel) => {
-        //   //   const bookingres = new BookingExa('', '', 100);
-        //   //   bookingres.name = hotel.hotel_name_trans;
-        //   //   bookingres.address = hotel.address;
-        //   //   bookingres.price = hotel.min_total_price;
-        //   //   this.allHotelsInfo.push(bookingres);
-        //   //  });
-        //   }
-        // );
-        // }
-        // );
       });
 
   }
 
+  /**
+   * Click the recommendation will open the booking page
+   * @param url of booking page
+   */
   public onClick(url: string): void {
     window.open(url, '_blank');
   }

@@ -14,13 +14,25 @@ export class BookingService {
       'Content-Type':  'application/json',
     })
   };
+  /**
+   * This class is for booking
+   * @param http httpClient for connection backend service
+   */
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * check weather room available
+   * @param check data
+   */
   public checkAva(check: CheckAvaData): Observable<{}> {
     return this.http.post('http://localhost:9000/check-availability/', JSON.stringify(check), this.httpOptions);
   }
 
+  /**
+   * send book request to backend
+   * @param b the booking information
+   */
   public book(b: BookingInfo): Observable<{}> {
     return this.http.post('http://localhost:9000/booking/', JSON.stringify(b), this.httpOptions);
   }

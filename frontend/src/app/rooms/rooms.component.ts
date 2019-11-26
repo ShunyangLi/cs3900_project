@@ -21,8 +21,18 @@ export class RoomsComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   check: CheckAvaData = new CheckAvaData('', '', '', '', '');
   hotelId: string;
+
+  /**
+   * This class is the controller for room list and booking room
+   * @param activatedRoute get the hotel id
+   * @param searchService Http connection service for searching room
+   * @param book Http connection service for booking room
+   */
   constructor(private activatedRoute: ActivatedRoute, private searchService: SearchService, private book: BookingService) { }
 
+  /**
+   *  Initialisation of the page: get the all hotel result and room result from backend
+   */
   ngOnInit() {
     const hotelId = this.activatedRoute.snapshot.paramMap.get('hotelId');
     this.hotelId = hotelId;
@@ -45,6 +55,9 @@ export class RoomsComponent implements OnInit {
     );
   }
 
+  /**
+   *  The handler for Check the available room
+   */
   public onSubmitCheck(): void {
     this.filtered = true;
     this.check.hotel_id = this.hotelId;

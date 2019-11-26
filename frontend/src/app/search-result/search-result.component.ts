@@ -21,10 +21,19 @@ export class SearchResultComponent implements OnInit {
   private resStr: string;
   public hotelSearchResultList: Array<string> = [];
   public show: Array<HotelSearchResultInfoPrice> = [];
+
+  /**
+   * This class is the controller for search result
+   * @param searchService Http connection service for search hotel
+   * @param localStorageService Http connection service for storage information
+   */
   constructor(private searchService: SearchService, private localStorageService: LocalStorageService) {
     this.searchReq = new SearchReq('');
   }
 
+  /**
+   * Initialisation of the Search results list page
+   */
   ngOnInit() {
     JSON.parse(window.localStorage.getItem('hotelSearchResults')).addrList.forEach((obj => {
       const tmp = JSON.parse(obj);
@@ -32,6 +41,9 @@ export class SearchResultComponent implements OnInit {
     }));
   }
 
+  /**
+   * The handler for get search Result from backend and open the SearchResult url
+   */
   public onSearchSubmit(): void {
     this.searchService.search(this.searchReq.location).subscribe(
       res => {
@@ -46,15 +58,24 @@ export class SearchResultComponent implements OnInit {
     );
   }
 
+  /**
+   * this sort hotel by price
+   */
   public onPriceClick(): void {
     console.log('change price');
     this.show.sort((a, b) => (a.min_price > b.min_price) ? 1 : (b.min_price > a.min_price) ? -1 : 0);
   }
 
+  /**
+   * this sort hotel by rating
+   */
   public onRatingClick(): void {
     console.log('change rating');
   }
 
+  /**
+   * this sort hotel by name
+   */
   public onSortNameClick(): void {
     console.log('clicked sort name');
     this.show.sort((a, b) => (a.hotel_name > b.hotel_name) ? 1 : (b.hotel_name > a.hotel_name) ? -1 : 0);
@@ -62,7 +83,10 @@ export class SearchResultComponent implements OnInit {
 
   // public onFindRoomClick(): void {
   // }
-
+  /**
+   * this counter the star of hotel
+   * @param starNum
+   */
   public counter(starNum: string): Array<number> {
     const n: Array<number>  = [];
     // tslint:disable-next-line:radix

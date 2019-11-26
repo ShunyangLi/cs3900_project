@@ -14,6 +14,9 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 export class CommentsComponent implements OnInit {
   public comments: Array<string> = new Array<string>();
+  /**
+   *  create a FormGroup so that html can connect to ts file
+   */
   public myForm: FormGroup = new FormGroup({
     // tslint:disable-next-line:max-line-length
     editor: new FormControl('<p><strong><em><u>Room Name:</u></em></strong></p><br><p><em><u><strong>Write your reviews:</strong></u></em></p><br><p><strong><em><u>Share some pictures:</u></em></strong></p></p>'),
@@ -21,7 +24,6 @@ export class CommentsComponent implements OnInit {
   });
   hotelId: string;
   hotelName: string;
-
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -32,11 +34,13 @@ export class CommentsComponent implements OnInit {
   };
 
   /**
+
    * This class is the controller for comments web page
    * @param activatedRoute the helper object to grab hotel_id string from the URL
    * @param authService HTTP connection service for authenticating users when writing comments
    * so that the user first name can be displayed.
    * @param cs HTTP connection service for comment web page controller: sending comment strings to backend
+
    */
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthenticationService, private cs: CommentsService) { }
 
