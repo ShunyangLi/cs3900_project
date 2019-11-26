@@ -10,14 +10,14 @@ import {HttpMethods} from './httpMethods';
 export class ImageService {
   /**
    * this service is for update image
-   * @param http
+   * @param http the httpclient
    */
   constructor(private http: HttpClient) {}
 
   /**
    * save the hotel image
-   * @param token
-   * @param image
+   * @param token the token of host
+   * @param image the upload images
    * @param h hotel search result
    */
   public saveHotelImage(token: string, image: File, h: HotelSearchResultInfo): Observable<{}> {

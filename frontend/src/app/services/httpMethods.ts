@@ -28,8 +28,8 @@ export abstract class HttpMethods {
 
   /**
    * post object to backend
-   * @param obj
-   * @param path
+   * @param obj the request body
+   * @param path the request path localhost:9000/xx/xx/
    */
   public httpPost(obj: any, path: string): Observable<{}> {
     const body = JSON.stringify(obj);
@@ -39,7 +39,7 @@ export abstract class HttpMethods {
 
   /**
    * Get object from backend
-   * @param path
+   * @param path the request path
    */
   public httpGet(path: string): Observable<{}> {
     return this.http.get(this.backendUrl + path, this.httpOptions);

@@ -34,7 +34,7 @@ export class BookingComponent implements OnInit {
     this.price = this.activatedRoute.snapshot.paramMap.get('price');
     this.check = JSON.parse(window.localStorage.getItem('checkAva'));
     this.bookingInfo = new BookingInfo('', this.roomId, '', this.check.check_in, this.check.check_out, '', '');
-
+    // convert the string into date type and then computer the days
     const d1 = new Date(this.check.check_in + 'T00:00:00');
     const d2 = new Date(this.check.check_out + 'T00:00:00');
     const diff = Math.abs(d1.getTime() - d2.getTime());
@@ -50,7 +50,8 @@ export class BookingComponent implements OnInit {
    */
   public onBookSubmit(): void {
     this.submitted = true;
-    console.log(this.bookingInfo);
+    // console.log(this.bookingInfo);
+    // make a booking post
     this.bookingService.book(this.bookingInfo).subscribe((res) => {
       console.log(res);
     });

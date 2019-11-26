@@ -21,7 +21,7 @@ export class AuthenticationService extends HttpMethods {
 
   /**
    * post the login information to backend service
-   * @param logInInfo
+   * @param logInInfo the login information
    */
   public authenticate(logInInfo: LoginInfo): Observable<{}> {
     return super.httpPost(logInInfo, this.path);

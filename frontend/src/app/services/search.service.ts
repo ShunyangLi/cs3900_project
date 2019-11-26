@@ -22,7 +22,7 @@ export class SearchService extends HttpMethods {
 
   /**
    * search result by location
-   * @param location
+   * @param location the location of user typed
    */
   public search(location: string): Observable<{}> {
     const params = new HttpParams().set('location', location);

@@ -46,14 +46,14 @@ export class LoginComponent implements OnInit {
       res => {
         // tslint:disable-next-line:no-string-literal
         window.localStorage.setItem('token', res['token']);
-        //console.log(res);
+        // console.log(res);
         setTimeout(() => {
           window.location.assign('/profile');
         }, 1000);
       },
       error => {
         this.authFailed = true;
-        //console.log(error);
+        // console.log(error);
       }
     );
   }

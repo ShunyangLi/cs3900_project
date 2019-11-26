@@ -21,7 +21,7 @@ export class SignupService extends HttpMethods {
 
   /**
    * post sign information to backend
-   * @param signupInfo
+   * @param signupInfo the user information
    */
   public signup(signupInfo: SignUpInfo): Observable<{}> {
     return this.httpPost(signupInfo, this.path);

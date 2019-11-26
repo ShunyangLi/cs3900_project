@@ -36,6 +36,7 @@ export class BookingComRecommendationComponent implements OnInit {
       res => {
         this.resStr = JSON.stringify(res);
         const obj = JSON.parse(this.resStr);
+        // get all the hotels data and then dynamic generate the html string
         obj.result.forEach((bookres) => {
           const bookingres = new BookingExa('', '', '', '');
           bookingres.name = bookres.hotel_name_trans;

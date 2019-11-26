@@ -43,6 +43,7 @@ export class SearchResultComponent implements OnInit {
 
   /**
    * The handler for get search Result from backend and open the SearchResult url
+   * It will pass the location to the backend
    */
   public onSearchSubmit(): void {
     this.searchService.search(this.searchReq.location).subscribe(
@@ -85,7 +86,7 @@ export class SearchResultComponent implements OnInit {
   // }
   /**
    * this counter the star of hotel
-   * @param starNum
+   * @param starNum the star of each hotel
    */
   public counter(starNum: string): Array<number> {
     const n: Array<number>  = [];

@@ -16,6 +16,10 @@ export class DataService {
     return this.data.asObservable();
   }
 
+  /**
+   * it will put the search result into the list
+   * @param result the search result
+   */
   public updateData(result: Array<HotelSearchResultInfo>) {
     this.data.next(result);
   }

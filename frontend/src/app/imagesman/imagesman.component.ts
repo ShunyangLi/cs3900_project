@@ -21,6 +21,7 @@ export class ImagesmanComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   /**
    * This class is the controller for hotel image update
+   * But it not works well, so we change it into JQuery code (assets/upload_hotel.js)
    * @param router
    * @param activatedRoute get the current activated route
    * @param editService Http connection service for edit information of hotel

@@ -23,7 +23,7 @@ export class BookingService {
 
   /**
    * check weather room available
-   * @param check data
+   * @param check the check-in and check-out date
    */
   public checkAva(check: CheckAvaData): Observable<{}> {
     return this.http.post('http://localhost:9000/check-availability/', JSON.stringify(check), this.httpOptions);

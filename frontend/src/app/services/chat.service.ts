@@ -30,7 +30,7 @@ export class ChatService {
 
   /**
    * submit question that user typed to backend api and return answer
-   * @param question
+   * @param question the user's question
    */
   public submit(question: string): void {
     this.sendMsg(new ChatMsg(question)).subscribe(

@@ -6,7 +6,7 @@ import {MapSidebarComponent} from '../map-sidebar/map-sidebar.component';
 })
 export class ChangeMapSidebarDirective {
   /**
-   * This class if for the mapside bar
+   * This class is for the mapside bar
    * @param mapSidebar component from other ts file
    */
   constructor(private mapSidebar: MapSidebarComponent) { }

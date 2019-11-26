@@ -34,13 +34,11 @@ export class CommentsComponent implements OnInit {
   };
 
   /**
-
    * This class is the controller for comments web page
    * @param activatedRoute the helper object to grab hotel_id string from the URL
    * @param authService HTTP connection service for authenticating users when writing comments
    * so that the user first name can be displayed.
    * @param cs HTTP connection service for comment web page controller: sending comment strings to backend
-
    */
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthenticationService, private cs: CommentsService) { }
 

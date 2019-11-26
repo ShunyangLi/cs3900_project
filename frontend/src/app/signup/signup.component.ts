@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
    * The handler for submit the signup information to backend service and navigate to other page
    */
   public onSignUpSubmit(): void {
-    this.alreadyRegistered = false
+    this.alreadyRegistered = false;
     this.signUpService.signup(this.signUpInfo).subscribe(
       res => {
         this.openWindow();
