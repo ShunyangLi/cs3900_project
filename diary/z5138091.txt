@@ -39,3 +39,7 @@
     - compelete the charbot interface
 
 # Week 9
+    - complete chatbot booking function in backend
+
+# Week 10
+    - add chatbot search function in backend
