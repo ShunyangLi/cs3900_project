@@ -1,0 +1,45 @@
+# Week 1
+    - Made a group. 
+    - Had a meeting and discussed which project to do and what language and tools we use.
+    - Created the github repository.
+
+# Week 2
+    - Decided to do project 7 and discussed the functions of our website.
+    - Discussed features of our project.
+    - (my part)Wrote 3 epics for proposal, including Hosts Organizing Their properties, Booking Assistant and Personal Recommendation.
+
+# Week 3
+    - Joined the github team.
+    - Modified my part of proposal according to the feedback. 
+    - Had a meeting and completed the proposal.
+
+# Week 4
+    - Final modification of our proposal
+    - Learn angular
+    - create a dialogflow agent. Agent can chat with users and ask users the hotel and date they want to book.
+    - had a meeting. talking about work to do and techniques to learn.
+
+# Week 5
+    - Add "Address" entity to the dialogflow agent
+    - Work out how to send request to dialogflow
+    - make our agent perform better
+
+# Week 6
+    - work out how to set google authentication for dialogflow
+    - complete interaction with backend and dialogflow
+    - learning how to write chatbox for chatbot
+
+# Week 7
+    - improve our chatbot
+        - add "room size" entity
+        - add firstname and lastname
+    - do frontend part for chatbot, haven't finish
+
+# Week 8
+    - compelete the charbot interface
+
+# Week 9
+    - complete chatbot booking function in backend
+
+# Week 10
+    - add chatbot search function in backend
