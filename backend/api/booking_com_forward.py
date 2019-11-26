@@ -20,7 +20,7 @@ class Info(Resource):
 
     @info.doc(description="Forward booking.com results to the frontend")
     def get(self):
-#         return make_response(jsonify({'res': hotels}), 200)
+        # return make_response(jsonify({'res': hotels}), 200)
         url = "https://apidojo-booking-v1.p.rapidapi.com/properties/list"
 
         querystring = {"price_filter_currencycode":"AUD","travel_purpose":"leisure","categories_filter":"price::9-40,free_cancellation::1,class::1,class::0,class::2","search_id":"none","order_by":"popularity","languagecode":"en-us","search_type":"city","offset":"0","dest_ids":"-1603135","guest_qty":"1","arrival_date":tmr_str,"departure_date":dep_str,"room_qty":"1"}

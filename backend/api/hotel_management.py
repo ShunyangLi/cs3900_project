@@ -28,18 +28,31 @@ def check_allow(file_name):
 
 
 def store_files(files, hotel_id, username):
+    """
+    it will create the directory for each user according to the username.
+    because the username is unique.
+    and then create the hotel id directory
+    the path will like static/username/hotel_id/
+    :param files: the image files
+    :param hotel_id: hotel id
+    :param username: the username
+    :return:
+    """
     # check static directory
     if not os.path.isdir('static'):
         os.mkdir('static')
 
+    # create user's directory
     target = "static/%s/" % username
     if not os.path.isdir(target):
         os.mkdir(target)
 
+    # create hotel directory
     target = "static/%s/old%s" % (username, hotel_id)
     if not os.path.isdir(target):
         os.mkdir(target)
 
+    # store files
     for file in files:
         if file and check_allow(file.filename):
             filepath = "/".join([target, file.filename])
@@ -50,7 +63,6 @@ def store_files(files, hotel_id, username):
                     """ % (
                 hotel_id, filepath
             ))
-
 
 
 @manage.route('/')

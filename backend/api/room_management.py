@@ -12,7 +12,6 @@ hotel = api.namespace('hotel', description="New hotel management services")
 """
 This API is for hotel management and room management
 This one is for new hotel management
-对于每个文件夹用new和old来区分
 """
 
 allows = {'png', 'jpg', 'jpeg'}

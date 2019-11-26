@@ -23,9 +23,11 @@ class SearchHotel(Resource):
         location = format_str(location)
         location_math = '%'+location.upper()+'%'
 
+        # SQlite does not support case insensitive, so just convert all the string into upper
         res = query_db(" SELECT * FROM Hotels h WHERE upper(h.hotel_address) like '%s' " % location_math)
         for r in res:
             price = query_db("SELECT min(price) as price FROM Rooms WHERE hotel_id='%s'" % r['hotel_id'])
+            # add image path and min price
             r['img_url'] = query_db("SELECT url FROM Hotels_img WHERE hotel_id = '%s'" % r['hotel_id'])
             r['min_price'] = price[0]['price']
 

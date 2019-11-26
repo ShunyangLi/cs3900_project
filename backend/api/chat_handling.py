@@ -9,36 +9,37 @@ from util.auth import generate_activate_token, check_token, get_token
 import random
 import time
 import datetime
+"""
+backend for Chatbot
+We use DialogFlow to create Chatbot
+Chatbot has two functions:
+  - Search hotels in a specific area
+  - Book a room
 
-# backend for Chatbot
-# We use DialogFlow to create Chatbot
-# Chatbot has two functions:
-#   - Search hotels in a specific area
-#   - Book a room
-#
-# 1.Search
-#   parameter: address
-#   return: a list of hotels
-# sample input:
-# "Hi, could you search the hotels in Randwick?"
-#
-# 2.Book room
-#   parameter: firstname, lastname, hotel name, hotel address, 
-#               booking date, number of adults, number of children
-#               email address
-#   return: Bot will ask for information you didn't state
-# sample input:
-# 1. "Hi, could you help me book a room?"
-#    "What's your first name?"
-#    ....
-#    ....
-# 2."Book a room in jamison, 190 Smith Street on 12/1 and 12/2, 
-# my name is Li Ding, we have 3 adults and 2 children"
+1.Search
+  parameter: address
+  return: a list of hotels
+sample input:
+"Hi, could you search the hotels in Randwick?"
 
+2.Book room
+  parameter: firstname, lastname, hotel name, hotel address, 
+              booking date, number of adults, number of children
+              email address
+  return: Bot will ask for information you didn't state
+sample input:
+1. "Hi, could you help me book a room?"
+   "What's your first name?"
+   ....
+   ....
+2."Book a room in jamison, 190 Smith Street on 12/1 and 12/2, 
+my name is Li Ding, we have 3 adults and 2 children"
+"""
 
 chat = api.namespace('chat', description="Authentication Services")
 # session id for DialogFlow chat
 session_id = 1
+
 
 @chat.route('/', strict_slashes=False)
 class Chat(Resource):
@@ -91,6 +92,7 @@ class Chat(Resource):
         # return bot's response
         return response.query_result.fulfillment_text
 
+
 # get response from DialogFlow
 # return variables:
 # firstname, lastname, hotel, address, arrival_date, departure_date, email
@@ -124,6 +126,7 @@ def checkInfo(response, parameters):
 
     return firstname, lastname, hotel, address, arrival_date, departure_date, email
 
+
 # send search hotel request
 # return a string of the list of hotels
 def searchHotel(response):
@@ -140,6 +143,7 @@ def searchHotel(response):
         ret_val += 'Hotel Address: ' + hotel['hotel_address'] + '\n'
         num += 1
     return ret_val
+
 
 # copied from google document
 # https://cloud.google.com/dialogflow/docs/quick/api#detect-intent-text-python
