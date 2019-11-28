@@ -103,13 +103,8 @@ python3 get-pip.py
 ```
 
 # Backend of the project
-<<<<<<< HEAD
 
-- Include **API**, **database**, and helper functions
-=======
-- hello
 - Include **API**, **db**, and helper functions
->>>>>>> 96627684cf56dfc624a0c00ea99f7cb281379742
 
 - Tree structure
 
