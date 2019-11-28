@@ -1,8 +1,6 @@
-[![License](https://img.shields.io/badge/License-Flask-blue.svg)](https://flask.palletsprojects.com/en/1.1.x/) [![License](https://img.shields.io/badge/License-Angular%202-blue.svg)](https://angular.io/) [![License](https://img.shields.io/badge/License-Flask%20Restful%20API-blue.svg)](https://flask-restful.readthedocs.io/en/latest/) [![License](https://img.shields.io/badge/License-SQLite-blue.svg)](https://www.sqlite.org/index.html) [![License](https://img.shields.io/badge/License-Python3-blue.svg)](https://www.python.org/) [![Contributor](https://img.shields.io/badge/Contributor-4-brightgreen)](https://github.com/comp3300-comp9900-term-3-2019/capstone-project-nomoreprojectpls/graphs/contributors)
+[![License](https://img.shields.io/badge/License-Flask-blue.svg)](https://flask.palletsprojects.com/en/1.1.x/) [![License](https://img.shields.io/badge/License-Angular%202-blue.svg)](https://angular.io/) [![License](https://img.shields.io/badge/License-Flask%20Restful%20API-blue.svg)](https://flask-restful.readthedocs.io/en/latest/) [![License](https://img.shields.io/badge/License-SQLite-blue.svg)](https://www.sqlite.org/index.html) [![License](https://img.shields.io/badge/License-Python3-blue.svg)](https://www.python.org/)
 
 # COMP3900 Cocorico Accommodation Management System
-- `diary/` directory contains:
-    - each team member's diary.
 - `backend/` directory contains:
     - all backend code using Flask framework;
     - database files using SQLite;
@@ -10,15 +8,6 @@
 - `frontend/` directory contains:
     - all frontend code using Angular8 framework;
     - [frontend/src/app](./frontend/src/app) contains all Angular components. You can find each component description in our final report.
-
-## Team members:
-
-|     Name     |   Zid    |   Role   |
-| :----------: | :------: | :-------: |
-| Ziming Zheng | z5052592 |   Scrum Master  |
-| Chenming Fan | z5125807 | Developer |
-| Shunyang Li  | z5139935 | Developer |
-|   Li Ding    | z5138091 | Developer |
 
 ## Set up instructions:
 You have to build backend dev server and frontend dev serve separately in two different terimals in your computer.
